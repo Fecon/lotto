@@ -1,0 +1,107 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 18/04/2016 00:00
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-chemistry:before { content: "\f100"; }
+.flaticon-circle:before { content: "\f101"; }
+.flaticon-eating:before { content: "\f102"; }
+.flaticon-food:before { content: "\f103"; }
+.flaticon-food-1:before { content: "\f104"; }
+.flaticon-hand:before { content: "\f105"; }
+.flaticon-icon-2230:before { content: "\f106"; }
+.flaticon-icon-2272:before { content: "\f107"; }
+.flaticon-icon-419:before { content: "\f108"; }
+.flaticon-insects:before { content: "\f109"; }
+.flaticon-nature:before { content: "\f10a"; }
+.flaticon-nature-1:before { content: "\f10b"; }
+.flaticon-nature-10:before { content: "\f10c"; }
+.flaticon-nature-11:before { content: "\f10d"; }
+.flaticon-nature-12:before { content: "\f10e"; }
+.flaticon-nature-13:before { content: "\f10f"; }
+.flaticon-nature-14:before { content: "\f110"; }
+.flaticon-nature-15:before { content: "\f111"; }
+.flaticon-nature-16:before { content: "\f112"; }
+.flaticon-nature-17:before { content: "\f113"; }
+.flaticon-nature-18:before { content: "\f114"; }
+.flaticon-nature-2:before { content: "\f115"; }
+.flaticon-nature-3:before { content: "\f116"; }
+.flaticon-nature-4:before { content: "\f117"; }
+.flaticon-nature-5:before { content: "\f118"; }
+.flaticon-nature-6:before { content: "\f119"; }
+.flaticon-nature-7:before { content: "\f11a"; }
+.flaticon-nature-8:before { content: "\f11b"; }
+.flaticon-nature-9:before { content: "\f11c"; }
+.flaticon-science:before { content: "\f11d"; }
+.flaticon-shape:before { content: "\f11e"; }
+.flaticon-shape-1:before { content: "\f11f"; }
+.flaticon-silhouette:before { content: "\f120"; }
+.flaticon-three:before { content: "\f121"; }
+    
+    $font-Flaticon-chemistry: "\f100";
+    $font-Flaticon-circle: "\f101";
+    $font-Flaticon-eating: "\f102";
+    $font-Flaticon-food: "\f103";
+    $font-Flaticon-food-1: "\f104";
+    $font-Flaticon-hand: "\f105";
+    $font-Flaticon-icon-2230: "\f106";
+    $font-Flaticon-icon-2272: "\f107";
+    $font-Flaticon-icon-419: "\f108";
+    $font-Flaticon-insects: "\f109";
+    $font-Flaticon-nature: "\f10a";
+    $font-Flaticon-nature-1: "\f10b";
+    $font-Flaticon-nature-10: "\f10c";
+    $font-Flaticon-nature-11: "\f10d";
+    $font-Flaticon-nature-12: "\f10e";
+    $font-Flaticon-nature-13: "\f10f";
+    $font-Flaticon-nature-14: "\f110";
+    $font-Flaticon-nature-15: "\f111";
+    $font-Flaticon-nature-16: "\f112";
+    $font-Flaticon-nature-17: "\f113";
+    $font-Flaticon-nature-18: "\f114";
+    $font-Flaticon-nature-2: "\f115";
+    $font-Flaticon-nature-3: "\f116";
+    $font-Flaticon-nature-4: "\f117";
+    $font-Flaticon-nature-5: "\f118";
+    $font-Flaticon-nature-6: "\f119";
+    $font-Flaticon-nature-7: "\f11a";
+    $font-Flaticon-nature-8: "\f11b";
+    $font-Flaticon-nature-9: "\f11c";
+    $font-Flaticon-science: "\f11d";
+    $font-Flaticon-shape: "\f11e";
+    $font-Flaticon-shape-1: "\f11f";
+    $font-Flaticon-silhouette: "\f120";
+    $font-Flaticon-three: "\f121";

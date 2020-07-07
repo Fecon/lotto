@@ -1,0 +1,86 @@
+@charset "utf-8";
+/* CSS Document */
+/*
+ * Component: Users List
+ * ---------------------
+ */
+.forms-list{
+  text-align: center;
+}
+.forms-list-img {
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto;
+}
+.forms-list > a:hover,
+.forms-list > a:hover .forms-list-name {
+  color: #999;
+}
+.forms-list-name,
+.forms-list-date {
+  display: block;
+}
+.forms-list-name {
+  font-weight: 500;
+  color: #444;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.forms-list-date {
+  color: #FFF;
+  position:relative;
+  top:-70px;
+}
+.btn-nobg{
+  background: none !important;
+  background-color: none;
+}
+.form-submit {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:50px;
+    width: 100%;
+    background:#337ab7;
+    z-index:1000;
+    padding-top:3px;
+    padding-right:3px;
+    padding-left:3px;
+ }
+.block-menu{
+	background-color:#F9F9F9; 
+	border:#FFF solid 5px;
+}
+@media (max-width: 1350px) {}
+@media (max-width: 1200px) {}
+@media (max-width: 1024px) {}
+@media (max-width: 860px) {
+  .btn-back{
+    display: none;
+  }
+  .row-hidden{
+    display: none;
+  }
+  .col-hidden{
+    text-align: right;
+  }
+}
+@media (max-width: 767px) {
+  
+  .btn-back{
+    display: none;
+  }
+  .row-hidden{
+    display: none;
+  }
+  .col-hidden{
+    text-align: right;
+  }
+}
+
+@media (min-width: 800px) {
+  .col-hidden{
+    display: none;
+  }
+}

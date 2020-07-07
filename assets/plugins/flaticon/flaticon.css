@@ -1,0 +1,107 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("flaticon.eot");
+	src: url("flaticon.eot#iefix") format("embedded-opentype"),
+	url("flaticon.woff") format("woff"),
+	url("flaticon.ttf") format("truetype"),
+	url("flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+	font-style: normal;
+}.flaticon-atomic8:before {
+	content: "\e000";
+}
+.flaticon-bamboo3:before {
+	content: "\e001";
+}
+.flaticon-bird37:before {
+	content: "\e002";
+}
+.flaticon-budding:before {
+	content: "\e003";
+}
+.flaticon-cereal:before {
+	content: "\e004";
+}
+.flaticon-clover5:before {
+	content: "\e005";
+}
+.flaticon-flasks4:before {
+	content: "\e006";
+}
+.flaticon-flower49:before {
+	content: "\e007";
+}
+.flaticon-flower50:before {
+	content: "\e008";
+}
+.flaticon-garden137:before {
+	content: "\e009";
+}
+.flaticon-garden140:before {
+	content: "\e00a";
+}
+.flaticon-grass:before {
+	content: "\e00b";
+}
+.flaticon-hand208:before {
+	content: "\e00c";
+}
+.flaticon-leaf32:before {
+	content: "\e00d";
+}
+.flaticon-leaf64:before {
+	content: "\e00e";
+}
+.flaticon-leaves69:before {
+	content: "\e00f";
+}
+.flaticon-leaves9:before {
+	content: "\e010";
+}
+.flaticon-one23:before {
+	content: "\e011";
+}
+.flaticon-physics5:before {
+	content: "\e012";
+}
+.flaticon-plant-leaf:before {
+	content: "\e013";
+}
+.flaticon-plant-leaf1:before {
+	content: "\e014";
+}
+.flaticon-plant129:before {
+	content: "\e015";
+}
+.flaticon-plant15:before {
+	content: "\e016";
+}
+.flaticon-plant53:before {
+	content: "\e017";
+}
+.flaticon-plant7:before {
+	content: "\e018";
+}
+.flaticon-plants6:before {
+	content: "\e019";
+}
+.flaticon-seed3:before {
+	content: "\e01a";
+}
+.flaticon-seed9:before {
+	content: "\e01b";
+}
+.flaticon-spring20:before {
+	content: "\e01c";
+}
+.flaticon-twig1:before {
+	content: "\e01d";
+}
+.flaticon-wheat10:before {
+	content: "\e01e";
+}

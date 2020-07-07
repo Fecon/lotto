@@ -1,0 +1,57 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 30/08/2016 10:47
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-food:before { content: "\f100"; }
+.flaticon-food-1:before { content: "\f101"; }
+.flaticon-germ-sample:before { content: "\f102"; }
+.flaticon-germs:before { content: "\f103"; }
+.flaticon-nature:before { content: "\f104"; }
+.flaticon-nature-1:before { content: "\f105"; }
+.flaticon-plant:before { content: "\f106"; }
+.flaticon-sesame:before { content: "\f107"; }
+.flaticon-text-height-adjustment:before { content: "\f108"; }
+    
+    $font-Flaticon-food: "\f100";
+    $font-Flaticon-food-1: "\f101";
+    $font-Flaticon-germ-sample: "\f102";
+    $font-Flaticon-germs: "\f103";
+    $font-Flaticon-nature: "\f104";
+    $font-Flaticon-nature-1: "\f105";
+    $font-Flaticon-plant: "\f106";
+    $font-Flaticon-sesame: "\f107";
+    $font-Flaticon-text-height-adjustment: "\f108";
