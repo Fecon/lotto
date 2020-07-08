@@ -63,9 +63,9 @@
     <!-- Logo -->
     <a href="<?php echo site_url('dashboard') ?>" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
-    <span class="logo-mini">LT<b>LK</b></span>
+    <span class="logo-mini">L<b>LK</b></span>
     <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Lotto Lucky</b></span> </a>
+    <span class="logo-lg"><b>Lotte Lucky</b></span> </a>
 
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">

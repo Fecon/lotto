@@ -26,10 +26,10 @@ class Login extends MX_Controller {
 			$user_data = $this->session->userdata('user_data');
 
 			if($user_data['user_role']==1){
-				redirect('dashboard','refresh');
+				redirect('lotto','refresh');
 			}else{
 				redirect('user_index','refresh');
-			}	
+			}
 		} else {
 			redirect('login/index','refresh');
 		}
@@ -67,8 +67,8 @@ class Login extends MX_Controller {
 		// 				}else{
 		// 					redirect('user_index','refresh');
 		// 				}
-						
-		// 			}	
+
+		// 			}
 		// 		} else {
 		// 			redirect('login/index','refresh');
 		// 		}
@@ -80,7 +80,7 @@ class Login extends MX_Controller {
 		//     redirect('login/index','refresh');
 		// }
 
-		
+
 	}
 	public function logout()
 	{
@@ -88,4 +88,3 @@ class Login extends MX_Controller {
 		redirect('login/index','refresh');
 	}
 }
-

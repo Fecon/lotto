@@ -1,7 +1,7 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1> <i class="ion ion-ios-people"></i> ตั้งค่าทั่วไป  </h1><br />
+    <h1> <i class="fa fa-cogs"></i> ตั้งค่าทั่วไป  </h1><br />
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> หน้าแรก</a></li>
       <li class="active"> ตั้งค่า</li>
@@ -49,7 +49,7 @@
 
                 <div class="form-group">
                   <div class="col-sm-offset-4 col-sm-6">
-                    <button type="submit" class="btn btn-default">บันทึก</button>
+                    <button type="submit" class="btn btn-success">บันทึก</button>
                   </div>
                 </div>
               </form>
@@ -89,7 +89,7 @@
 
                   <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-6">
-                      <button type="submit" class="btn btn-default">บันทึก</button>
+                      <button type="submit" class="btn btn-success">บันทึก</button>
                     </div>
                   </div>
                 </form>

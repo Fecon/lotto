@@ -5,13 +5,12 @@ class Lotto_model extends CI_Model {
 
 	public function list_lotto()
 	{
-
 		$query = $this->db
 		->order_by('id','desc')
 		->get('lotto');
-
 		return $query->result_array();
 	}
+
 	public function lotto_insert($list_data)
 	{
 		$this->db->trans_start();
@@ -66,9 +65,15 @@ class Lotto_model extends CI_Model {
 		$this->db->where('lotto_id',$inpost['id']);
 		$this->db->update('lotto',$inpost);
 	}
-	public function get_profile($id)
+	public function get_reserve_number($lotto_id)
 	{
-		$this->db->where('lotto_id',$id);
+		$this->db->where('lotto_id',$lotto_id);
+		$query = $this->db->get('reserve_number');
+		return $query->result_array();
+	}
+	public function get_lotto($id)
+	{
+		$this->db->where('id',$id);
 		$query = $this->db->get('lotto');
 		return $query->result_array();
 	}

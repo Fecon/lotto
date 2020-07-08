@@ -2,7 +2,6 @@
 input[type=text] {
   border: none !important;
   background: none;
-
 }
 .hide-icon{
   display: none;
@@ -107,7 +106,7 @@ function hide_icon(id){
                                 <button id="<?php echo 'user_'.$agent['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
-                            <td><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('agent_manage/agent_delete/'.$agent['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>                       
+                            <td><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('agent_manage/agent_delete/'.$agent['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>
                         </tr>
                         <?php } ?>
                       </table>

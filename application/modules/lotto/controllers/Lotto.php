@@ -8,12 +8,6 @@ class Lotto extends MX_Controller {
     }
 	public function index()
 	{
-		// $data['user_data'] = $this->session->userdata('user_data');
-		//
-		// if($data['user_data']['user_role']!=1){
-		// 	redirect('user_manage/user_edit/'.$data['user_data']['user_id']);
-		// }
-
 		$data['content'] = 'lotto';
 
 		$data['list_lotto'] = $this->Lotto_model->list_lotto();
@@ -23,20 +17,36 @@ class Lotto extends MX_Controller {
 		$this->load->view('header/admin_header',$data);
 	}
 
-	public function user_insert()
+	public function reserve_number()
+	{
+		$lotto_id = $this->uri->segment(3);
+
+		if(!empty($lotto_id)){
+			 $data['reserve_number'] = $this->Lotto_model->get_reserve_number($lotto_id);
+			 $data['lotto'] = $this->Lotto_model->get_lotto($lotto_id);
+
+		}else{
+			redirect('lotto');
+		}
+
+		$data['content'] = 'reserve_number';
+		$this->load->view('header/admin_header',$data);
+	}
+
+	public function lotto_insert()
 	{
 		$list_data = array(
 			'name' => $this->input->post('name')
 		);
 
-		$result = $this->Lotto_model->user_insert($list_data);
+		$result = $this->Lotto_model->lotto_insert($list_data);
 
 		if($result==1){
-			$this->session->set_flashdata('insert_user', 'done');
+			$this->session->set_flashdata('insert_lotto', 'done');
 		}else{
-			$this->session->set_flashdata('insert_user', 'fail');
+			$this->session->set_flashdata('insert_lotto', 'fail');
 		}
-		redirect('user_manage');
+		redirect('lotto');
 	}
 	public function user_update()
 	{
@@ -54,11 +64,11 @@ class Lotto extends MX_Controller {
 
 		redirect('user_manage/index');
 	}
-	public function user_delete()
+	public function lotto_delete()
 	{
 		$id = $this->uri->segment(3);
-		$return = $this->Lotto_model->user_delete($id);
-		redirect('user_manage/index');
+		$return = $this->Lotto_model->lotto_delete($id);
+		redirect('lotto/index');
 	}
 
 

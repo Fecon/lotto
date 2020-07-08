@@ -1,6 +1,7 @@
 <style>
 input[type=text] {
   border: none !important;
+  background: none;
 }
 .hide-icon{
   display: none;
@@ -22,7 +23,7 @@ function hide_icon(id){
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1> <i class="ion ion-ios-people"></i> งวด  </h1><br />
+    <h1> <i class="fa fa-calendar"></i> งวด  </h1><br />
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> หน้าแรก</a></li>
       <li class="active">งวดประจำเดือน</li>
@@ -107,8 +108,8 @@ function hide_icon(id){
                                 <button id="<?php echo '3top_'.$lotto['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
-                            <td><button class="btn btn-primary" href="#" >เลขอั้น</button></td>
-                            <td><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('lotto_manage/lotto_delete/'.$lotto['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>
+                            <td><a  href="<?php echo site_url('lotto/reserve_number/'.$lotto['id']) ?>" ><button class="btn btn-primary">เลขอั้น</button></a></td>
+                            <td><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('lotto/lotto_delete/'.$lotto['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>
                         </tr>
                         <?php } ?>
                       </table>
@@ -148,7 +149,7 @@ function hide_icon(id){
         <div class="blog-body">
           <div class="form-group">
             <div class="row">
-              <div class=" col-lg-2 col-md-2 col-sm-2 col-xs-2" align="right">
+              <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-3" align="right">
                 <label class="control-label">งวดประจำวันที่: </label>
               </div>
               <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">

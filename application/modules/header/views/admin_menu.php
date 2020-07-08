@@ -7,7 +7,7 @@
               </a>
             </li>
             <li>
-              <a href="<?php echo site_url('research') ?>">
+              <a href="<?php echo site_url('dashboard') ?>">
                 <i class="fa fa-usd"></i>
                 <span>สรุปยอด</span>
               </a>
