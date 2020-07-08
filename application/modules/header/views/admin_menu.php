@@ -2,8 +2,8 @@
 <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-              <a href="<?php echo site_url('dashboard') ?>">
-                <i class="fa fa-calendar"></i> <span>จัดการงวด</span> 
+              <a href="<?php echo site_url('lotto') ?>">
+                <i class="fa fa-calendar"></i> <span>งวด</span>
               </a>
             </li>
             <li>
@@ -18,12 +18,12 @@
               </a>
             </li>
             <li>
-              <a href="<?php echo site_url('department') ?>">
+              <a href="<?php echo site_url('agent_manage') ?>">
                 <i class="fa fa-users"></i> <span>ตัวแทน</span>
               </a>
             </li>
             <li>
-              <a href="<?php echo site_url('config') ?>">
+              <a href="<?php echo site_url('config_controller') ?>">
                 <i class="fa fa-cogs"></i> <span>ตั้งค่า</span>
               </a>
             </li>

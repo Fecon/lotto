@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$user_data = $this->session->userdata('user_data');
 
 	if(!isset($user_data)){
@@ -53,22 +53,24 @@
     <![endif]-->
 <!-- jQuery 2.1.4 -->
 <script src="<?php echo base_url()?>assets/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<!-- Bootstrap 3.3.5 --> 
-<script src="<?php echo base_url()?>assets/bootstrap/js/bootstrap.min.js"></script> 
+<!-- Bootstrap 3.3.5 -->
+<script src="<?php echo base_url()?>assets/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
 <div class="wrapper">
-  <header class="main-header"> 
-    
-    <!-- Logo --> 
-    <a href="<?php echo site_url('dashboard') ?>" class="logo"> 
-    <!-- logo for regular state and mobile devices --> 
-    <span class="logo-lg"><b>Lotto</b></span> </a> 
-    
+  <header class="main-header">
+
+    <!-- Logo -->
+    <a href="<?php echo site_url('dashboard') ?>" class="logo">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="logo-mini">LT<b>LK</b></span>
+    <!-- logo for regular state and mobile devices -->
+    <span class="logo-lg"><b>Lotto Lucky</b></span> </a>
+
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top" role="navigation"> 
-      <!-- Sidebar toggle button--> 
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle navigation</span> </a> 
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle navigation</span> </a>
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
@@ -78,11 +80,11 @@
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar"> 
+  <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar"> 
+    <section class="sidebar">
 
-      <!-- /.search form --> 
+      <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <?php if($user_data['user_role'] == 1){
           			$this->load->view('admin_menu') ;
@@ -91,14 +93,14 @@
           		}
           	?>
     </section>
-    <!-- /.sidebar --> 
+    <!-- /.sidebar -->
   </aside>
   <!-- Content Wrapper. Contains page content -->
-  <?php // $this->load->view($content) ?>
+  <?php $this->load->view($content) ?>
   <!-- /.content-wrapper -->
 
 </div>
-<!-- ./wrapper --> 
+<!-- ./wrapper -->
 
 <!-- Log out -->
 <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -120,6 +122,6 @@
   </div>
 </div>
 
-<script src="<?php echo base_url()?>assets/dist/js/app.min.js"></script> 
+<script src="<?php echo base_url()?>assets/dist/js/app.min.js"></script>
 </body>
 </html>

@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User_manage extends MX_Controller {
+class Lotto extends MX_Controller {
 	public function __construct()
     {
     	parent::__construct();
-    	$this->load->model('User_model');
+    	$this->load->model('Lotto_model');
     }
 	public function index()
 	{
@@ -14,9 +14,9 @@ class User_manage extends MX_Controller {
 		// 	redirect('user_manage/user_edit/'.$data['user_data']['user_id']);
 		// }
 
-		$data['content'] = 'user';
+		$data['content'] = 'lotto';
 
-		$data['list_user'] = $this->User_model->list_user();
+		$data['list_lotto'] = $this->Lotto_model->list_lotto();
 		// print_r($data['list_user']);
 		// exit();
 
@@ -26,11 +26,10 @@ class User_manage extends MX_Controller {
 	public function user_insert()
 	{
 		$list_data = array(
-			'username' => $this->input->post('username'),
-			'password' => $this->input->post('password')
+			'name' => $this->input->post('name')
 		);
 
-		$result = $this->User_model->user_insert($list_data);
+		$result = $this->Lotto_model->user_insert($list_data);
 
 		if($result==1){
 			$this->session->set_flashdata('insert_user', 'done');
@@ -45,7 +44,7 @@ class User_manage extends MX_Controller {
 			'username' => $this->input->post('username'),
 			'password' => $this->input->post('password')
 		);
-		$result = $this->User_model->user_update($list_data);
+		$result = $this->Lotto_model->user_update($list_data);
 
 		if($result==1){
 			$this->session->set_flashdata('update_user', 'done');
@@ -58,7 +57,7 @@ class User_manage extends MX_Controller {
 	public function user_delete()
 	{
 		$id = $this->uri->segment(3);
-		$return = $this->User_model->user_delete($id);
+		$return = $this->Lotto_model->user_delete($id);
 		redirect('user_manage/index');
 	}
 

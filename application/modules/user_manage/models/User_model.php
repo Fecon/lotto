@@ -2,7 +2,7 @@
 
 class User_model extends CI_Model {
 
-	
+
 	public function list_user()
 	{
 
@@ -24,9 +24,9 @@ class User_model extends CI_Model {
 		    return true;
 		}
 	}
-	public function user_delete($list_data)
+	public function user_delete($id)
 	{
-		$this->db->where('user_id',$list_data['id']);
+		$this->db->where('id',$id);
 		$this->db->delete('user');
 	}
 	public function user_update($list_data)
@@ -44,9 +44,9 @@ class User_model extends CI_Model {
 		        return false;
 		    }
 		    return true;
-		}	
+		}
 	}
-	
+
 	public function user_forget($user_email)
 	{
 		$this->db->where('email',$user_email);
@@ -79,7 +79,7 @@ class User_model extends CI_Model {
 	public function get_research_geo()
 	{
 		$query1 = $this->db->get('department_geography');
-		$query = $query1->result_array(); 
+		$query = $query1->result_array();
 		foreach ($query as $key => $value) {
 			$this->db->select('dep_id,dep_no,dep_name,dep_shotname_th,dep_shotname_en')
 				->where('department.dep_zone',$value['GEO_ID'])
