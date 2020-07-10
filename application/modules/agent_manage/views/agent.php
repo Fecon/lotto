@@ -1,24 +1,8 @@
 <style>
-input[type=text] {
-  border: none !important;
-  background: none;
-}
-.hide-icon{
-  display: none;
-}
-.on-right{
-  float: right;
+input[type=number] {
+	text-align: center !important;
 }
 </style>
-<script>
-function show_icon(id){
-  document.getElementById(id).style.display = "block";
-}
-function hide_icon(id){
-  document.getElementById(id).style.display = "none";
-}
-
-</script>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -59,26 +43,26 @@ function hide_icon(id){
   <div>
     <!-- Detail -->
     <div class="row">
-    	<div class="col-md-8 col-sm-12 col-xs-12">
+    	<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
                   <!-- USERS LIST -->
                   <div class="box box-danger">
                     <div class="box-header with-border">
                       <h3 class="box-title">ตัวแทน</h3>
                       <div class="box-tools pull-right">
-                        <span class="label label-danger"><?php echo count($list_user); ?> คน</span>
+                        <span class="label label-danger"><?php echo count($list_agent); ?> คน</span>
                       </div>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding">
                       <table class="table table-striped">
                         <tr>
-                          <th>ชื่อ</th>
-                          <th>%</th>
-                          <th>ผู้ดูแล</th>
-                          <th></th>
+                          <th width="35%" class="text-center">ชื่อ</th>
+                          <th width="20%" class="text-center">%</th>
+                          <th width="35%" class="text-center">ผู้ดูแล</th>
+                          <th class="text-center"></th>
                         </tr>
                         <?php foreach($list_agent as $agent){ ?>
                           <tr>
-                            <td>
+                            <td class="text-center">
                               <div class="col-xs-9">
                                 <input class="form-control" type="text" value="<?php echo $agent['name'] ?>" onclick="show_icon('<?php echo 'name_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'name_'.$agent['id'] ?>')">
                               </div>
@@ -86,7 +70,7 @@ function hide_icon(id){
                                 <button id="<?php echo 'name_'.$agent['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
-                            <td>
+                            <td class="text-center">
                               <div class="col-xs-9">
                                 <input class="form-control" type="number" value="<?php echo $agent['percent'] ?>" onclick="show_icon('<?php echo 'percent_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'percent_'.$agent['id'] ?>')">
                               </div>
@@ -94,7 +78,7 @@ function hide_icon(id){
                                 <button id="<?php echo 'percent_'.$agent['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
-                            <td>
+                            <td class="text-center">
                               <div class="col-xs-9">
                                 <select class="form-control" name="user_id" onfocus="show_icon('<?php echo 'user_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'user_'.$agent['id'] ?>')">
                                   <?php foreach($list_user as $user){ ?>
@@ -106,7 +90,7 @@ function hide_icon(id){
                                 <button id="<?php echo 'user_'.$agent['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
-                            <td><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('agent_manage/agent_delete/'.$agent['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>
+                            <td class="text-center"><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('agent_manage/agent_delete/'.$agent['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>
                         </tr>
                         <?php } ?>
                       </table>

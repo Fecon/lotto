@@ -5,13 +5,12 @@ class Dashboard extends MX_Controller {
 
 	public function __construct()
     {
-        parent::__construct();
+        parent::__construct(); 
         $this->load->model('Dashboard_model');
     }
 	public function index()
 	{
-		$data['list_lotto'] = $this->Dashboard_model->list_lotto();
-		$data['list_agent'] = $this->Dashboard_model->list_agent();
+		// $data['count_all'] = $this->Dashboard_model->count_research_all();
 
 		// echo "<Pre>";
 		// print_r($data);

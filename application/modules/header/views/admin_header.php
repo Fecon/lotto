@@ -20,28 +20,16 @@
 <link rel="stylesheet" href="<?php echo base_url()?>assets/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/font-awesome/css/font-awesome.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/ionicons/css/ionicons.min.css">
-<!-- flaticon -->
-<link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/flaticon/flaticon.css">
-<link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/flaticon2/flaticon.css">
-<link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/flaticon3/flaticon.css">
-<!-- jvectormap -->
-<link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
 <!-- Custom style -->
 <link rel="stylesheet" href="<?php echo base_url()?>assets/dist/css/custom.css">
-<!-- iCheck for checkboxes and radio inputs -->
-<link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/iCheck/all.css">
 <!-- select2 -->
 <link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/select2/select2.min.css">
-<!-- bootstrap wysihtml5 - text editor -->
-<link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="<?php echo base_url()?>assets/dist/css/skins/_all-skins.min.css">
-<!-- Font -->
-<link rel="stylesheet" href="<?php echo base_url()?>assets/dist/font/supermarket/supermarket.css">
 <!-- bootstrap datepicker -->
+<link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/datepicker/datepicker3.css">
+
 <link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/datepicker/datepicker3.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?php echo base_url()?>assets/dist/css/AdminLTE.css">
@@ -55,6 +43,21 @@
 <script src="<?php echo base_url()?>assets/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <!-- Bootstrap 3.3.5 -->
 <script src="<?php echo base_url()?>assets/bootstrap/js/bootstrap.min.js"></script>
+
+<style>
+input[type=text] {
+  border: none !important;
+	text-align: center !important;
+}
+
+.hide-icon{
+  display: none;
+}
+.on-right{
+  float: right;
+}
+</style>
+
 </head>
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
 <div class="wrapper">
@@ -123,5 +126,17 @@
 </div>
 
 <script src="<?php echo base_url()?>assets/dist/js/app.min.js"></script>
+<script src="<?php echo base_url()?>assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+
+<script>
+function show_icon(id){
+  document.getElementById(id).style.display = "block";
+}
+function hide_icon(id){
+  document.getElementById(id).style.display = "none";
+}
+
+</script>
+
 </body>
 </html>

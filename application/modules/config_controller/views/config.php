@@ -14,7 +14,7 @@
     <!-- row -->
 
     <div class="row">
-<div id="content" class="col-lg-12 col-sm-12">
+<div id="content" class="col-md-10 col-md-offset-1 col-sm-12">
 
   <div>
     <!-- Detail -->
@@ -29,26 +29,26 @@
               <br>
               <form class="form-horizontal">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-4 control-label">2 ตัว บน ล่าง</label>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="บาท">
+                  <label for="inputEmail3" class="col-sm-6 control-label">2 ตัว บน ล่าง</label>
+                  <div class="col-sm-4">
+                    <input type="number" class="form-control" id="inputEmail3" placeholder="บาท">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-4 control-label">3 ตัวตรง</label>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="บาท">
+                  <label for="inputEmail3" class="col-sm-6 control-label">3 ตัวตรง</label>
+                  <div class="col-sm-4">
+                    <input type="number" class="form-control" id="inputEmail3" placeholder="บาท">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-4 control-label">3 ตัวโต๊ด</label>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="บาท">
+                  <label for="inputEmail3" class="col-sm-6 control-label">3 ตัวโต๊ด</label>
+                  <div class="col-sm-4">
+                    <input type="number" class="form-control" id="inputEmail3" placeholder="บาท">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <div class="col-sm-offset-4 col-sm-6">
+                  <div class="col-sm-offset-5 col-sm-6">
                     <button type="submit" class="btn btn-success">บันทึก</button>
                   </div>
                 </div>
@@ -69,26 +69,26 @@
                 <br>
                 <form class="form-horizontal">
                   <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label"><span class="label label-danger">สีแดง</span> มากกว่าเท่ากับ</label>
-                    <div class="col-sm-6">
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="บาท">
+                    <label for="inputEmail3" class="col-sm-6 control-label"><span class="label label-danger">สีแดง</span> มากกว่าเท่ากับ</label>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="inputEmail3" placeholder="บาท">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label"><span class="label label-warning">สีเหลือง</span> มากกว่า</label></label>
-                    <div class="col-sm-6">
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="บาท">
+                    <label for="inputEmail3" class="col-sm-6 control-label"><span class="label label-warning">สีเหลือง</span> มากกว่า</label></label>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="inputEmail3" placeholder="บาท">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label"><span class="label label-success">สีเขียว</span> มากกว่า</label></label></label>
-                    <div class="col-sm-6">
-                      <input type="text" class="form-control" id="inputEmail3" placeholder="บาท">
+                    <label for="inputEmail3" class="col-sm-6 control-label"><span class="label label-success">สีเขียว</span> มากกว่า</label></label></label>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="inputEmail3" placeholder="บาท">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-6">
+                    <div class="col-sm-offset-5 col-sm-6">
                       <button type="submit" class="btn btn-success">บันทึก</button>
                     </div>
                   </div>

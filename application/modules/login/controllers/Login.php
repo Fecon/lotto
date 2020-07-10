@@ -26,7 +26,7 @@ class Login extends MX_Controller {
 			$user_data = $this->session->userdata('user_data');
 
 			if($user_data['user_role']==1){
-				redirect('lotto','refresh');
+				redirect('dashboard','refresh');
 			}else{
 				redirect('user_index','refresh');
 			}

@@ -1,25 +1,3 @@
-<style>
-input[type=text] {
-  border: none !important;
-  background: none;
-
-}
-.hide-icon{
-  display: none;
-}
-.on-right{
-  float: right;
-}
-</style>
-<script>
-function show_icon(id){
-  document.getElementById(id).style.display = "block";
-}
-function hide_icon(id){
-  document.getElementById(id).style.display = "none";
-}
-
-</script>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -60,7 +38,7 @@ function hide_icon(id){
   <div>
     <!-- Detail -->
     <div class="row">
-    	<div class="col-md-8 col-sm-12 col-xs-12">
+    	<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
                   <!-- USERS LIST -->
                   <div class="box box-danger">
                     <div class="box-header with-border">
@@ -72,13 +50,13 @@ function hide_icon(id){
                     <div class="box-body no-padding">
                       <table class="table table-striped">
                         <tr>
-                          <th>Username</th>
-                          <th>Password</th>
+                          <th class="text-center">Username</th>
+                          <th class="text-center">Password</th>
                           <th></th>
                         </tr>
                         <?php foreach($list_user as $user){ ?>
                           <tr>
-                            <td>
+                            <td class="text-center">
                               <div class="col-xs-9">
                                 <input class="form-control" type="text" value="<?php echo $user['username'] ?>" onclick="show_icon('<?php echo 'username_'.$user['id'] ?>')" onfocusout="hide_icon('<?php echo 'username_'.$user['id'] ?>')">
                               </div>
@@ -86,7 +64,7 @@ function hide_icon(id){
                                 <button id="<?php echo 'username_'.$user['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
-                            <td>
+                            <td class="text-center">
                               <div class="col-xs-9">
                                 <input class="form-control" type="text" value="<?php echo $user['password'] ?>" onclick="show_icon('<?php echo 'password_'.$user['id'] ?>')" onfocusout="hide_icon('<?php echo 'password_'.$user['id'] ?>')">
                               </div>
@@ -94,7 +72,7 @@ function hide_icon(id){
                                 <button id="<?php echo 'password_'.$user['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
-                            <td><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('user_manage/user_delete/'.$user['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>
+                            <td class="text-center"><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('user_manage/user_delete/'.$user['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>
                         </tr>
                         <?php } ?>
                       </table>

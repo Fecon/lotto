@@ -15,7 +15,14 @@
       <div class="row">
 
 				<div class="col-md-5 col-sm-5">
-					<h4>2 ตัว บน ล่าง <button type="button" id="Add2" class="btn"><i class="fa fa-plus" aria-hidden="true"></i></button></h4>
+          <div class="row">
+						<div class="col-xs-6">
+              <h4>2 ตัว บน ล่าง </h4>
+						</div>
+						<div class="col-xs-4 text-right">
+						    <button id="Add2" type="button" class="btn btn-default btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มแถว</button>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-xs-4 text-center">
 						    <label>เลข</label>
@@ -42,7 +49,14 @@
 				</div>
 
 				<div class="col-md-7 col-sm-7">
-					<h4>3 ตัว ตรง โต๊ด <button type="button" id="Add3" class="btn"><i class="fa fa-plus" aria-hidden="true"></i></button></h4>
+          <div class="row">
+						<div class="col-xs-6">
+              <h4>3 ตัว ตรง โต๊ด </h4>
+						</div>
+						<div class="col-xs-6 text-right">
+						    <button id="Add3" type="button" class="btn btn-default btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มแถว</button>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-xs-4 text-center">
 						    <label>เลข</label>
@@ -76,6 +90,9 @@
 						<div id="add3top"></div>
 				</div>
       </div>
+      <div class="row text-center">
+        <button type="submit" id="Add2" class="btn btn-success">บันทึก</button>
+      </div>
 		</form>
   </section>
   <!-- /.content -->
@@ -92,7 +109,7 @@ $(document).ready(function() {
 				+	"</div>"
 				+ "<div class='col-xs-6'>"
 				+	"<div class='form-group'>"
-				+	"<input type='number' name='pay[]' class='form-control' placeholder='บาท'>"
+				+	"<input type='number' name='pay[]' class='form-control' placeholder=''>"
 				+	"</div>"
 				+	"</div>"
 				+	"</div>");

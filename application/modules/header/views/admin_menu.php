@@ -2,14 +2,14 @@
 <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-              <a href="<?php echo site_url('lotto') ?>">
-                <i class="fa fa-calendar"></i> <span>งวด</span>
+              <a href="<?php echo site_url('dashboard') ?>">
+                <i class="fa fa-usd"></i>
+                <span>หน้าแรก</span>
               </a>
             </li>
             <li>
-              <a href="<?php echo site_url('dashboard') ?>">
-                <i class="fa fa-usd"></i>
-                <span>สรุปยอด</span>
+              <a href="<?php echo site_url('lotto') ?>">
+                <i class="fa fa-calendar"></i> <span>งวด</span>
               </a>
             </li>
             <li>

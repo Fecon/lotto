@@ -1,25 +1,3 @@
-<style>
-input[type=text] {
-  border: none !important;
-  background: none;
-}
-.hide-icon{
-  display: none;
-}
-.on-right{
-  float: right;
-}
-</style>
-<script>
-function show_icon(id){
-  document.getElementById(id).style.display = "block";
-}
-function hide_icon(id){
-  document.getElementById(id).style.display = "none";
-}
-
-</script>
-
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -56,7 +34,7 @@ function hide_icon(id){
   <div>
     <!-- Detail -->
     <div class="row">
-    	<div class="col-md-8 col-sm-12 col-xs-12">
+    	<div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
                   <!-- USERS LIST -->
                   <div class="box box-danger">
                     <div class="box-header with-border">
@@ -64,7 +42,7 @@ function hide_icon(id){
                     <div class="box-body no-padding">
                       <table class="table table-striped">
                         <tr>
-                          <th class="text-center" rowspan="2">ประจำวันที่</th>
+                          <th width="30%" class="text-center" rowspan="2">ประจำวันที่</th>
                           <th class="text-center" colspan="5">เลขที่ออก</th>
                         </tr>
                         <tr>
@@ -76,40 +54,40 @@ function hide_icon(id){
                         </tr>
                         <?php foreach($list_lotto as $lotto){ ?>
                           <tr>
-                            <td>
+                            <td class="text-center">
                               <div class="col-xs-9">
                                 <input class="form-control" type="text" value="<?php echo $lotto['name'] ?>" onclick="show_icon('<?php echo 'name_'.$lotto['id'] ?>')" onfocusout="hide_icon('<?php echo 'name_'.$lotto['id'] ?>')">
                               </div>
                               <div class="col-xs-3">
-                                <button id="<?php echo 'name_'.$lotto['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button id="<?php echo 'name_'.$lotto['id'] ?>" class="btn btn-success btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
-                            <td>
+                            <td class="text-center">
                               <div class="col-xs-9">
                                 <input class="form-control" type="text" value="<?php echo $lotto['2top'] ?>" onclick="show_icon('<?php echo '2top_'.$lotto['id'] ?>')" onfocusout="hide_icon('<?php echo '2top_'.$lotto['id'] ?>')">
                               </div>
                               <div class="col-xs-3">
-                                <button id="<?php echo '2top_'.$lotto['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button id="<?php echo '2top_'.$lotto['id'] ?>" class="btn btn-success btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
-                            <td>
+                            <td class="text-center">
                               <div class="col-xs-9">
                                 <input class="form-control" type="text" value="<?php echo $lotto['2bottom'] ?>" onclick="show_icon('<?php echo '2bottom_'.$lotto['id'] ?>')" onfocusout="hide_icon('<?php echo '2bottom_'.$lotto['id'] ?>')">
                               </div>
                               <div class="col-xs-3">
-                                <button id="<?php echo '2bottom_'.$lotto['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button id="<?php echo '2bottom_'.$lotto['id'] ?>" class="btn btn-success btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
-                            <td>
+                            <td class="text-center">
                               <div class="col-xs-9">
                                 <input class="form-control" type="text" value="<?php echo $lotto['3top'] ?>" onclick="show_icon('<?php echo '3top_'.$lotto['id'] ?>')" onfocusout="hide_icon('<?php echo '3top_'.$lotto['id'] ?>')">
                               </div>
                               <div class="col-xs-3">
-                                <button id="<?php echo '3top_'.$lotto['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button id="<?php echo '3top_'.$lotto['id'] ?>" class="btn btn-success btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
-                            <td><a  href="<?php echo site_url('lotto/reserve_number/'.$lotto['id']) ?>" ><button class="btn btn-primary">เลขอั้น</button></a></td>
-                            <td><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('lotto/lotto_delete/'.$lotto['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>
+                            <td class="text-center"><a  href="<?php echo site_url('lotto/reserve_number/'.$lotto['id']) ?>" ><button class="btn btn-default">เลขอั้น</button></a></td>
+                            <td class="text-center"><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('lotto/lotto_delete/'.$lotto['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>
                         </tr>
                         <?php } ?>
                       </table>
@@ -152,8 +130,9 @@ function hide_icon(id){
               <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-3" align="right">
                 <label class="control-label">งวดประจำวันที่: </label>
               </div>
-              <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                <input type="text" class="form-control" name="name" value=""  required="required" />
+              <div class=" col-lg-3 col-md-3 col-sm-9 col-xs-9">
+                <input type="date" name="name" required="required" class="form-control pull-left" id="datepicker">
+              </div>
               </div>
             </div>
           </div>
