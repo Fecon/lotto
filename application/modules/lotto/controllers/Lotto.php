@@ -2,17 +2,15 @@
 
 class Lotto extends MX_Controller {
 	public function __construct()
-    {
-    	parent::__construct();
-    	$this->load->model('Lotto_model');
-    }
+  {
+  	parent::__construct();
+  	$this->load->model('Lotto_model');
+  }
+
 	public function index()
 	{
 		$data['content'] = 'lotto';
-
 		$data['list_lotto'] = $this->Lotto_model->list_lotto();
-		// print_r($data['list_user']);
-		// exit();
 
 		$this->load->view('header/admin_header',$data);
 	}
@@ -48,16 +46,41 @@ class Lotto extends MX_Controller {
 		}
 		redirect('lotto');
 	}
+
+	public function rn_insert()
+	{
+		$lotto_id = $this->uri->segment(3);
+		$number = $this->input->post('number');
+		$pay = $this->input->post('pay');
+		for ($i=0; $i < count($number) ; $i++) {
+			$
+		}
+
+		$list_data = array(
+			'name' => $this->input->post('name'),
+			'pay' => $this->input->post('pay')
+		);
+
+		$result = $this->Lotto_model->rn_insert($list_data,$lotto_id);
+
+		if($result==1){
+			$this->session->set_flashdata('insert_lotto', 'done');
+		}else{
+			$this->session->set_flashdata('insert_lotto', 'fail');
+		}
+		redirect('lotto');
+	}
+
 	public function lotto_update()
 	{
 		$str = $this->input->post('3top');
 		$id = $this->uri->segment(3);
 		if (!empty($str)) {
-			$n = strlen($str); 
-			$three_number = $this->permute($str, 0, $n - 1); 
+			$n = strlen($str);
+			$three_number = $this->permute($str, 0, $n - 1);
 		}else{
-			for ($i=0; $i < 3 ; $i++) { 
-				for ($j=0; $j < 2 ; $j++) { 
+			for ($i=0; $i < 3 ; $i++) {
+				for ($j=0; $j < 2 ; $j++) {
 					$three_number[$i][$j] = '';
 				}
 			}
@@ -88,6 +111,7 @@ class Lotto extends MX_Controller {
 
 		redirect('lotto/index');
 	}
+
 	public function lotto_delete()
 	{
 		$id = $this->uri->segment(3);
@@ -95,38 +119,33 @@ class Lotto extends MX_Controller {
 		redirect('lotto/index');
 	}
 
-	private function permute($str, $l, $r) 
-	{ 
-		
-		// echo $l.' '.$r."\n";
+	private function permute($str, $l, $r)
+	{
+
 	    if ($l == $r) {
-	    	return $str;	    	
+	    	return $str;
 	    }
 	    else
-	    { 
-
-	        for ($i = $l; $i <= $r; $i++) 
-	        { 
-	            $str = $this->swap($str, $l, $i); 
-	            $set_arr[] = $this->permute($str, $l + 1, $r); 
-	            $str = $this->swap($str, $l, $i); 
-	        } 
+	    {
+	        for ($i = $l; $i <= $r; $i++)
+	        {
+	            $str = $this->swap($str, $l, $i);
+	            $set_arr[] = $this->permute($str, $l + 1, $r);
+	            $str = $this->swap($str, $l, $i);
+	        }
 	        return $set_arr;
-	    } 
+	    }
 
-	} 
+	}
 
-	private function swap($a, $i, $j) 
-	{ 
-	    $temp; 
-	    $charArray = str_split($a); 
-	    $temp = $charArray[$i] ; 
-	    $charArray[$i] = $charArray[$j]; 
-	    $charArray[$j] = $temp; 
-	    return implode($charArray); 
-	} 
-	  
-
-
+	private function swap($a, $i, $j)
+	{
+	    $temp;
+	    $charArray = str_split($a);
+	    $temp = $charArray[$i] ;
+	    $charArray[$i] = $charArray[$j];
+	    $charArray[$j] = $temp;
+	    return implode($charArray);
+	}
 
 }

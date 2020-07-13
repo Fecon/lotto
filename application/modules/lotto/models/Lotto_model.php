@@ -25,6 +25,24 @@ class Lotto_model extends CI_Model {
 		    return true;
 		}
 	}
+	public function rn_insert($list_data, $lotto_id)
+	{
+		$this->db->trans_start();
+
+		$this->db->where('lotto_id',$lotto_id);
+		$this->db->delete('reserve_number');
+
+		$this->db->insert_batch('reserve_number', $list_data);
+		$this->db->trans_complete();
+		if ($this->db->affected_rows() == '1') {
+		    return TRUE;
+		} else {
+		    if ($this->db->trans_status() === FALSE) {
+		        return false;
+		    }
+		    return true;
+		}
+	}
 	public function lotto_delete($id)
 	{
 		$this->db->where('id',$id);

@@ -11,7 +11,7 @@
 		<h4>
       อัตราจ่ายเลขอั้น งวด <?php echo $lotto[0]['name']; ?>
     </h4>
-		<form>
+		<?php echo form_open('lotto/rn_insert/'.$lotto[0]['id'])?>
       <div class="row">
 
 				<div class="col-md-5 col-sm-5">
@@ -93,7 +93,7 @@
       <div class="row text-center">
         <button type="submit" id="Add2" class="btn btn-success">บันทึก</button>
       </div>
-		</form>
+		<?php echo form_close(); ?>
   </section>
   <!-- /.content -->
 </div>
