@@ -61,10 +61,11 @@ input[type=number] {
                           <th class="text-center"></th>
                         </tr>
                         <?php foreach($list_agent as $agent){ ?>
+                          <?php echo form_open('agent_manage/agent_update/'.$agent['id'])?>
                           <tr>
                             <td class="text-center">
                               <div class="col-xs-9">
-                                <input class="form-control" type="text" value="<?php echo $agent['name'] ?>" onclick="show_icon('<?php echo 'name_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'name_'.$agent['id'] ?>')">
+                                <input class="form-control" name="name" type="text" value="<?php echo $agent['name'] ?>" onclick="show_icon('<?php echo 'name_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'name_'.$agent['id'] ?>')">
                               </div>
                               <div class="col-xs-3">
                                 <button id="<?php echo 'name_'.$agent['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
@@ -72,7 +73,7 @@ input[type=number] {
                             </td>
                             <td class="text-center">
                               <div class="col-xs-9">
-                                <input class="form-control" type="number" value="<?php echo $agent['percent'] ?>" onclick="show_icon('<?php echo 'percent_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'percent_'.$agent['id'] ?>')">
+                                <input class="form-control" name="percent" type="number" value="<?php echo $agent['percent'] ?>" onclick="show_icon('<?php echo 'percent_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'percent_'.$agent['id'] ?>')">
                               </div>
                               <div class="col-xs-3">
                                 <button id="<?php echo 'percent_'.$agent['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
@@ -82,7 +83,14 @@ input[type=number] {
                               <div class="col-xs-9">
                                 <select class="form-control" name="user_id" onfocus="show_icon('<?php echo 'user_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'user_'.$agent['id'] ?>')">
                                   <?php foreach($list_user as $user){ ?>
-                                  <option value="<?php echo $user['id'] ?>"><?php echo $user['username'] ?></option>
+                                  <option 
+                                  <?php if ($user['id']==$agent['user_id']) {
+                                    echo " selected ";
+                                  } ?>
+                                  value="<?php echo $user['id'] ?>">
+                                  <?php echo $user['username'] ?>
+                                    
+                                  </option>
                                   <?php } ?>
                                 </select>
                               </div>
@@ -92,6 +100,7 @@ input[type=number] {
                             </td>
                             <td class="text-center"><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('agent_manage/agent_delete/'.$agent['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>
                         </tr>
+                        <?php echo form_close(); ?>
                         <?php } ?>
                       </table>
                     </div><!-- /.box-body -->

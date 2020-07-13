@@ -32,7 +32,7 @@ class User_model extends CI_Model {
 	public function user_update($list_data)
 	{
 		$this->db->trans_start();
-		$this->db->where('user_id',$list_data['user_id']);
+		$this->db->where('id',$list_data['id']);
 		$this->db->update('user',$list_data);
 		$this->db->trans_complete();
 		// was there any insert or error?

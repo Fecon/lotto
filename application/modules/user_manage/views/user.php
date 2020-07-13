@@ -55,10 +55,11 @@
                           <th></th>
                         </tr>
                         <?php foreach($list_user as $user){ ?>
+                          <?php echo form_open('user_manage/user_update/'.$user['id'])?>
                           <tr>
                             <td class="text-center">
                               <div class="col-xs-9">
-                                <input class="form-control" type="text" value="<?php echo $user['username'] ?>" onclick="show_icon('<?php echo 'username_'.$user['id'] ?>')" onfocusout="hide_icon('<?php echo 'username_'.$user['id'] ?>')">
+                                <input class="form-control" name="username" type="text" value="<?php echo $user['username'] ?>" onclick="show_icon('<?php echo 'username_'.$user['id'] ?>')" onfocusout="hide_icon('<?php echo 'username_'.$user['id'] ?>')">
                               </div>
                               <div class="col-xs-3">
                                 <button id="<?php echo 'username_'.$user['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
@@ -66,14 +67,19 @@
                             </td>
                             <td class="text-center">
                               <div class="col-xs-9">
-                                <input class="form-control" type="text" value="<?php echo $user['password'] ?>" onclick="show_icon('<?php echo 'password_'.$user['id'] ?>')" onfocusout="hide_icon('<?php echo 'password_'.$user['id'] ?>')">
+                                <input class="form-control" name="password" type="text" value="<?php echo $user['password'] ?>" onclick="show_icon('<?php echo 'password_'.$user['id'] ?>')" onfocusout="hide_icon('<?php echo 'password_'.$user['id'] ?>')">
                               </div>
                               <div class="col-xs-3">
                                 <button id="<?php echo 'password_'.$user['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
-                            <td class="text-center"><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('user_manage/user_delete/'.$user['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>
+                            <td class="text-center">
+                              <?php if($user['id']!=1){ ?>
+                              <a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('user_manage/user_delete/'.$user['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a>
+                              <?php } ?>
+                            </td>
                         </tr>
+                        <?php echo form_close(); ?>
                         <?php } ?>
                       </table>
                     </div><!-- /.box-body -->

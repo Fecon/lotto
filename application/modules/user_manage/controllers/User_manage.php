@@ -41,7 +41,9 @@ class User_manage extends MX_Controller {
 	}
 	public function user_update()
 	{
+		$id = $this->uri->segment(3);
 		$list_data = array(
+			'id' => $id,
 			'username' => $this->input->post('username'),
 			'password' => $this->input->post('password')
 		);

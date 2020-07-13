@@ -35,7 +35,7 @@
 					<div class="row">
 						<div class="col-xs-4">
 							<div class="form-group">
-						    <input type="number" min="0" max="99" name="number[]" class="form-control" placeholder="">
+						    <input type="text" maxlength="2" onkeypress="return isNumber(event)" name="number[]" class="form-control" placeholder="">
 						  </div>
 						</div>
 						<div class="col-xs-6">
@@ -72,7 +72,7 @@
 					<div class="row">
 						<div class="col-xs-4">
 							<div class="form-group">
-						    <input type="number" min="0" max="99" name="number[]" class="form-control" placeholder="">
+						    <input type="text" maxlength="3" onkeypress="return isNumber(event)" name="number[]" class="form-control" placeholder="">
 						  </div>
 						</div>
 						<div class="col-xs-4">

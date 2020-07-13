@@ -43,9 +43,10 @@ class Agent_manage extends MX_Controller {
 	}
 	public function agent_update()
 	{
+		$id = $this->uri->segment(3);
 		$list_data = array(
-			'id' 			=> $this->input->post('id'),
-			'name' 		=> $this->input->post('name'),
+			'id' => $id,
+			'name'	  => $this->input->post('name'),
 			'percent' => $this->input->post('percent'),
 			'user_id' => $this->input->post('user_id')
 		);

@@ -48,13 +48,37 @@ class Lotto extends MX_Controller {
 		}
 		redirect('lotto');
 	}
-	public function user_update()
+	public function lotto_update()
 	{
+		$str = $this->input->post('3top');
+		$id = $this->uri->segment(3);
+		if (!empty($str)) {
+			$n = strlen($str); 
+			$three_number = $this->permute($str, 0, $n - 1); 
+		}else{
+			for ($i=0; $i < 3 ; $i++) { 
+				for ($j=0; $j < 2 ; $j++) { 
+					$three_number[$i][$j] = '';
+				}
+			}
+		}
+
 		$list_data = array(
-			'username' => $this->input->post('username'),
-			'password' => $this->input->post('password')
+			'id' 	  => $id,
+			'name' 	  => $this->input->post('name'),
+			'2top' 	  => $this->input->post('2top'),
+			'2bottom' => $this->input->post('2bottom'),
+			'3top' 	  => $three_number[0][0],
+			'3_1' 	  => $three_number[0][1],
+			'3_2' 	  => $three_number[1][0],
+			'3_3' 	  => $three_number[1][1],
+			'3_4' 	  => $three_number[2][0],
+			'3_5' 	  => $three_number[2][1],
 		);
-		$result = $this->Lotto_model->user_update($list_data);
+
+		print_r($list_data);
+		// exit();
+		$result = $this->Lotto_model->lotto_update($list_data);
 
 		if($result==1){
 			$this->session->set_flashdata('update_user', 'done');
@@ -62,7 +86,7 @@ class Lotto extends MX_Controller {
 			$this->session->set_flashdata('update_user', 'fail');
 		}
 
-		redirect('user_manage/index');
+		redirect('lotto/index');
 	}
 	public function lotto_delete()
 	{
@@ -70,6 +94,39 @@ class Lotto extends MX_Controller {
 		$return = $this->Lotto_model->lotto_delete($id);
 		redirect('lotto/index');
 	}
+
+	private function permute($str, $l, $r) 
+	{ 
+		
+		// echo $l.' '.$r."\n";
+	    if ($l == $r) {
+	    	return $str;	    	
+	    }
+	    else
+	    { 
+
+	        for ($i = $l; $i <= $r; $i++) 
+	        { 
+	            $str = $this->swap($str, $l, $i); 
+	            $set_arr[] = $this->permute($str, $l + 1, $r); 
+	            $str = $this->swap($str, $l, $i); 
+	        } 
+	        return $set_arr;
+	    } 
+
+	} 
+
+	private function swap($a, $i, $j) 
+	{ 
+	    $temp; 
+	    $charArray = str_split($a); 
+	    $temp = $charArray[$i] ; 
+	    $charArray[$i] = $charArray[$j]; 
+	    $charArray[$j] = $temp; 
+	    return implode($charArray); 
+	} 
+	  
+
 
 
 }

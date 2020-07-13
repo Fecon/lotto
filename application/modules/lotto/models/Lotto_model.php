@@ -33,7 +33,7 @@ class Lotto_model extends CI_Model {
 	public function lotto_update($list_data)
 	{
 		$this->db->trans_start();
-		$this->db->where('lotto_id',$list_data['lotto_id']);
+		$this->db->where('id',$list_data['id']);
 		$this->db->update('lotto',$list_data);
 		$this->db->trans_complete();
 		// was there any insert or error?

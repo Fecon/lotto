@@ -27,23 +27,26 @@
             </div><!-- /.box-header -->
             <div class="box-body no-padding">
               <br>
-              <form class="form-horizontal">
+              <?php 
+                $attributes = array('class' => 'form-horizontal');
+                echo form_open('config_controller/config_update/',$attributes)
+              ?>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-6 control-label">2 ตัว บน ล่าง</label>
                   <div class="col-sm-4">
-                    <input type="number" class="form-control" id="inputEmail3" placeholder="บาท">
+                    <input type="number" name="2_pay" class="form-control" id="inputEmail3" placeholder="บาท" value="<?php echo $config[0]['value'];?>" >
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-6 control-label">3 ตัวตรง</label>
                   <div class="col-sm-4">
-                    <input type="number" class="form-control" id="inputEmail3" placeholder="บาท">
+                    <input type="number" name="3_pay" class="form-control" id="inputEmail3" placeholder="บาท" value="<?php echo $config[1]['value'];?>">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-6 control-label">3 ตัวโต๊ด</label>
                   <div class="col-sm-4">
-                    <input type="number" class="form-control" id="inputEmail3" placeholder="บาท">
+                    <input type="number" name="3_pay2" class="form-control" id="inputEmail3" placeholder="บาท" value="<?php echo $config[2]['value'];?>">
                   </div>
                 </div>
 
@@ -52,7 +55,7 @@
                     <button type="submit" class="btn btn-success">บันทึก</button>
                   </div>
                 </div>
-              </form>
+              <?php echo form_close(); ?>
             </div><!-- /.box-body -->
             <!-- /.box-footer -->
           </div><!--/.box -->
@@ -67,23 +70,26 @@
             <div class="box-body no-padding">
               <div class="row">
                 <br>
-                <form class="form-horizontal">
+                <?php 
+                  $attributes = array('class' => 'form-horizontal');
+                  echo form_open('config_controller/config_update/',$attributes)
+                ?>
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-6 control-label"><span class="label label-danger">สีแดง</span> มากกว่าเท่ากับ</label>
                     <div class="col-sm-4">
-                      <input type="number" class="form-control" id="inputEmail3" placeholder="บาท">
+                      <input type="number" name="red" class="form-control" id="inputEmail3" placeholder="บาท" value="<?php echo $config[3]['value'];?>">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-6 control-label"><span class="label label-warning">สีเหลือง</span> มากกว่า</label></label>
                     <div class="col-sm-4">
-                      <input type="number" class="form-control" id="inputEmail3" placeholder="บาท">
+                      <input type="number" name="yellow" class="form-control" id="inputEmail3" placeholder="บาท" value="<?php echo $config[4]['value'];?>">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-6 control-label"><span class="label label-success">สีเขียว</span> มากกว่า</label></label></label>
                     <div class="col-sm-4">
-                      <input type="number" class="form-control" id="inputEmail3" placeholder="บาท">
+                      <input type="number" name="green" class="form-control" id="inputEmail3" placeholder="บาท" value="<?php echo $config[5]['value'];?>">
                     </div>
                   </div>
 
@@ -92,7 +98,7 @@
                       <button type="submit" class="btn btn-success">บันทึก</button>
                     </div>
                   </div>
-                </form>
+                <?php echo form_close(); ?>
               </div>
             </div><!-- /.box-body -->
             <!-- /.box-footer -->

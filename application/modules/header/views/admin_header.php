@@ -129,13 +129,22 @@ input[type=text] {
 <script src="<?php echo base_url()?>assets/plugins/datepicker/bootstrap-datepicker.js"></script>
 
 <script>
-function show_icon(id){
-  document.getElementById(id).style.display = "block";
-}
-function hide_icon(id){
-  document.getElementById(id).style.display = "none";
-}
+  function show_icon(id){
+    document.getElementById(id).style.display = "block";
+  }
 
+  function hide_icon(id){
+    setTimeout(function(){ document.getElementById(id).style.display = "none"; }, 1500);
+  }
+  
+  function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+  }
 </script>
 
 </body>
