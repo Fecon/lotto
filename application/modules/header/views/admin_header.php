@@ -29,8 +29,6 @@
 <link rel="stylesheet" href="<?php echo base_url()?>assets/dist/css/skins/_all-skins.min.css">
 <!-- bootstrap datepicker -->
 <link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/datepicker/datepicker3.css">
-
-<link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/datepicker/datepicker3.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?php echo base_url()?>assets/dist/css/AdminLTE.css">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -136,7 +134,7 @@ input[type=text] {
   function hide_icon(id){
     setTimeout(function(){ document.getElementById(id).style.display = "none"; }, 1500);
   }
-  
+
   function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;

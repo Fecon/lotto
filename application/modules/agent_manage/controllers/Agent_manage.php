@@ -8,18 +8,9 @@ class Agent_manage extends MX_Controller {
     }
 	public function index()
 	{
-		// $data['user_data'] = $this->session->userdata('user_data');
-		//
-		// if($data['user_data']['user_role']!=1){
-		// 	redirect('user_manage/user_edit/'.$data['user_data']['agent_id']);
-		// }
-
 		$data['content'] = 'agent';
-
 		$data['list_agent'] = $this->Agent_model->list_agent();
 		$data['list_user'] = $this->Agent_model->list_user();
-		// print_r($data['list_user']);
-		// exit();
 
 		$this->load->view('header/admin_header',$data);
 	}

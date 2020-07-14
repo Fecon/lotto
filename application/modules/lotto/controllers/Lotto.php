@@ -20,9 +20,9 @@ class Lotto extends MX_Controller {
 		$lotto_id = $this->uri->segment(3);
 
 		if(!empty($lotto_id)){
-			 $data['reserve_number'] = $this->Lotto_model->get_reserve_number($lotto_id);
+			 $data['reserve_number2'] = $this->Lotto_model->get_reserve_number2($lotto_id);
+			 $data['reserve_number3'] = $this->Lotto_model->get_reserve_number3($lotto_id);
 			 $data['lotto'] = $this->Lotto_model->get_lotto($lotto_id);
-
 		}else{
 			redirect('lotto');
 		}
@@ -50,25 +50,50 @@ class Lotto extends MX_Controller {
 	public function rn_insert()
 	{
 		$lotto_id = $this->uri->segment(3);
-		$number = $this->input->post('number');
-		$pay = $this->input->post('pay');
-		for ($i=0; $i < count($number) ; $i++) {
-			$
+		$number_2 = $this->input->post('2digi');
+		$pay_2digi = $this->input->post('2pay');
+		for ($i=0; $i < count($number_2) ; $i++) {
+			if(!empty($number_2[$i])){
+				$reserve_numbers[] =
+					array(
+						'lotto_id' => $lotto_id,
+						'number' 	 => $number_2[$i],
+						'pay'  		 => $pay_2digi[$i],
+						'pay2'  	 => null
+					);
+			}
 		}
 
-		$list_data = array(
-			'name' => $this->input->post('name'),
-			'pay' => $this->input->post('pay')
-		);
+		// $this->Lotto_model->rn_insert($reserve_numbers,$lotto_id);
 
-		$result = $this->Lotto_model->rn_insert($list_data,$lotto_id);
+		$number_3 = $this->input->post('3digi');
+		$pay_3digi = $this->input->post('3pay');
+		$pay2_3digi = $this->input->post('3pay2');
+
+		for ($i=0; $i < count($number_3) ; $i++) {
+			if(!empty($number_3[$i])){
+				$reserve_numbers[] =
+					array(
+						'lotto_id' => $lotto_id,
+						'number' 	 => $number_3[$i],
+						'pay'  		 => $pay_3digi[$i],
+						'pay2'  	 => $pay2_3digi[$i]
+					);
+			}
+		}
+		echo "<pre>";
+		print_r($reserve_numbers);
+		// exit();
+
+		$result = $this->Lotto_model->rn_insert($reserve_numbers,$lotto_id);
+		// exit();
 
 		if($result==1){
-			$this->session->set_flashdata('insert_lotto', 'done');
+			$this->session->set_flashdata('insert_reserve_numbers', 'done');
 		}else{
-			$this->session->set_flashdata('insert_lotto', 'fail');
+			$this->session->set_flashdata('insert_reserve_numbers', 'fail');
 		}
-		redirect('lotto');
+		redirect('lotto/reserve_number/'.$lotto_id);
 	}
 
 	public function lotto_update()

@@ -59,18 +59,18 @@
                           <tr>
                             <td class="text-center">
                               <div class="col-xs-9">
-                                <input class="form-control" name="username" type="text" value="<?php echo $user['username'] ?>" onclick="show_icon('<?php echo 'username_'.$user['id'] ?>')" onfocusout="hide_icon('<?php echo 'username_'.$user['id'] ?>')">
+                                <input class="form-control input-lg" name="username" type="text" value="<?php echo $user['username'] ?>" onclick="show_icon('<?php echo 'username_'.$user['id'] ?>')" onfocusout="hide_icon('<?php echo 'username_'.$user['id'] ?>')">
                               </div>
                               <div class="col-xs-3">
-                                <button id="<?php echo 'username_'.$user['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button id="<?php echo 'username_'.$user['id'] ?>" class="btn btn-success btn-lg hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
                             <td class="text-center">
                               <div class="col-xs-9">
-                                <input class="form-control" name="password" type="text" value="<?php echo $user['password'] ?>" onclick="show_icon('<?php echo 'password_'.$user['id'] ?>')" onfocusout="hide_icon('<?php echo 'password_'.$user['id'] ?>')">
+                                <input class="form-control input-lg" name="password" type="text" value="<?php echo $user['password'] ?>" onclick="show_icon('<?php echo 'password_'.$user['id'] ?>')" onfocusout="hide_icon('<?php echo 'password_'.$user['id'] ?>')">
                               </div>
                               <div class="col-xs-3">
-                                <button id="<?php echo 'password_'.$user['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button id="<?php echo 'password_'.$user['id'] ?>" class="btn btn-success btn-lg hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
                             <td class="text-center">
@@ -122,7 +122,7 @@
                 <label class="control-label">Username: </label>
               </div>
               <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                <input type="text" class="form-control" name="username" value=""  required="required" />
+                <input type="text" class="form-control input-lg" name="username" value=""  required="required" />
               </div>
             </div>
           </div>
@@ -132,15 +132,15 @@
                 <label class="control-label">รหัสผ่าน : </label>
               </div>
               <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                <input type="password" class="form-control" name="password" required="required" />
+                <input type="password" class="form-control input-lg" name="password" required="required" />
               </div>
             </div>
           </div>
           <br>
           <div class="form-group" align="center">
             <div class="row">
-              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> ยกเลิก</button>
-              <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> บันทึก</button>
+              <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal"><i class="fa fa-times"></i> ยกเลิก</button>
+              <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-save"></i> บันทึก</button>
             </div>
           </div>
         </div>

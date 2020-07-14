@@ -83,9 +83,17 @@ class Lotto_model extends CI_Model {
 		$this->db->where('lotto_id',$inpost['id']);
 		$this->db->update('lotto',$inpost);
 	}
-	public function get_reserve_number($lotto_id)
+	public function get_reserve_number2($lotto_id)
 	{
-		$this->db->where('lotto_id',$lotto_id);
+		$this->db->where('lotto_id',$lotto_id)
+							->where('pay2',null);
+		$query = $this->db->get('reserve_number');
+		return $query->result_array();
+	}
+	public function get_reserve_number3($lotto_id)
+	{
+		$this->db->where('lotto_id',$lotto_id)
+							->where_not_in('pay2', "");
 		$query = $this->db->get('reserve_number');
 		return $query->result_array();
 	}

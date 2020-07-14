@@ -1,118 +1,122 @@
 <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            หน้าแรก
-            <small><?php echo $user_data['dep_name'] ;  ?></small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#" class="active"><i class="fa fa-home"></i> หน้าแรก</a></li>
-          </ol>
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
-          <!-- Info boxes -->
-                              <div class="box-body no-padding block-menu">
-                    <div class="forms-list">
-                      <div class="row">
-                        <br>
-                        
-                        <div class="col-md-3 col-sm-6 col-xs-6">
-                          <a class="forms-list-name" href="<?php echo site_url('dashboard') ?>">
-                              <img src="<?php echo base_url()?>assets/dist/img/blue-bg.jpg" class="forms-list-img" alt="forms Image"><br />
-                              ภาพรวม
-                              <span class="forms-list-date"><i class="fa fa-bar-chart fa-2x"></i></span></a>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-6">
-                          <a class="forms-list-name" href="<?php echo site_url('research/user_research') ?>">
-                              <img src="<?php echo base_url()?>assets/dist/img/blue-bg.jpg" class="forms-list-img" alt="forms Image"><br />
-                              การทดลอง
-                              <span class="forms-list-date"><i class="fa flaticon-flasks4 fa-2x"></i></span></a>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-6">
-                          <a class="forms-list-name" href="<?php echo site_url('pedigree') ?>">
-                              <img src="<?php echo base_url()?>assets/dist/img/blue-bg.jpg" class="forms-list-img" alt="forms Image"><br />
-                              พันธุ์ / สายพันธุ์
-                              <span class="forms-list-date"><i class="fa flaticon-spring20 fa-2x"></i></span></a>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-6">
-                          <a class="forms-list-name" href="<?php echo site_url('department') ?>">
-                              <img src="<?php echo base_url()?>assets/dist/img/blue-bg.jpg" class="forms-list-img" alt="forms Image"><br />
-                              ศูนย์วิจัย
-                              <span class="forms-list-date"><i class="fa fa-university fa-2x"></i></span></a>
-                        </div>
-                        
-                        </div>
-                        <div class="row">
-                        <div class="col-md-3 col-sm-6 col-xs-6">
-                          <a class="forms-list-name" href="<?php echo site_url('report') ?>">
-                              <img src="<?php echo base_url()?>assets/dist/img/blue-bg.jpg" class="forms-list-img" alt="forms Image"><br />
-                              ส่งออกข้อมูลวิเคราะห์
-                              <span class="forms-list-date"><i class="fa fa-download fa-2x" aria-hidden="true"></i></span></a>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-6">
-                          <a class="forms-list-name" href="<?php echo site_url('form_record') ?>">
-                              <img src="<?php echo base_url()?>assets/dist/img/blue-bg.jpg" class="forms-list-img" alt="forms Image"><br />
-                              บันทึกข้อความ
-                              <span class="forms-list-date"><i class="fa fa-pencil-square-o fa-2x"></i></span></a>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-xs-6">
-                          <a class="forms-list-name" href="<?php echo site_url('user_manage/user_edit/'.$user_data['user_id']) ?>">
-                              <img src="<?php echo base_url()?>assets/dist/img/blue-bg.jpg" class="forms-list-img" alt="forms Image"><br />
-                              ข้อมูลส่วนตัว
-                              <span class="forms-list-date"><i class="fa fa-gears fa-2x"></i></span></a>
-                        </div>
-
-                      </div>
-                    </div>
-                    </div><!-- /.box-body -->
-          
-        </section>
-        <!-- /.content -->
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="form-inline">
+      <div class="form-group">
+        <label>งวด</label>
+        <input disabled type="date" class="form-control input-lg" id="datepicker" value="<?php echo $lotto[0]['name']; ?>">
       </div>
-  <script>
-    $('#profile').on('shown.bs.modal', function () {
-      $('#profile').focus()
-    });
-</script>
-
-<!-- Modal -->
-<div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">ข้อมูลส่วนตัว</h4>
-      </div>
-      <div class="modal-body">
-      <div class="forms-list">
-          <div class="row">
-                        <br>
-                        <div class="col-md-4 col-sm-12 col-xs-12">
-                          <a class="forms-list-name" href="<?php echo site_url('form_quality_physical') ?>">
-                              <img src="<?php echo base_url()?>assets/dist/img/blue-bg.jpg" class="forms-list-img" alt="forms Image"><br />
-                              แก้ไขข้อมูลส่วนตัว
-                              <span class="forms-list-date"><i class="fa fa-wrench fa-2x"></i></span></a>
-                        </div>
-                        <div class="col-md-4 col-sm-12 col-xs-12">
-                          <a class="forms-list-name" href="#">
-                              <img src="<?php echo base_url()?>assets/dist/img/blue-bg.jpg" class="forms-list-img" alt="forms Image"><br />
-                              เปลี่ยนรูปประจำตัว
-                              <span class="forms-list-date"><i class="fa fa-picture-o fa-2x"></i></span></a>
-                        </div>
-                        <div class="col-md-4 col-sm-12 col-xs-12">
-                          <a class="forms-list-name" href="#">
-                              <img src="<?php echo base_url()?>assets/dist/img/blue-bg.jpg" class="forms-list-img" alt="forms Image"><br />
-                              เปลี่ยนรหัสผ่าน
-                              <span class="forms-list-date"><i class="fa fa-key fa-2x"></i></span></a>
-                        </div>
-                        </div>
-                        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <div class="form-group">
+        <label>ตัวแทน</label>
+        <select class="form-control input-lg" name="agent_id">
+          <?php foreach($list_agent as $agent){ ?>
+          <option value="<?php echo $agent['id'] ?>"><?php echo $agent['name'] ?></option>
+          <?php } ?>
+        </select>
       </div>
     </div>
+  </section>
+  <hr>
+  <!-- Main content -->
+  <section class="content">
+    <?php echo form_open('lotto/rn_insert/'.$lotto[0]['id'])?>
+      <div class="row">
+        <div class="col-md-3">
+          <h4>2 ตัว</h4>
+          <?php for ($i=0; $i < 7 ; $i++) { ?>
+                    <div class="row">
+                      <div class="col-xs-10">
+                        <div class="form-group">
+                          <input type="text" maxlength="2" onkeypress="return isNumber(event)" name="2digi[]" class="form-control input-lg" placeholder="" value="">
+                        </div>
+                      </div>
+                    </div>
+            <?php } ?>
+            <div id="add2top"></div>
+
+            <div class="form-group">
+              <button id="Add2" type="button" class="btn btn-default btn-lg"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มแถว</button>
+            </div>
+            <div class="form-group">
+            <div class="row">
+              <div class="col-md-5">
+                  <input type="number" class="form-control input-lg" placeholder="บน">
+              </div>
+              <div class="col-md-1">
+                  <label>X</label>
+              </div>
+              <div class="col-md-5">
+                  <input type="number" class="form-control input-lg" placeholder="ล่าง">
+              </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-xs-6">
+
+            </div>
+
+          </div>
+          <?php for ($i=0; $i < 7 ; $i++) { ?>
+                    <div class="row">
+                      <div class="col-xs-4">
+                        <div class="form-group">
+                          <input type="text" maxlength="3" onkeypress="return isNumber(event)" name="3digi[]" class="form-control input-lg" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+            <?php } ?>
+            <div id="add3top"></div>
+            <div class="form-group">
+                <button id="Add3" type="button" class="btn btn-default btn-lg"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มแถว</button>
+            </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <button type="submit" id="Add2" class="btn btn-success btn-lg">บันทึก</button>
+      </div>
+    <?php echo form_close(); ?>
+  </section>
+  <!-- /.content -->
   </div>
-</div>
+
+  <script>
+  $(document).ready(function() {
+    $("#Add2").on("click", function() {
+        $("#add2top").append("<div class='row'>"
+        + "<div class='col-xs-4'>"
+        + "<div class='form-group'>"
+        +	"<input type='text' maxlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg'>"
+        +	"</div>"
+        +	"</div>"
+        +	"</div>");
+    });
+    $("#Add3").on("click", function() {
+        $("#add3top").append("<div class='row'>"
+        + "<div class='col-xs-4'>"
+        + "<div class='form-group'>"
+        +	"<input type='text' maxlength='3' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg' placeholder=''>"
+        +	"</div>"
+        +	"</div>"
+        + "<div class='col-xs-4'>"
+        +	"<div class='form-group'>"
+        +	"<input type='number' name='3pay[]' class='form-control input-lg' placeholder=''>"
+        +	"</div>"
+        +	"</div>"
+        + "<div class='col-xs-4'>"
+        +	"<div class='form-group'>"
+        +	"<input type='number' name='3pay2[]' class='form-control input-lg' placeholder=''>"
+        +	"</div>"
+        +	"</div>"
+        +	"</div>");
+    });
+
+    $("#Remove").on("click", function() {
+        $("#add2top").children().last().remove();
+    });
+  });
+
+
+  </script>

@@ -43,7 +43,7 @@ input[type=number] {
   <div>
     <!-- Detail -->
     <div class="row">
-    	<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+    	<div class="col-md-12 col-sm-12 col-xs-12">
                   <!-- USERS LIST -->
                   <div class="box box-danger">
                     <div class="box-header with-border">
@@ -65,37 +65,37 @@ input[type=number] {
                           <tr>
                             <td class="text-center">
                               <div class="col-xs-9">
-                                <input class="form-control" name="name" type="text" value="<?php echo $agent['name'] ?>" onclick="show_icon('<?php echo 'name_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'name_'.$agent['id'] ?>')">
+                                <input class="form-control input-lg" name="name" type="text" value="<?php echo $agent['name'] ?>" onclick="show_icon('<?php echo 'name_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'name_'.$agent['id'] ?>')">
                               </div>
                               <div class="col-xs-3">
-                                <button id="<?php echo 'name_'.$agent['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button id="<?php echo 'name_'.$agent['id'] ?>" class="btn btn-success btn-lg hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
                             <td class="text-center">
                               <div class="col-xs-9">
-                                <input class="form-control" name="percent" type="number" value="<?php echo $agent['percent'] ?>" onclick="show_icon('<?php echo 'percent_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'percent_'.$agent['id'] ?>')">
+                                <input class="form-control input-lg" name="percent" type="number" value="<?php echo $agent['percent'] ?>" onclick="show_icon('<?php echo 'percent_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'percent_'.$agent['id'] ?>')">
                               </div>
                               <div class="col-xs-3">
-                                <button id="<?php echo 'percent_'.$agent['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button id="<?php echo 'percent_'.$agent['id'] ?>" class="btn btn-success btn-lg hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
                             <td class="text-center">
                               <div class="col-xs-9">
-                                <select class="form-control" name="user_id" onfocus="show_icon('<?php echo 'user_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'user_'.$agent['id'] ?>')">
+                                <select class="form-control input-lg" name="user_id" onfocus="show_icon('<?php echo 'user_'.$agent['id'] ?>')" onfocusout="hide_icon('<?php echo 'user_'.$agent['id'] ?>')">
                                   <?php foreach($list_user as $user){ ?>
-                                  <option 
+                                  <option
                                   <?php if ($user['id']==$agent['user_id']) {
                                     echo " selected ";
                                   } ?>
                                   value="<?php echo $user['id'] ?>">
                                   <?php echo $user['username'] ?>
-                                    
+
                                   </option>
                                   <?php } ?>
                                 </select>
                               </div>
                               <div class="col-xs-3">
-                                <button id="<?php echo 'user_'.$agent['id'] ?>" class="btn btn-primary btn-sm hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button id="<?php echo 'user_'.$agent['id'] ?>" class="btn btn-success btn-lg hide-icon" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                               </div>
                             </td>
                             <td class="text-center"><a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('agent_manage/agent_delete/'.$agent['id']) ?>" ><i class="fa fa-times text-red" aria-hidden="true"></i></a></td>
@@ -143,7 +143,7 @@ input[type=number] {
                 <label class="control-label">ชื่อ: </label>
               </div>
               <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                <input type="text" class="form-control" name="name" value=""  required="required" />
+                <input type="text" class="form-control input-lg" name="name" value=""  required="required" />
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ input[type=number] {
                 <label class="control-label">เปอร์เซ็น: </label>
               </div>
               <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                <input type="text" class="form-control" name="percent" value=""  required="required" />
+                <input type="text" class="form-control input-lg" name="percent" value=""  required="required" />
               </div>
             </div>
           </div>
@@ -163,7 +163,7 @@ input[type=number] {
                 <label class="control-label">ผู้ดูแล : </label>
               </div>
               <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                <select class="form-control" name="user_id">
+                <select class="form-control input-lg" name="user_id">
                   <?php foreach($list_user as $user){ ?>
                   <option value="<?php echo $user['id'] ?>"><?php echo $user['username'] ?></option>
                   <?php } ?>
@@ -174,8 +174,8 @@ input[type=number] {
           <br>
           <div class="form-group" align="center">
             <div class="row">
-              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> ยกเลิก</button>
-              <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> บันทึก</button>
+              <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal"><i class="fa fa-times"></i> ยกเลิก</button>
+              <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-save"></i> บันทึก</button>
             </div>
           </div>
         </div>
