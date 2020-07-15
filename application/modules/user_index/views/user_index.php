@@ -46,6 +46,15 @@
             <div class="form-group">
               <button id="Add2" type="button" class="btn btn-default btn-lg"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มแถว</button>
             </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group form-2digi">
+              <input type="text" onkeypress="return isNumber(event)" name="2digi[]" class="input-lg form-2digi digi-2" placeholder="บน"> x 
+              <input type="text" onkeypress="return isNumber(event)" name="2digi[]" class="input-lg form-2digi digi-2" placeholder="ล่าง">
+            </div>
           </div>
         </div>
       </div>
@@ -69,6 +78,20 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group form-2digi">
+              <input type="text" onkeypress="return isNumber(event)" name="2digi[]" class="input-lg form-2digi digi-2" placeholder="ตรง"> x 
+              <input type="text" onkeypress="return isNumber(event)" name="2digi[]" class="input-lg form-2digi digi-2" placeholder="โต๊ด">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-save"></i> บันทึก</button>
       </div>
     </div>
   </section>
