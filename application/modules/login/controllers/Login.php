@@ -28,7 +28,7 @@ class Login extends MX_Controller {
 			if($user_data['user_role']==1){
 				redirect('dashboard','refresh');
 			}else{
-				redirect('user_index','refresh');
+				redirect('buy','refresh');
 			}
 		} else {
 			redirect('login/index','refresh');

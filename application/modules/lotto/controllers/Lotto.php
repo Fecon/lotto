@@ -23,6 +23,7 @@ class Lotto extends MX_Controller {
 			 $data['reserve_number2'] = $this->Lotto_model->get_reserve_number2($lotto_id);
 			 $data['reserve_number3'] = $this->Lotto_model->get_reserve_number3($lotto_id);
 			 $data['lotto'] = $this->Lotto_model->get_lotto($lotto_id);
+
 		}else{
 			redirect('lotto');
 		}
@@ -116,12 +117,13 @@ class Lotto extends MX_Controller {
 			'name' 	  => $this->input->post('name'),
 			'2top' 	  => $this->input->post('2top'),
 			'2bottom' => $this->input->post('2bottom'),
-			'3top' 	  => $three_number[0][0],
-			'3_1' 	  => $three_number[0][1],
-			'3_2' 	  => $three_number[1][0],
-			'3_3' 	  => $three_number[1][1],
-			'3_4' 	  => $three_number[2][0],
-			'3_5' 	  => $three_number[2][1],
+			'3top' 	  => $this->input->post('3top'),
+			'3_1' 	  => $three_number[0][0],
+			'3_2' 	  => $three_number[0][1],
+			'3_3' 	  => $three_number[1][0],
+			'3_4' 	  => $three_number[1][1],
+			'3_5' 	  => $three_number[2][0],
+			'3_6' 	  => $three_number[2][1]
 		);
 
 		print_r($list_data);

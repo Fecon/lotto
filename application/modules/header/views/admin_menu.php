@@ -4,7 +4,12 @@
             <li>
               <a href="<?php echo site_url('dashboard') ?>">
                 <i class="fa fa-usd"></i>
-                <span>หน้าแรก</span>
+                <span>สรุปยอด</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo site_url('report') ?>">
+                <i class="fa fa-bar-chart"></i> <span>ยอดรวม</span>
               </a>
             </li>
             <li>

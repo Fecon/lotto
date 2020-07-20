@@ -65,28 +65,10 @@ class Lotto_model extends CI_Model {
 		    return true;
 		}
 	}
-
-	public function lotto_forget($lotto_email)
-	{
-		$this->db->where('email',$lotto_email);
-		$query = $this->db->get('lotto');
-		return $query->result_array();
-	}
-	public function re_password($mail)
-	{
-		$this->db->where('lotto_email',$mail);
-		$query = $this->db->get('lotto');
-		return $query->result_array();
-	}
-	public function lotto_change($inpost)
-	{
-		$this->db->where('lotto_id',$inpost['id']);
-		$this->db->update('lotto',$inpost);
-	}
 	public function get_reserve_number2($lotto_id)
 	{
 		$this->db->where('lotto_id',$lotto_id)
-							->where('pay2',null);
+							->where('pay2',0);
 		$query = $this->db->get('reserve_number');
 		return $query->result_array();
 	}
@@ -103,10 +85,5 @@ class Lotto_model extends CI_Model {
 		$query = $this->db->get('lotto');
 		return $query->result_array();
 	}
-	public function checkRepeat($type,$inData)
-	{
-		$this->db->where($type,$inData);
-		$query = $this->db->get("lotto");
-		return $query->num_rows();
-	}
+
 }

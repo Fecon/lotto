@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends MX_Controller {
+class Report extends MX_Controller {
 
 	public function __construct()
     {
         parent::__construct(); 
-        $this->load->model('Dashboard_model');
+        $this->load->model('Report_model');
     }
 	public function index()
 	{
@@ -16,7 +16,7 @@ class Dashboard extends MX_Controller {
 		// print_r($data);
 		// exit();
 
-		$data['content'] = 'dashboard';
+		$data['content'] = 'report';
 
 		$this->load->view('header/admin_header',$data);
 	}
