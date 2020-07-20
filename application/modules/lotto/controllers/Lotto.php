@@ -65,8 +65,6 @@ class Lotto extends MX_Controller {
 			}
 		}
 
-		// $this->Lotto_model->rn_insert($reserve_numbers,$lotto_id);
-
 		$number_3 = $this->input->post('3digi');
 		$pay_3digi = $this->input->post('3pay');
 		$pay2_3digi = $this->input->post('3pay2');
@@ -82,12 +80,8 @@ class Lotto extends MX_Controller {
 					);
 			}
 		}
-		echo "<pre>";
-		print_r($reserve_numbers);
-		// exit();
 
 		$result = $this->Lotto_model->rn_insert($reserve_numbers,$lotto_id);
-		// exit();
 
 		if($result==1){
 			$this->session->set_flashdata('insert_reserve_numbers', 'done');
@@ -104,31 +98,43 @@ class Lotto extends MX_Controller {
 		if (!empty($str)) {
 			$n = strlen($str);
 			$three_number = $this->permute($str, 0, $n - 1);
-		}else{
+
 			for ($i=0; $i < 3 ; $i++) {
 				for ($j=0; $j < 2 ; $j++) {
-					$three_number[$i][$j] = '';
+					$set_three_all_number[] = $three_number[$i][$j];
 				}
+			}
+			$set_three = array_unique($set_three_all_number);
+
+			for ($i=0; $i < 6 ; $i++) {
+				if(isset($set_three[$i])){
+					$three_tod_result[$i] = $set_three[$i];
+				}else{
+					$three_tod_result[$i] = '';
+				}
+			}
+
+		}else{
+			for ($i=0; $i < 6 ; $i++) {
+				$three_tod_result[$i] = '';
 			}
 		}
 
-		$list_data = array(
+		$prepare_data = array(
 			'id' 	  => $id,
 			'name' 	  => $this->input->post('name'),
 			'2top' 	  => $this->input->post('2top'),
 			'2bottom' => $this->input->post('2bottom'),
 			'3top' 	  => $this->input->post('3top'),
-			'3_1' 	  => $three_number[0][0],
-			'3_2' 	  => $three_number[0][1],
-			'3_3' 	  => $three_number[1][0],
-			'3_4' 	  => $three_number[1][1],
-			'3_5' 	  => $three_number[2][0],
-			'3_6' 	  => $three_number[2][1]
+			'3_1' 	  => $three_tod_result[0],
+			'3_2' 	  => $three_tod_result[1],
+			'3_3' 	  => $three_tod_result[2],
+			'3_4' 	  => $three_tod_result[3],
+			'3_5' 	  => $three_tod_result[4],
+			'3_6' 	  => $three_tod_result[5]
 		);
 
-		print_r($list_data);
-		// exit();
-		$result = $this->Lotto_model->lotto_update($list_data);
+		$result = $this->Lotto_model->lotto_update($prepare_data);
 
 		if($result==1){
 			$this->session->set_flashdata('update_user', 'done');

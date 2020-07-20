@@ -86,6 +86,44 @@
                      <div class="col-md-12">
                         <table class="table table-striped">
                            <tr>
+                              <th class="text-center">ชื่อตัวแทน : 
+                              <?php 
+	                           	if(isset($agentInfo)){
+	                           		echo $agentInfo['name'] ;
+	                           	}else{
+	                           		echo "ทั้งหมด";
+	                           	}
+                           	?>
+                              </th>
+                              <th class="text-center"></th>
+                              <th class="text-center"></th>
+                           </tr>
+                           <tr>
+                              <th class="text-center">ยอดส่งรวม : 
+                              <?php 
+	                           	if(isset($agentInfo)){
+	                           		
+	                           	}
+                           	?>
+                              </th>
+                              <th class="text-center"></th>
+                              <th class="text-center"></th>
+                           </tr>
+                           <tr>
+                              <th class="text-center">เปอร์เซ็นต์ 
+                              <?php 
+	                           	if(isset($agentInfo)){
+	                           		echo " ( ".$agentInfo['percent']."% ) :" ;
+	                           	}else{
+                                    echo " : ";
+                                 }
+                           	?>
+                              </th>
+                              <th class="text-center"></th>
+                              <th class="text-center"></th>
+                           </tr>
+
+                           <tr>
                               <th class="text-center">เลข</th>
                               <th class="text-center">ซื้อมา</th>
                               <th class="text-center">เป็นเงิน</th>
