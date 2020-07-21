@@ -86,19 +86,19 @@
               <div class="row">
                 <?php for ($i=0; $i < 5 ; $i++) { ?>
                 <div class="col-xs-3 form-group form-2digi">
-                  <input type='text' maxlength='2' onkeypress='return isNumber(event)' name="2digi[]"
+                  <input type='tel' maxlength='2' onkeypress='return isNumber(event)' name="2digi[]"
                     class="form-control input-lg form-2digi digi-2">
                 </div>
                 <div class="col-xs-3 form-group form-2digi">
-                  <input type='text' maxlength='2' onkeypress='return isNumber(event)' name="2digi[]"
+                  <input type='tel' maxlength='2' onkeypress='return isNumber(event)' name="2digi[]"
                     class="form-control input-lg form-2digi digi-2">
                 </div>
                 <div class="col-xs-3 form-group form-2digi">
-                  <input type='text' maxlength='2' onkeypress='return isNumber(event)' name="2digi[]"
+                  <input type='tel' maxlength='2' onkeypress='return isNumber(event)' name="2digi[]"
                     class="form-control input-lg form-2digi digi-2">
                 </div>
                 <div class="col-xs-3 form-group form-2digi">
-                  <input type='text' maxlength='2' onkeypress='return isNumber(event)' name="2digi[]"
+                  <input type='tel' maxlength='2' onkeypress='return isNumber(event)' name="2digi[]"
                     class="form-control input-lg form-2digi digi-2">
                 </div>
                 <?php } ?>
@@ -130,19 +130,19 @@
               <div class="row">
                 <?php for ($i=0; $i < 5 ; $i++) { ?>
                 <div class="col-xs-3 form-group form-3digi">
-                  <input type='text' maxlength='3' onkeypress='return isNumber(event)' name="3digi[]"
+                  <input type='tel' maxlength='3' onkeypress='return isNumber(event)' name="3digi[]"
                     class="form-control input-lg form-3digi digi-3">
                 </div>
                 <div class="col-xs-3 form-group form-3digi">
-                  <input type='text' maxlength='3' onkeypress='return isNumber(event)' name="3digi[]"
+                  <input type='tel' maxlength='3' onkeypress='return isNumber(event)' name="3digi[]"
                     class="form-control input-lg form-3digi digi-3">
                 </div>
                 <div class="col-xs-3 form-group form-3digi">
-                  <input type='text' maxlength='3' onkeypress='return isNumber(event)' name="3digi[]"
+                  <input type='tel' maxlength='3' onkeypress='return isNumber(event)' name="3digi[]"
                     class="form-control input-lg form-3digi digi-3">
                 </div>
                 <div class="col-xs-3 form-group form-3digi">
-                  <input type='text' maxlength='3' onkeypress='return isNumber(event)' name="3digi[]"
+                  <input type='tel' maxlength='3' onkeypress='return isNumber(event)' name="3digi[]"
                     class="form-control input-lg form-3digi digi-3">
                 </div>
                 <?php } ?>
@@ -302,31 +302,31 @@
 
     $("#Add2").on("click", function () {
       $("#add2top").append("<div class='col-xs-3 form-group form-2digi'>" +
-        "<input type='text' maxlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+        "<input type='tel' maxlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
         "</div>" +
         "<div class='col-xs-3 form-group form-2digi'>" +
-        "<input type='text' maxlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+        "<input type='tel' maxlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
         "</div>" +
         "<div class='col-xs-3 form-group form-2digi'>" +
-        "<input type='text' maxlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+        "<input type='tel' maxlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
         "</div>" +
         "<div class='col-xs-3 form-group form-2digi'>" +
-        "<input type='text' maxlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+        "<input type='tel' maxlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
         "</div>");
     });
 
     $("#Add3").on("click", function () {
       $("#add3top").append("<div class='col-xs-3 form-group form-3digi'>" +
-        "<input type='text' maxlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' maxlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
         "</div>" +
         "<div class='col-xs-3 form-group form-3digi'>" +
-        "<input type='text' maxlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' maxlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
         "</div>" +
         "<div class='col-xs-3 form-group form-3digi'>" +
-        "<input type='text' maxlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' maxlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
         "</div>" +
         "<div class='col-xs-3 form-group form-3digi'>" +
-        "<input type='text' maxlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' maxlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
         "</div>");
     });
 

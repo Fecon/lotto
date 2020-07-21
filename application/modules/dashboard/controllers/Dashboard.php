@@ -43,11 +43,6 @@ class Dashboard extends MX_Controller {
 		$data['sum'] = $sum ;
 		$data['lottoInfo']	= $this->Dashboard_model->get_lotto($lotto_id);
 
-		// echo "<Pre>";
-		// print_r($data['sum']);
-		// print_r($this->input->post());
-		// exit();
-
 		$data['content'] = 'dashboard';
 
 		$this->load->view('header/admin_header',$data);
@@ -99,10 +94,6 @@ class Dashboard extends MX_Controller {
 
 			$this->update_payback($buy['id'],$pay,$pay2,$total_pay);
 
-				
-
-				
-			
 		}
 	}
 

@@ -144,7 +144,9 @@
                                  }
                               ?>
                            </tr>
-
+                           <tr>
+                              <th colspan="2"><br><br></th>
+                           </tr>
                            <tr>
                               <th class="text-center">เลข</th>
                               <th class="text-center">ซื้อมา</th>
