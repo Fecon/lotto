@@ -34,7 +34,7 @@
           </div>
           <div class="row">
             <div class="col-xs-12">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Submit</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat">LOGIN</button>
             </div><!-- /.col -->
           </div>
         </form>

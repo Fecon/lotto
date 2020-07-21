@@ -69,7 +69,6 @@
       </div>
     </div>
   </section>
-  <hr>
 
   <!-- Main content -->
   <section class="content">
@@ -201,7 +200,12 @@
             </table>
           </div>
         </div>
-        <hr>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <div class="row">
           <div class="col-xs-12 text-center">
             <button type="button" id="save" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal"><i class="fa fa-save"></i> บันทึก</button>

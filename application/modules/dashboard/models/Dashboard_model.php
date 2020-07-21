@@ -93,4 +93,67 @@ class Dashboard_model extends CI_Model {
 		}
 	}
 
+	public function get_sum_agent_buy($lotto_id,$number,$agent_id)
+	{
+		$query = $this->db
+				->select('number')
+				->select_sum('top')
+				->select_sum('bottom')
+				->select_sum('pay')
+				->select_sum('pay2')
+				->select_sum('total_pay')
+				->where('lotto_id',$lotto_id)
+				->where('number',$number)
+				->where('agent_id',$agent_id)
+				->get('buy')
+				->result_array();
+		return $query[0];
+	}
+
+	public function get_sum_agent_received($lotto_id,$agent_id)
+	{
+		$query = $this->db
+				->select_sum('top')
+				->select_sum('bottom')
+				->select_sum('pay')
+				->select_sum('pay2')
+				->select_sum('total_pay')
+				->where('lotto_id',$lotto_id)
+				->where('agent_id',$agent_id)
+				->get('buy')
+				->result_array();
+		return $query[0];
+	}
+
+	public function get_sum_received($lotto_id,$type)
+	{
+		$query = $this->db
+				->select_sum('top')
+				->select_sum('bottom')
+				->select_sum('pay')
+				->select_sum('pay2')
+				->select_sum('total_pay')
+				->where('type',$type)
+				->where('lotto_id',$lotto_id)
+				->get('buy')
+				->result_array();
+		return $query[0];
+	}
+
+	public function get_sum_buy($lotto_id,$number)
+	{
+		$query = $this->db
+				->select('number')
+				->select_sum('top')
+				->select_sum('bottom')
+				->select_sum('pay')
+				->select_sum('pay2')
+				->select_sum('total_pay')
+				->where('lotto_id',$lotto_id)
+				->where('number',$number)
+				->get('buy')
+				->result_array();
+		return $query[0];
+	}
+
 }
