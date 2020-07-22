@@ -48,6 +48,70 @@ class Dashboard extends MX_Controller {
 		$this->load->view('header/admin_header',$data);
 	}
 
+	public function report()
+	{
+		$data['list_lotto'] = $this->Dashboard_model->list_lotto();
+		$data['list_agent'] = $this->Dashboard_model->list_agent();
+		$config 			= $this->Dashboard_model->get_config();
+		$data['config'] 	= $config;
+
+		if(empty($this->input->post())){
+			$lottoInfo 	= $this->Dashboard_model->get_latest_lotto();
+			$lotto_id	= $lottoInfo['id'];
+			$agent_id	= 0;
+		}else{
+			$lotto_id 		= $this->input->post('lotto_id');
+			$agent_id 	 	= $this->input->post('agent_id');
+			$lottoInfo		= $this->Dashboard_model->get_lotto($lotto_id);
+		}
+
+		if($agent_id!=0){
+			$data['agentInfo']	= $this->Dashboard_model->get_agent($agent_id);
+			$agentInfo	= $this->Dashboard_model->get_agents($agent_id);
+			$this->check_lotto($lotto_id, $agent_id, $lottoInfo);
+
+			$data['agent_sent'] = $this->Dashboard_model->get_sum_agent_received($lotto_id,$agent_id);
+
+			$data['percent_total'] 		 = $this->get_percent($lotto_id,$agentInfo);
+			$data['percent_2top'] 		 = $this->get_percent_type($lotto_id,$agentInfo,2,'top');
+			$data['percent_2bottom'] 	 = $this->get_percent_type($lotto_id,$agentInfo,2,'bottom');
+			$data['percent_3top'] 		 = $this->get_percent_type($lotto_id,$agentInfo,3,'top');
+			$data['percent_2tod'] 		 = $this->get_percent_type($lotto_id,$agentInfo,3,'bottom');
+
+			$data['number_2top'] 		 = $this->Dashboard_model->get_agent_buy_number($lotto_id,2,'top',$config[5]['value'],$agent_id);
+			$data['number_2bottom'] 	 = $this->Dashboard_model->get_agent_buy_number($lotto_id,2,'bottom',$config[5]['value'],$agent_id);
+			$data['number_3top'] 		 = $this->Dashboard_model->get_agent_buy_number($lotto_id,3,'top',$config[8]['value'],$agent_id);
+			$data['number_3tod'] 		 = $this->Dashboard_model->get_agent_buy_number($lotto_id,3,'bottom',$config[11]['value'],$agent_id);
+
+			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_agent_type_received($lotto_id,$agent_id,2);
+			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_agent_type_received($lotto_id,$agent_id,3);
+
+
+		}else{
+			$data['percent_total'] 		 = $this->get_percent($lotto_id,$data['list_agent']);
+
+			$data['percent_2top'] 		 = $this->get_percent_type($lotto_id,$data['list_agent'],2,'top');
+			$data['percent_2bottom'] 	 = $this->get_percent_type($lotto_id,$data['list_agent'],2,'bottom');
+			$data['percent_3top'] 		 = $this->get_percent_type($lotto_id,$data['list_agent'],3,'top');
+			$data['percent_2tod'] 		 = $this->get_percent_type($lotto_id,$data['list_agent'],3,'bottom');
+
+			$data['number_2top'] 		 = $this->Dashboard_model->get_total_buy_number($lotto_id,2,'top',$config[5]['value']);
+			$data['number_2bottom'] 	 = $this->Dashboard_model->get_total_buy_number($lotto_id,2,'bottom',$config[5]['value']);
+			$data['number_3top'] 		 = $this->Dashboard_model->get_total_buy_number($lotto_id,3,'top',$config[8]['value']);
+			$data['number_3tod'] 		 = $this->Dashboard_model->get_total_buy_number($lotto_id,3,'bottom',$config[11]['value']);
+
+			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_received($lotto_id,2);
+			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_received($lotto_id,3);
+		}
+
+		// echo "<pre>";
+		// print_r($data['number_2top'] );
+		// exit();
+		$data['content'] = 'report';
+
+		$this->load->view('header/admin_header',$data);
+	}
+
 	private function check_lotto($lotto_id, $agent_id, $lottoInfo)
 	{
 		$agent_buy 		= $this->Dashboard_model->get_agent_buy($agent_id,$lotto_id);
@@ -244,6 +308,27 @@ class Dashboard extends MX_Controller {
 			$percent_total += ($sum_agents['top'] + $sum_agents['bottom']) * ($agent['percent']/100) ;
 		}
 		return $percent_total;
+	}
+
+	private function get_percent_type($lotto_id,$agents,$type,$subtype)
+	{
+		$percent_total = 0; 
+		foreach ($agents as $key => $agent) {
+			$sum_agents 	= $this->Dashboard_model->get_sum_agent_type_received($lotto_id,$agent['id'],$type);
+			
+			if($subtype=='top'){
+				$percent_total += ($sum_agents['top']) * ($agent['percent']/100) ;
+			}else{
+				$percent_total += ($sum_agents['bottom']) * ($agent['percent']/100) ;
+			}
+			
+		}
+		return $percent_total;
+	}
+
+	private function get_2top_buy()
+	{
+
 	}
 
 }

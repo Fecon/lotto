@@ -31,6 +31,9 @@
 <link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/datepicker/datepicker3.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?php echo base_url()?>assets/dist/css/AdminLTE.css">
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -41,6 +44,8 @@
 <script src="<?php echo base_url()?>assets/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <!-- Bootstrap 3.3.5 -->
 <script src="<?php echo base_url()?>assets/bootstrap/js/bootstrap.min.js"></script>
+
+
 
 <style>
 input[type=text] {
@@ -125,6 +130,7 @@ input[type=text] {
 
 <script src="<?php echo base_url()?>assets/dist/js/app.min.js"></script>
 <script src="<?php echo base_url()?>assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
 <script>
   function show_icon(id){

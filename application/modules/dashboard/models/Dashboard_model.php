@@ -17,6 +17,15 @@ class Dashboard_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function get_agents($id)
+	{
+		$this->db->where('id',$id);
+		$query = $this->db
+				->get('agent')
+				->result_array();
+		return $query;
+	}
+
 	public function get_lotto($id)
 	{
 		$this->db->where('id',$id);
@@ -125,6 +134,22 @@ class Dashboard_model extends CI_Model {
 		return $query[0];
 	}
 
+	public function get_sum_agent_type_received($lotto_id,$agent_id,$type)
+	{
+		$query = $this->db
+				->select_sum('top')
+				->select_sum('bottom')
+				->select_sum('pay')
+				->select_sum('pay2')
+				->select_sum('total_pay')
+				->where('type',$type)
+				->where('lotto_id',$lotto_id)
+				->where('agent_id',$agent_id)
+				->get('buy')
+				->result_array();
+		return $query[0];
+	}
+
 	public function get_sum_received($lotto_id,$type)
 	{
 		$query = $this->db
@@ -154,6 +179,59 @@ class Dashboard_model extends CI_Model {
 				->get('buy')
 				->result_array();
 		return $query[0];
+	}
+
+	public function get_total_buy_number($lotto_id,$type,$subtype,$lessthan)
+	{
+		$query = $this->db->distinct()
+				->select("number")
+				->where('lotto_id',$lotto_id)
+				->where('type',$type)
+				->get('buy')
+				->result_array();
+
+				foreach ($query as $key => $value) {
+					$query2 = $this->db
+					->select_sum($subtype)
+					->where('lotto_id',$lotto_id)
+					->where('number',$value['number'])
+					->get('buy')
+					->result_array();
+
+					if($query2[0][$subtype] <= $lessthan){
+						unset($query[$key]);
+					}else{
+						$query[$key]['sent'] = $query2[0][$subtype];
+					}
+				}
+		return $query;
+	}
+
+	public function get_agent_buy_number($lotto_id,$type,$subtype,$lessthan,$agent_id)
+	{
+		$query = $this->db->distinct()
+				->select("number")
+				->where('lotto_id',$lotto_id)
+				->where('agent_id',$agent_id)
+				->where('type',$type)
+				->get('buy')
+				->result_array();
+
+				foreach ($query as $key => $value) {
+					$query2 = $this->db
+					->select_sum($subtype)
+					->where('lotto_id',$lotto_id)
+					->where('number',$value['number'])
+					->get('buy')
+					->result_array();
+
+					if($query2[0][$subtype] <= $lessthan){
+						unset($query[$key]);
+					}else{
+						$query[$key]['sent'] = $query2[0][$subtype];
+					}
+				}
+		return $query;
 	}
 
 }
