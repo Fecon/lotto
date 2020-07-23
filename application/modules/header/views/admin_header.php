@@ -59,6 +59,9 @@ input[type=text] {
 .on-right{
   float: right;
 }
+.text-black {
+  color:#000 !important;
+}
 </style>
 
 </head>

@@ -3,9 +3,11 @@
 class Buy_model extends CI_Model {
 
 
-	public function list_agent()
+	public function list_agent($user_id)
 	{
-		$query = $this->db->get('agent');
+		$query = $this->db
+				-> where('user_id', $user_id)
+				->get('agent');
 		return $query->result_array();
 	}
 	public function get_lotto()

@@ -105,7 +105,7 @@
 	                           	if(isset($agentInfo)){
 	                           		echo number_format($agent_sent['bottom']+$agent_sent['top'])  ; 
 	                           	}else{
-                                    echo $total_sent;
+                                    echo number_format($total_sent);
                                  }
                            	?>
                               </th>
@@ -191,7 +191,7 @@
                            <tr>
                               <td class="text-center">
                                  <label>3 ตัวโต๊ด :</label >
-                                 <span><?php echo $sum['3tod']['number'] ; ?></span>
+                                 <span class="text-black"><?php echo $sum['3tod']['number'] ; ?></span>
                               </td>
                               <td class="text-center">
                                  <span><?php echo number_format($sum['3tod']['bottom']) ; ?></span>

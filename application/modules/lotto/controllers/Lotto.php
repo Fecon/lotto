@@ -53,6 +53,7 @@ class Lotto extends MX_Controller {
 		$lotto_id = $this->uri->segment(3);
 		$number_2 = $this->input->post('2digi');
 		$pay_2digi = $this->input->post('2pay');
+
 		for ($i=0; $i < count($number_2) ; $i++) {
 			if(!empty($number_2[$i])){
 				$reserve_numbers[] =
@@ -60,7 +61,7 @@ class Lotto extends MX_Controller {
 						'lotto_id' => $lotto_id,
 						'number' 	 => $number_2[$i],
 						'pay'  		 => $pay_2digi[$i],
-						'pay2'  	 => null
+						'pay2'  	 => 0
 					);
 			}
 		}
@@ -80,9 +81,13 @@ class Lotto extends MX_Controller {
 					);
 			}
 		}
-
-		$result = $this->Lotto_model->rn_insert($reserve_numbers,$lotto_id);
-
+		
+		if(empty($reserve_numbers)){
+			$this->Lotto_model->rn_delete($lotto_id);
+		}else{
+			$result = $this->Lotto_model->rn_insert($reserve_numbers,$lotto_id);
+		}
+		
 		if($result==1){
 			$this->session->set_flashdata('insert_reserve_numbers', 'done');
 		}else{

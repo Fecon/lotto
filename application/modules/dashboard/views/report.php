@@ -161,13 +161,13 @@
                         <span><?php echo $value['number'] ?></span>
                       </td>
                       <td class="text-center <?php echo $bgClass ; ?>">
-                        <span><?php echo $value['sent'] ?></span>
+                        <span><?php echo number_format($value['sent']) ?></span>
                       </td>
                       <td class="text-center <?php echo $bgClass2 ; ?>">
                         <span>
                           <?php 
                             if($value['sent'] >= $config[3]['value']){
-                              echo $value['sent'] - $config[3]['value'] ; 
+                              echo number_format($value['sent'] - $config[3]['value']) ; 
                             }
                           ?></span>
                       </td>
@@ -186,7 +186,7 @@
                     <th class="text-center">ยอดรวม</th>
                     <th colspan="2" class="text-center">
                       <?php 
-                        echo $agent_sent['2digi']['bottom'];
+                        echo number_format($agent_sent['2digi']['bottom']);
                       ?>
                     </th>
                   </tr>
@@ -228,13 +228,13 @@
                         <span><?php echo $value['number'] ?></span>
                       </td>
                       <td class="text-center <?php echo $bgClass ; ?>">
-                        <span><?php echo $value['sent'] ?></span>
+                        <span><?php echo number_format($value['sent']) ?></span>
                       </td>
                       <td class="text-center <?php echo $bgClass2 ; ?>">
                         <span>
                           <?php 
                             if($value['sent'] >= $config[3]['value']){
-                              echo $value['sent'] - $config[3]['value'] ; 
+                              echo number_format($value['sent'] - $config[3]['value']) ; 
                             }
                           ?></span>
                       </td>
@@ -253,7 +253,7 @@
                     <th class="text-center">ยอดรวม</th>
                     <th colspan="2" class="text-center">
                       <?php 
-                        echo $agent_sent['3digi']['top'];
+                        echo number_format($agent_sent['3digi']['top']);
                       ?>
                     </th>
                   </tr>
@@ -295,13 +295,13 @@
                         <span><?php echo $value['number'] ?></span>
                       </td>
                       <td class="text-center <?php echo $bgClass ; ?>">
-                        <span><?php echo $value['sent'] ?></span>
+                        <span><?php echo number_format($value['sent']) ?></span>
                       </td>
                       <td class="text-center <?php echo $bgClass2 ; ?>">
                         <span>
                           <?php 
                             if($value['sent'] >= $config[6]['value']){
-                              echo $value['sent'] - $config[6]['value'] ; 
+                              echo number_format($value['sent'] - $config[6]['value']) ; 
                             }
                           ?>
                         </span>
@@ -363,13 +363,13 @@
                         <span><?php echo $value['number'] ?></span>
                       </td>
                       <td class="text-center <?php echo $bgClass ; ?>">
-                        <span><?php echo $value['sent'] ?></span>
+                        <span><?php echo number_format($value['sent']) ?></span>
                       </td>
                       <td class="text-center <?php echo $bgClass2 ; ?>">
                         <span>
                           <?php 
                             if($value['sent'] >= $config[9]['value']){
-                              echo $value['sent'] - $config[9]['value'] ; 
+                              echo number_format($value['sent'] - $config[9]['value']) ; 
                             }
                           ?></span>
                       </td>

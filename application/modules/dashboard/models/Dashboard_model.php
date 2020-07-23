@@ -61,6 +61,15 @@ class Dashboard_model extends CI_Model {
 		return $query;
 	}
 
+	public function get_buy($lotto_id)
+	{
+		$query = $this->db
+		->where('lotto_id',$lotto_id)
+		->get('buy')
+		->result_array();
+		return $query;
+	}
+
 	public function get_reserve_number($lotto_id)
 	{
 		$query = $this->db

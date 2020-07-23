@@ -33,7 +33,7 @@
 </style>
 
 <div class="content-wrapper">
-  <?php echo form_open('buy/buy_insert/'.$lotto[0]['id'])?>
+  <?php echo form_open('buy/buy_insert/')?>
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <?php
@@ -53,11 +53,10 @@
       <div class="col-md-3 col-sm-4">
         <div class="form-group">
           <label>งวด</label>
-          <input disabled type="date" name="lotto_id" class="form-control input-lg" id="datepicker"
-            value="<?php echo $lotto[0]['name']; ?>">
+          <input disabled type="text" name="lotto_id" class="form-control input-lg" value="ไม่มีการตั้งค่างวด">
         </div>
       </div>
-      <div class="col-md-3 col-sm-4">
+      <div class="col-md-2 col-sm-4">
         <div class="form-group">
           <label>ตัวแทน</label>
           <select class="form-control input-lg" name="agent_id" id="agent">
@@ -78,21 +77,24 @@
         <div class="row">
           <?php for ($i=0; $i < 5 ; $i++) { ?>
           <div class="col-xs-3 form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+            <input type='tel' maxlength='2' minlength='2' minlength='2' onkeypress='return isNumber(event)' name="2digi[]"
+              class="form-control input-lg form-2digi digi-2">
           </div>
           <div class="col-xs-3 form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name="2digi[]"
+              class="form-control input-lg form-2digi digi-2">
           </div>
           <div class="col-xs-3 form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name="2digi[]"
+              class="form-control input-lg form-2digi digi-2">
           </div>
           <div class="col-xs-3 form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name="2digi[]"
+              class="form-control input-lg form-2digi digi-2">
           </div>
           <?php } ?>
-          <div id="add2top"></div>
         </div>
-        
+        <div class="row" id="add2top"></div>
         <div class="form-group">
           <button id="Add2" type="button" class="btn btn-default btn-lg"><i class="fa fa-plus" aria-hidden="true"></i>
             เพิ่มแถว</button>
@@ -100,7 +102,7 @@
         <div class="row">
           <div class="col-xs-3">
             <div class="form-group">
-              <input type="tel" id="2digi_top" name="2digi_top" class="form-control input-lg" placeholder="บน">
+              <input type="number" id="2digi_top" name="2digi_top" class="form-control input-lg" placeholder="บน">
             </div>
           </div>
           <div class="col-xs-1">
@@ -108,7 +110,7 @@
           </div>
           <div class="col-xs-3">
             <div class="form-group">
-              <input type="tel" id="2digi_bottom" name="2digi_bottom" class="form-control input-lg"
+              <input type="number" id="2digi_bottom" name="2digi_bottom" class="form-control input-lg"
                 placeholder="ล่าง">
             </div>
           </div>
@@ -136,9 +138,8 @@
               class="form-control input-lg form-3digi digi-3">
           </div>
           <?php } ?>
-          <div id="add3top"></div>
         </div>
-        
+        <div class="row" id="add3top"></div>
         <div class="form-group">
           <button id="Add3" type="button" class="btn btn-default btn-lg"><i class="fa fa-plus" aria-hidden="true"></i>
             เพิ่มแถว</button>
@@ -146,7 +147,7 @@
         <div class="row">
           <div class="col-xs-3">
             <div class="form-group">
-              <input type="tel" id="3digi_top" name="3digi_top" class="form-control input-lg" placeholder="ตรง">
+              <input type="number" id="3digi_top" name="3digi_top" class="form-control input-lg" placeholder="ตรง">
             </div>
           </div>
           <div class="col-xs-1">
@@ -154,7 +155,7 @@
           </div>
           <div class="col-xs-3">
             <div class="form-group">
-              <input type="tel" id="3digi_tod" name="3digi_tod" class="form-control input-lg" placeholder="โต๊ด">
+              <input type="number" id="3digi_tod" name="3digi_tod" class="form-control input-lg" placeholder="โต๊ด">
             </div>
           </div>
         </div>
@@ -163,8 +164,7 @@
     <br>
     <div class="row">
       <div class="col-xs-12 text-center">
-        <button type="button" id="save" class="btn btn-success btn-lg btn-block" data-toggle="modal"
-          data-target="#myModal"><i class="fa fa-save"></i> บันทึก</button>
+        <button type="button" disabled class="btn btn-success btn-lg btn-block"><i class="fa fa-save"></i> บันทึก</button>
       </div>
     </div>
   </section>
@@ -227,13 +227,7 @@
     if (set_digi2.length != "") {
       set_digi2 += "<hr>" + digi2_top + " X " + digi2_bottom;
       document.getElementById('preview_2digi').innerHTML = set_digi2;
-
-      if(digi2_top != "" || digi2_bottom != ""){
-        document.getElementById("confirm").disabled = false;
-      }else{
-        document.getElementById("confirm").disabled = true;
-      }
-      
+      document.getElementById("confirm").disabled = false;
     }
 
 
@@ -251,12 +245,7 @@
     if (set_digi3.length != "") {
       set_digi3 += "<hr>" + digi3_top + " X " + digi3_tod;
       document.getElementById('preview_3digi').innerHTML = set_digi3;
-
-      if(digi3_top != "" || digi3_tod != ""){
-        document.getElementById("confirm").disabled = false;
-      }else{
-        document.getElementById("confirm").disabled = true;
-      }
+      document.getElementById("confirm").disabled = false;
     }
 
     document.getElementById('agent_preview').innerHTML = agent[agent.selectedIndex].text;
@@ -345,4 +334,13 @@
     }
   });
 
+  $('#pad-number td a').on('tab click', function () {
+    var focusID = focus.closest('.list-item').attr('product_id');
+    var order = parseInt(focus.find('.item-order').html());
+    if (order == 0) {
+      var order_name = focus.find('.item-name').text().trim();
+      // add order to side bar
+      addOrder(focusID, order_name);
+    }
+  });
 </script>

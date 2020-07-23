@@ -43,6 +43,13 @@ class Lotto_model extends CI_Model {
 		    return true;
 		}
 	}
+
+	public function rn_delete($lotto_id)
+	{
+		$this->db->where('lotto_id',$lotto_id);
+		$this->db->delete('reserve_number');
+	}
+
 	public function lotto_delete($id)
 	{
 		$this->db->where('id',$id);

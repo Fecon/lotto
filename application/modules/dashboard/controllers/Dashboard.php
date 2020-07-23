@@ -17,6 +17,9 @@ class Dashboard extends MX_Controller {
 		
 		if(empty($this->input->post())){
 			$lottoInfo 	= $this->Dashboard_model->get_latest_lotto();
+			if(empty($lottoInfo)){
+				redirect('dashboard/index_non');
+			}
 			$lotto_id	= $lottoInfo['id'];
 			$agent_id	= 0;
 		}else{
@@ -34,6 +37,7 @@ class Dashboard extends MX_Controller {
 			$data['agent_sent'] = $this->Dashboard_model->get_sum_agent_received($lotto_id,$agent_id);
 
 		}else{
+			$this->check_lotto_all($lotto_id, $lottoInfo);
 			$sum 						 = $this->get_non_agent_statement($lotto_id,$lottoInfo);
 			$data['percent_total'] 		 = $this->get_percent($lotto_id,$data['list_agent']);
 			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_received($lotto_id,2);
@@ -48,6 +52,13 @@ class Dashboard extends MX_Controller {
 		$this->load->view('header/admin_header',$data);
 	}
 
+	public function index_non()
+	{
+		$data['content'] = 'dashboard-nodata';
+
+		$this->load->view('header/admin_header',$data);
+	}
+
 	public function report()
 	{
 		$data['list_lotto'] = $this->Dashboard_model->list_lotto();
@@ -56,7 +67,7 @@ class Dashboard extends MX_Controller {
 		$data['config'] 	= $config;
 
 		if(empty($this->input->post())){
-			$lottoInfo 	= $this->Dashboard_model->get_latest_lotto();
+			$lottoInfo 	= @$this->Dashboard_model->get_latest_lotto();
 			$lotto_id	= $lottoInfo['id'];
 			$agent_id	= 0;
 		}else{
@@ -88,6 +99,8 @@ class Dashboard extends MX_Controller {
 
 
 		}else{
+			$this->check_lotto_all($lotto_id, $lottoInfo);
+			
 			$data['percent_total'] 		 = $this->get_percent($lotto_id,$data['list_agent']);
 
 			$data['percent_2top'] 		 = $this->get_percent_type($lotto_id,$data['list_agent'],2,'top');
@@ -128,27 +141,76 @@ class Dashboard extends MX_Controller {
 			if($buy['type']==2){
 
 				// 2 บน //
-				if($buy['number'] == $lottoInfo['2top']){
+				if($buy['number'] === $lottoInfo['2top']){
 					$pay = $buy['top'] * $pay_rate['2top'];
 					$total_pay += $pay;
 				}
 
 				// 2 ล่าง //
-				if($buy['number'] == $lottoInfo['2bottom']){
+				if($buy['number'] === $lottoInfo['2bottom']){
 					$pay2 = $buy['bottom'] * $pay_rate['2bottom'];
 					$total_pay += $pay2;
 				}
 			
-			}else{
+			}elseif($buy['type']==3){
 				// 3 ตรง //
-				if($buy['number'] == $lottoInfo['3top']){
+				if($buy['number'] === $lottoInfo['3top']){
 					$pay = $buy['top'] * $pay_rate['3top'];
 					$total_pay += $pay;
 				}
 
 				// 3 โต๊ด //
 				for ($i=1; $i <= 6 ; $i++) { 
-					if($buy['number'] == $lottoInfo['3_'.$i]){
+					if($buy['number'] === $lottoInfo['3_'.$i]){
+						$pay2 = $buy['bottom'] * $pay_rate['3_'.$i];
+						$total_pay += $pay2;
+					}
+				}
+
+			}
+
+			$this->update_payback($buy['id'],$pay,$pay2,$total_pay);
+
+		}
+	}
+
+	private function check_lotto_all($lotto_id, $lottoInfo)
+	{
+		$agent_buy 		= $this->Dashboard_model->get_buy($lotto_id);
+		$reserve_number = $this->Dashboard_model->get_reserve_number($lotto_id);
+
+		$pay_rate = $this->pay_rate($lottoInfo);
+
+		foreach ($agent_buy as $key => $buy) {
+			
+				$total_pay 	= 0;
+				$pay 		= 0;
+				$pay2 		= 0;
+
+			if($buy['type']==2){
+
+				// 2 บน //
+				if($buy['number'] === $lottoInfo['2top']){
+					$pay = $buy['top'] * $pay_rate['2top'];
+					$total_pay += $pay;
+				}
+
+				// 2 ล่าง //
+				if($buy['number'] === $lottoInfo['2bottom']){
+					$pay2 = $buy['bottom'] * $pay_rate['2bottom'];
+					$total_pay += $pay2;
+				}
+			
+			}elseif($buy['type']==3){
+				// 3 ตรง //
+				if($buy['number'] === $lottoInfo['3top']){
+					$pay = $buy['top'] * $pay_rate['3top'];
+					$total_pay += $pay;
+				}
+
+				// 3 โต๊ด //
+				for ($i=1; $i <= 6 ; $i++) { 
+					if($buy['number'] === $lottoInfo['3_'.$i]){
 						$pay2 = $buy['bottom'] * $pay_rate['3_'.$i];
 						$total_pay += $pay2;
 					}

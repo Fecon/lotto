@@ -2,15 +2,15 @@
 <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-              <a href="<?php echo site_url('User_index') ?>">
+              <a href="<?php echo site_url('buy') ?>">
                 <i class="fa fa-sort-numeric-asc"></i> <span>บันทึกเลข (อย่างง่าย)</span>
               </a>
             </li>
-<!--             <li>
-              <a href="<?php echo site_url('User_index/custom') ?>">
+            <li>
+              <a href="<?php echo site_url('buy/custom') ?>">
                 <i class="fa fa-pencil" aria-hidden="true"></i> <span>บันทึกเลข (แบบละเอียด)</span>
               </a>
-            </li> -->
+            </li>
             <li>
               <a href="<?php echo site_url('login/logout') ?>">
                 <i class="fa fa-sign-out"></i> <span>ออกจากระบบ</span>

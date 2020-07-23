@@ -33,7 +33,7 @@
 </style>
 
 <div class="content-wrapper">
-  <?php echo form_open('buy/buy_insert/'.$lotto[0]['id'])?>
+  <?php echo form_open('buy/buy_insert_custom/'.$lotto[0]['id'])?>
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <?php
@@ -76,18 +76,18 @@
       <div class="col-md-6 col-sm-12 right-border">
         <h4 class="text-center">2 ตัว บน ล่าง</h4>
         <div class="row">
-          <?php for ($i=0; $i < 5 ; $i++) { ?>
+          <?php for ($i=0; $i < 8 ; $i++) { ?>
           <div class="col-xs-3 form-group form-2digi">
             <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
           </div>
           <div class="col-xs-3 form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+              <input type="tel" name="2digi_top[]" class="digi-2top form-control input-lg" placeholder="บน">
+          </div>
+          <div class="col-xs-1">
+            <strong>X</strong>
           </div>
           <div class="col-xs-3 form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
-          </div>
-          <div class="col-xs-3 form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+              <input type="tel" name="2digi_bottom[]" class="digi-2bottom form-control input-lg" placeholder="ล่าง">
           </div>
           <?php } ?>
           <div id="add2top"></div>
@@ -97,66 +97,30 @@
           <button id="Add2" type="button" class="btn btn-default btn-lg"><i class="fa fa-plus" aria-hidden="true"></i>
             เพิ่มแถว</button>
         </div>
-        <div class="row">
-          <div class="col-xs-3">
-            <div class="form-group">
-              <input type="tel" id="2digi_top" name="2digi_top" class="form-control input-lg" placeholder="บน">
-            </div>
-          </div>
-          <div class="col-xs-1">
-            <strong>X</strong>
-          </div>
-          <div class="col-xs-3">
-            <div class="form-group">
-              <input type="tel" id="2digi_bottom" name="2digi_bottom" class="form-control input-lg"
-                placeholder="ล่าง">
-            </div>
-          </div>
-        </div>
       </div>
             
       <div class="col-md-6 col-sm-12">
         <h4 class="text-center">3 ตัว ตรง โต๊ด</h4>
         <div class="row">
-          <?php for ($i=0; $i < 5 ; $i++) { ?>
-          <div class="col-xs-3 form-group form-3digi">
-            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name="3digi[]"
-              class="form-control input-lg form-3digi digi-3">
+        <?php for ($i=0; $i < 8 ; $i++) { ?>
+          <div class="col-xs-3 form-group form-2digi">
+            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>
           </div>
-          <div class="col-xs-3 form-group form-3digi">
-            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name="3digi[]"
-              class="form-control input-lg form-3digi digi-3">
-          </div>
-          <div class="col-xs-3 form-group form-3digi">
-            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name="3digi[]"
-              class="form-control input-lg form-3digi digi-3">
-          </div>
-          <div class="col-xs-3 form-group form-3digi">
-            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name="3digi[]"
-              class="form-control input-lg form-3digi digi-3">
-          </div>
-          <?php } ?>
-          <div id="add3top"></div>
-        </div>
-        
-        <div class="form-group">
-          <button id="Add3" type="button" class="btn btn-default btn-lg"><i class="fa fa-plus" aria-hidden="true"></i>
-            เพิ่มแถว</button>
-        </div>
-        <div class="row">
-          <div class="col-xs-3">
-            <div class="form-group">
-              <input type="tel" id="3digi_top" name="3digi_top" class="form-control input-lg" placeholder="ตรง">
-            </div>
+          <div class="col-xs-3 form-group form-2digi">
+            <input type="tel" name="3digi_top[]" class="form-control input-lg digi-3top" placeholder="ตรง">
           </div>
           <div class="col-xs-1">
             <strong>X</strong>
           </div>
-          <div class="col-xs-3">
-            <div class="form-group">
-              <input type="tel" id="3digi_tod" name="3digi_tod" class="form-control input-lg" placeholder="โต๊ด">
-            </div>
+          <div class="col-xs-3 form-group form-2digi">
+          <input type="tel" name="3digi_tod[]" class="form-control input-lg digi-3tod" placeholder="โต๊ด">
           </div>
+          <?php } ?>
+        </div>
+        <div class="row" id="add3top"></div>
+        <div class="form-group">
+          <button id="Add3" type="button" class="btn btn-default btn-lg"><i class="fa fa-plus" aria-hidden="true"></i>
+            เพิ่มแถว</button>
         </div>
       </div>
     </div>
@@ -180,11 +144,11 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-6">
               <h3>เลข 2 ตัว</h3>
               <div id="preview_2digi" class="preview"></div>
             </div>
-            <div class="col-md-3 col-md-offset-3">
+            <div class="col-md-6">
               <h3>เลข 3 ตัว</h3>
               <div id="preview_3digi" class="preview"></div>
             </div>
@@ -212,51 +176,38 @@
 
 <script>
   $("#save").click(function () {
-    var agent = document.getElementById('agent');
-    var digi2 = document.getElementsByClassName('digi-2');
-    var digi2_top = document.getElementById('2digi_top').value;
-    var digi2_bottom = document.getElementById('2digi_bottom').value;
-    var set_digi2 = "";
+    var agent         = document.getElementById('agent');
+    var digi2         = document.getElementsByClassName('digi-2');
+    var digi2_top     = document.getElementsByClassName('digi-2top');
+    var digi2_bottom  = document.getElementsByClassName('digi-2bottom');
+    var set_digi2     = "";
 
     for (var i = 0; i < digi2.length; i++) {
       if (digi2[i].value != "") {
-        set_digi2 += digi2[i].value + "<br>";
+        set_digi2 += digi2[i].value + "	&nbsp; | &nbsp;" + digi2_top[i].value + " x " + digi2_bottom[i].value + "<br>";
       }
     }
 
     if (set_digi2.length != "") {
-      set_digi2 += "<hr>" + digi2_top + " X " + digi2_bottom;
       document.getElementById('preview_2digi').innerHTML = set_digi2;
-
-      if(digi2_top != "" || digi2_bottom != ""){
-        document.getElementById("confirm").disabled = false;
-      }else{
-        document.getElementById("confirm").disabled = true;
-      }
-      
+      document.getElementById("confirm").disabled = false;
     }
 
 
-    var digi3 = document.getElementsByClassName('digi-3');
-    var digi3_top = document.getElementById('3digi_top').value;
-    var digi3_tod = document.getElementById('3digi_tod').value;
+    var digi3     = document.getElementsByClassName('digi-3');
+    var digi3_top = document.getElementsByClassName('digi-3top');
+    var digi3_tod = document.getElementsByClassName('digi-3tod');
     var set_digi3 = "";
 
     for (var j = 0; j < digi3.length; j++) {
       if (digi3[j].value != "") {
-        set_digi3 += digi3[j].value + "<br>";
+        set_digi3 += digi3[j].value + "	&nbsp; | &nbsp;" + digi3_top[j].value + " x " + digi3_tod[j].value + "<br>";
       }
     }
 
     if (set_digi3.length != "") {
-      set_digi3 += "<hr>" + digi3_top + " X " + digi3_tod;
       document.getElementById('preview_3digi').innerHTML = set_digi3;
-
-      if(digi3_top != "" || digi3_tod != ""){
-        document.getElementById("confirm").disabled = false;
-      }else{
-        document.getElementById("confirm").disabled = true;
-      }
+      document.getElementById("confirm").disabled = false;
     }
 
     document.getElementById('agent_preview').innerHTML = agent[agent.selectedIndex].text;
@@ -271,78 +222,30 @@
         "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
         "</div>" +
         "<div class='col-xs-3 form-group form-2digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+        "<input type='tel' name='2digi_top[]' class='digi-2top form-control input-lg' placeholder='บน'>" +
         "</div>" +
+        "<div class='col-xs-1'><strong>X</strong></div>" +
         "<div class='col-xs-3 form-group form-2digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
-        "</div>" +
-        "<div class='col-xs-3 form-group form-2digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+        "<input type='tel' name='2digi_bottom[]' class='digi-2bottom form-control input-lg' placeholder='ล่าง'>" +
         "</div>");
     });
 
     $("#Add3").on("click", function () {
       $("#add3top").append("<div class='col-xs-3 form-group form-3digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
         "</div>" +
         "<div class='col-xs-3 form-group form-3digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' id='3digi_top' name='3digi_top[]' class='form-control input-lg' placeholder='ตรง'>" +
         "</div>" +
+        "<div class='col-xs-1'><strong>X</strong></div>" +
         "<div class='col-xs-3 form-group form-3digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
-        "</div>" +
-        "<div class='col-xs-3 form-group form-3digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' id='3digi_tod' name='3digi_tod[]' class='form-control input-lg' placeholder='โต้ด'>" +
         "</div>");
     });
 
     $("#Remove").on("click", function () {
       $("#add2top").children().last().remove();
     });
-  });
-
-  $(".row.form-2digi.digi-2").keyup(function () {
-    if (this.value.length == this.maxLength) {
-      $(this)
-        .blur()
-        .parent()
-        .next()
-        .children('.row.form-2digi.digi-2:enabled:first')
-        .focus();
-    }
-  });
-
-  $(".form-2digi.digi-2").keyup(function () {
-    if (this.value.length == this.maxLength) {
-      $(this)
-        .blur()
-        .parent()
-        .next()
-        .children('.form-2digi.digi-2')
-        .focus();
-    }
-  });
-
-  $(".row.form-3digi.digi-3").keyup(function () {
-    if (this.value.length == this.maxLength) {
-      $(this)
-        .blur()
-        .parent()
-        .next()
-        .children('.row.form-3digi.digi-3:enabled:first')
-        .focus();
-    }
-  });
-
-  $(".form-3digi.digi-3").keyup(function () {
-    if (this.value.length == this.maxLength) {
-      $(this)
-        .blur()
-        .parent()
-        .next()
-        .children('.form-3digi.digi-3')
-        .focus();
-    }
   });
 
 </script>
