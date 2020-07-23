@@ -76,7 +76,7 @@
       <div class="col-md-6 col-sm-12 right-border">
         <h4 class="text-center">2 ตัว บน ล่าง</h4>
         <div class="row">
-          <?php for ($i=0; $i < 8 ; $i++) { ?>
+          <?php for ($i=0; $i < 7 ; $i++) { ?>
           <div class="col-xs-3 form-group form-2digi">
             <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
           </div>
@@ -102,7 +102,7 @@
       <div class="col-md-6 col-sm-12">
         <h4 class="text-center">3 ตัว ตรง โต๊ด</h4>
         <div class="row">
-        <?php for ($i=0; $i < 8 ; $i++) { ?>
+        <?php for ($i=0; $i < 7 ; $i++) { ?>
           <div class="col-xs-3 form-group form-2digi">
             <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>
           </div>

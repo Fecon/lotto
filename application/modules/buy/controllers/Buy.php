@@ -28,7 +28,10 @@ class Buy extends MX_Controller {
 
 	public function custom()
 	{
-		$data['list_agent'] = $this->Buy_model->list_agent();
+		$user_data 	= $this->session->userdata('user_data');
+		$user_id	= $user_data['id'];
+
+		$data['list_agent'] = $this->Buy_model->list_agent($user_id);
 		$data['lotto'] = $this->Buy_model->get_lotto();
 
 		if(empty($data['lotto'])){
