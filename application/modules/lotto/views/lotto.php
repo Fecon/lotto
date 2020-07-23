@@ -56,6 +56,7 @@
                       <th class="text-center">3 ตัวตรง</th>
                       <th></th>
                       <th></th>
+                      <th></th>
                     </tr>
                     <?php foreach($list_lotto as $lotto){ ?>
                     <?php echo form_open('lotto/lotto_update/'.$lotto['id'])?>
@@ -110,7 +111,13 @@
                       </td>
                       <td class="text-center"><a
                           href="<?php echo site_url('lotto/reserve_number/'.$lotto['id']) ?>"><button type="button"
-                            class="btn btn-default btn-lg">เลขอั้น</button></a></td>
+                            class="btn btn-default btn-lg">เลขอั้น</button></a>
+                      </td>
+                      <td class="text-center">
+                          <a
+                          href="<?php echo site_url('lotto/check_lotto_all/'.$lotto['id']) ?>"><button type="button"
+                            class="btn btn-warning btn-lg">ตรวจผล</button></a>
+                      </td>
                       <td class="text-center"><a onclick="return confirm('ยืนยันการลบ?')"
                           href="<?php echo site_url('lotto/lotto_delete/'.$lotto['id']) ?>"><i
                             class="fa fa-times text-red" aria-hidden="true"></i></a></td>

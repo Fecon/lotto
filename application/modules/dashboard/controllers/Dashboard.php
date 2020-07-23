@@ -23,21 +23,21 @@ class Dashboard extends MX_Controller {
 			$lotto_id	= $lottoInfo['id'];
 			$agent_id	= 0;
 		}else{
-			$lotto_id 		= $this->input->post('lotto_id');
-			$agent_id 	 	= $this->input->post('agent_id');
-			$lottoInfo		= $this->Dashboard_model->get_lotto($lotto_id);
+			$lotto_id 	= $this->input->post('lotto_id');
+			$agent_id 	= $this->input->post('agent_id');
+			$lottoInfo	= $this->Dashboard_model->get_lotto($lotto_id);
 		}
 		
 		
 		if($agent_id!=0){
 			$data['agentInfo']	= $this->Dashboard_model->get_agent($agent_id);
-			$this->check_lotto($lotto_id, $agent_id, $lottoInfo);
+			// $this->check_lotto($lotto_id, $agent_id, $lottoInfo);
 
 			$sum = $this->get_statement($lotto_id,$lottoInfo,$agent_id);
 			$data['agent_sent'] = $this->Dashboard_model->get_sum_agent_received($lotto_id,$agent_id);
 
 		}else{
-			$this->check_lotto_all($lotto_id, $lottoInfo);
+			// $this->check_lotto_all($lotto_id, $lottoInfo);
 			$sum 						 = $this->get_non_agent_statement($lotto_id,$lottoInfo);
 			$data['percent_total'] 		 = $this->get_percent($lotto_id,$data['list_agent']);
 			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_received($lotto_id,2);
@@ -79,7 +79,7 @@ class Dashboard extends MX_Controller {
 		if($agent_id!=0){
 			$data['agentInfo']	= $this->Dashboard_model->get_agent($agent_id);
 			$agentInfo	= $this->Dashboard_model->get_agents($agent_id);
-			$this->check_lotto($lotto_id, $agent_id, $lottoInfo);
+			// $this->check_lotto($lotto_id, $agent_id, $lottoInfo);
 
 			$data['agent_sent'] = $this->Dashboard_model->get_sum_agent_received($lotto_id,$agent_id);
 
@@ -99,7 +99,7 @@ class Dashboard extends MX_Controller {
 
 
 		}else{
-			$this->check_lotto_all($lotto_id, $lottoInfo);
+			// $this->check_lotto_all($lotto_id, $lottoInfo);
 			
 			$data['percent_total'] 		 = $this->get_percent($lotto_id,$data['list_agent']);
 

@@ -5,6 +5,7 @@ class Lotto extends MX_Controller {
   {
   	parent::__construct();
   	$this->load->model('Lotto_model');
+  	$this->load->model('dashboard/Dashboard_model');
   }
 
 	public function index()
@@ -186,4 +187,118 @@ class Lotto extends MX_Controller {
 	    return implode($charArray);
 	}
 
+	public function check_lotto_all()
+	{
+		$lotto_id 		= $this->uri->segment(3);
+		$lottoInfo		= $this->Dashboard_model->get_lotto($lotto_id);
+
+		$agent_buy 		= $this->Dashboard_model->get_buy($lotto_id);
+		$reserve_number = $this->Dashboard_model->get_reserve_number($lotto_id);
+
+		$pay_rate = $this->pay_rate($lottoInfo);
+
+		foreach ($agent_buy as $key => $buy) {
+			
+				$total_pay 	= 0;
+				$pay 		= 0;
+				$pay2 		= 0;
+
+			if($buy['type']==2){
+
+				// 2 บน //
+				if($buy['number'] === $lottoInfo['2top']){
+					$pay = $buy['top'] * $pay_rate['2top'];
+					$total_pay += $pay;
+				}
+
+				// 2 ล่าง //
+				if($buy['number'] === $lottoInfo['2bottom']){
+					$pay2 = $buy['bottom'] * $pay_rate['2bottom'];
+					$total_pay += $pay2;
+				}
+			
+			}elseif($buy['type']==3){
+				// 3 ตรง //
+				if($buy['number'] === $lottoInfo['3top']){
+					$pay = $buy['top'] * $pay_rate['3top'];
+					$total_pay += $pay;
+				}
+
+				// 3 โต๊ด //
+				for ($i=1; $i <= 6 ; $i++) { 
+					if($buy['number'] === $lottoInfo['3_'.$i]){
+						$pay2 = $buy['bottom'] * $pay_rate['3_'.$i];
+						$total_pay += $pay2;
+					}
+				}
+
+			}
+
+			$this->update_payback($buy['id'],$pay,$pay2,$total_pay);
+
+		}
+
+		$prepare_data = array(
+			'id' 	  => $lotto_id,
+			'status'  => 1
+		);
+
+		$result = $this->Lotto_model->lotto_update($prepare_data);
+
+		redirect('lotto/index');
+
+	}
+
+	private function pay_rate($lottoInfo)
+	{
+		$config 	= $this->Dashboard_model->get_config();
+		$pay_rate 	= [];
+
+		// 2top //
+		$rn_2top = $this->Dashboard_model->get_pay_rate($lottoInfo['id'],$lottoInfo['2top']);
+		if(empty($rn_2top)){
+			$pay_rate['2top'] = $config[0]['value'];
+		}else{
+			$pay_rate['2top'] = $rn_2top[0]['pay'];
+		}
+
+		// 2bottom //
+		$rn_2bottom = $this->Dashboard_model->get_pay_rate($lottoInfo['id'],$lottoInfo['2bottom']);
+		if(empty($rn_2bottom)){
+			$pay_rate['2bottom'] = $config[0]['value'];
+		}else{
+			$pay_rate['2bottom'] = $rn_2bottom[0]['pay'];
+		}
+
+		// 3top //
+		$rn_3top = $this->Dashboard_model->get_pay_rate($lottoInfo['id'],$lottoInfo['3top']);
+		if(empty($rn_3top)){
+			$pay_rate['3top'] = $config[1]['value'];
+		}else{
+			$pay_rate['3top'] = $rn_3top[0]['pay'];
+		}
+
+		// 3tod //
+		for ($i=1; $i <= 6 ; $i++) { 
+			$rn_3tod = $this->Dashboard_model->get_pay_rate($lottoInfo['id'],$lottoInfo['3_'.$i]);
+			if(empty($rn_3tod)){
+				$pay_rate['3_'.$i] = $config[2]['value'];
+			}else{
+				$pay_rate['3_'.$i] = $rn_3tod[0]['pay2'];
+			}
+		}
+
+		return $pay_rate;
+	}
+
+	private function update_payback($id,$pay,$pay2,$total)
+	{
+		$updateData = array(
+			'id'   => $id,
+			'pay'  => $pay,
+			'pay2' => $pay2,
+			'total_pay' => $total
+		);
+		$this->Dashboard_model->update_payback($updateData);
+	}
 }

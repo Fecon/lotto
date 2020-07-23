@@ -81,6 +81,15 @@
                             type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
                         </div>
                       </td>
+                      <td class="text-left">
+                        <?php 
+                            if($user['user_role']==1){
+                              echo "Admin";
+                            }else{
+                              echo "Employee";
+                            }
+                        ?>
+                      </td>
                       <td class="text-center">
                         <?php if($user['id']!=1){ ?>
                         <a onclick="return confirm('ยืนยันการลบ?')"

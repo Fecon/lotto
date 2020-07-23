@@ -93,4 +93,12 @@ class Lotto_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function get_lottoInfo($id)
+	{
+		$this->db->where('id',$id);
+		$query = $this->db->get('lotto')
+		->result_array();
+		return $query[0];
+	}
+
 }
