@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Lotto" />
 <meta name="author" content="Fecon" />
-<link rel="shortcut icon" href="<?php echo base_url('assets/dist/img/fav.png') ?>">
+<link rel="shortcut icon" href="<?php echo base_url('assets/dist/img/research-development-icon.png') ?>">
 <title>Lotte Lucky</title>
 
 <!-- Bootstrap 3.3.5 -->
@@ -27,8 +27,13 @@
 <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="<?php echo base_url()?>assets/dist/css/skins/_all-skins.min.css">
+<!-- bootstrap datepicker -->
+<link rel="stylesheet" href="<?php echo base_url()?>assets/plugins/datepicker/datepicker3.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?php echo base_url()?>assets/dist/css/AdminLTE.css">
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -39,6 +44,8 @@
 <script src="<?php echo base_url()?>assets/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <!-- Bootstrap 3.3.5 -->
 <script src="<?php echo base_url()?>assets/bootstrap/js/bootstrap.min.js"></script>
+
+
 
 <style>
 input[type=text] {
@@ -52,20 +59,15 @@ input[type=text] {
 .on-right{
   float: right;
 }
+.text-black {
+  color:#000 !important;
+}
 </style>
 
 </head>
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
 <div class="wrapper">
   <header class="main-header">
-
-    <!-- Logo -->
-    <a href="<?php echo site_url('dashboard') ?>" class="logo">
-    <!-- mini logo for sidebar mini 50x50 pixels -->
-    <span class="logo-mini">L<b>LK</b></span>
-    <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Lotte Lucky</b></span> </a>
-
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
       <!-- Sidebar toggle button-->
@@ -123,6 +125,7 @@ input[type=text] {
 
 <script src="<?php echo base_url()?>assets/dist/js/app.min.js"></script>
 <script src="<?php echo base_url()?>assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
 <script>
   function show_icon(id){

@@ -50,17 +50,17 @@
     <?php } ?>
 
     <div class="row">
-      <div class="col-md-3 col-sm-4">
+      <div class="col-md-3 col-sm-6">
         <div class="form-group">
           <label>งวด</label>
-          <input disabled type="date" name="lotto_id" class="form-control input-lg" id="datepicker"
+          <input disabled type="date" name="lotto_id" class="form-control input-sm" id="datepicker"
             value="<?php echo $lotto[0]['name']; ?>">
         </div>
       </div>
-      <div class="col-md-3 col-sm-4">
+      <div class="col-md-3 col-sm-6">
         <div class="form-group">
           <label>ตัวแทน</label>
-          <select class="form-control input-lg" name="agent_id" id="agent">
+          <select class="form-control input-sm" name="agent_id" id="agent">
             <?php foreach($list_agent as $agent){ ?>
             <option value="<?php echo $agent['id'] ?>"><?php echo $agent['name'] ?></option>
             <?php } ?>

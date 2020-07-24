@@ -23,7 +23,7 @@ class Buy extends MX_Controller {
 			$data['content'] = 'user_buy';
 		}
 		
-		$this->load->view('header/admin_header',$data);
+		$this->load->view('header/user_header',$data);
 	}
 
 	public function custom()
