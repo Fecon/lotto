@@ -6,14 +6,16 @@ class Dashboard_model extends CI_Model {
 	public function list_lotto()
 	{
 		$query = $this->db
-		->order_by('id','desc')
-		->get('lotto');
+			->order_by('id','desc')
+			->get('lotto');
 		return $query->result_array();
 	}
 	
 	public function list_agent()
 	{
-		$query = $this->db->get('agent');
+		$query = $this->db
+			->order_by('name','asc')
+			->get('agent');
 		return $query->result_array();
 	}
 

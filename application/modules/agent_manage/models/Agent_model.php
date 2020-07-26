@@ -5,7 +5,11 @@ class Agent_model extends CI_Model {
 
 	public function list_agent()
 	{
-		$query = $this->db->get('agent');
+		$query = $this->db
+			->select('agent.*,user.username as user_name')
+			->order_by('name','asc')
+			->join('user','user.id = agent.user_id')
+			->get('agent');
 		return $query->result_array();
 	}
 	public function list_user()

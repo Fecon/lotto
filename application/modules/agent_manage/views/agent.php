@@ -61,14 +61,17 @@
                   </div>
                 </div>
                 <div class="box-body no-padding">
-                  <table class="table table-striped">
-                    <tr>
-                      <th class="text-center">#</th>
-                      <th width="35%" class="text-center">ชื่อ</th>
-                      <th width="20%" class="text-center">%</th>
-                      <th width="35%" class="text-center">ผู้ดูแล</th>
-                      <th class="text-center"></th>
-                    </tr>
+                  <table id="agentTable" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th class="text-center">#</th>
+                        <th width="35%" class="text-center">ชื่อ</th>
+                        <th width="20%" class="text-center">%</th>
+                        <th width="35%" class="text-center">ผู้ดูแล</th>
+                        <th class="text-center"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
                     <?php 
                       foreach($list_agent as $key => $agent){ 
                     ?>
@@ -77,6 +80,7 @@
                       <td class="text-center"><span style="position: relative;top:15px;"><?php echo $key+1; ?></span></td>
                       <td class="text-center">
                         <div class="col-xs-9">
+                          <span class="hide-icon"><?php echo $agent['name'] ?></span>
                           <input class="form-control input-lg" name="name" type="text"
                             value="<?php echo $agent['name'] ?>"
                             onclick="show_icon('<?php echo 'name_'.$agent['id'] ?>')"
@@ -89,6 +93,7 @@
                       </td>
                       <td class="text-center">
                         <div class="col-xs-9">
+                          <span class="hide-icon"><?php echo $agent['percent'] ?></span>
                           <input class="form-control input-lg" name="percent" type="number"
                             value="<?php echo $agent['percent'] ?>"
                             onclick="show_icon('<?php echo 'percent_'.$agent['id'] ?>')"
@@ -101,6 +106,7 @@
                       </td>
                       <td class="text-center">
                         <div class="col-xs-9">
+                          <span class="hide-icon"><?php echo $agent['user_name'] ?></span>
                           <select class="form-control input-lg" name="user_id"
                             onfocus="show_icon('<?php echo 'user_'.$agent['id'] ?>')"
                             onfocusout="hide_icon('<?php echo 'user_'.$agent['id'] ?>')">
@@ -125,6 +131,7 @@
                     </tr>
                     <?php echo form_close(); ?>
                     <?php } ?>
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -204,4 +211,16 @@
   </div>
 </div>
 
-<!-- Modal -->
+<script>
+  $(document).ready(function () {
+    $('#agentTable').DataTable({
+      "paging": false,
+      "info": false,
+      "searching": false,
+      "order": [
+        [1, "asc"]
+      ]
+    });
+  });
+</script>
+

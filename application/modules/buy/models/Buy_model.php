@@ -6,7 +6,8 @@ class Buy_model extends CI_Model {
 	public function list_agent($user_id)
 	{
 		$query = $this->db
-				-> where('user_id', $user_id)
+				->where('user_id', $user_id)
+				->order_by('name','asc')
 				->get('agent');
 		return $query->result_array();
 	}
