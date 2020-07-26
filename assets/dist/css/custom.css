@@ -84,3 +84,54 @@
     display: none;
   }
 }
+
+
+.preview {
+  font-size: 1.5em;
+}
+
+.right-border {
+  border-right: 1px solid;
+}
+
+#pad-number {
+  /*width:100%;*/
+  font-size: 50px;
+  background-color: #2d2d2d;
+}
+
+#pad-bottom {
+  width: 100%;
+}
+
+#pad-confirm {
+  width: 100%;
+  height: 55px;
+  display: block;
+}
+
+input[type=tel] {
+  text-align: center !important;
+}
+
+.nav-tabs li a {
+  font-size: 1.5em;
+}
+
+.form-group {
+  margin-bottom: 1px !important;
+}
+
+.padding {
+  padding-right: 1px !important;
+  padding-left: 1px !important;
+}
+
+.input-lg{
+  padding:1px !important;
+}
+
+.add-row{
+  position:relative;
+  top:7px;
+}

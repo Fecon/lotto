@@ -1,3 +1,16 @@
+<?php
+  $user_data = $this->session->userdata('user_data');
+
+  if(!isset($user_data)){
+    redirect('login');
+  }
+?>
+
+<style>
+input[type=text] {
+  text-align: left !important;
+}
+</style>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -6,7 +19,12 @@
       <li><a href="#"><i class="fa fa-dashboard"></i> หน้าแรก</a></li>
       <li class="active">ผู้ใช้งานระบบ</li>
     </ol>
-    <div align="right">
+    <div align="right"><a
+                          href="<?php echo site_url('user_manage/disable_all/0') ?>"><button type="button"
+                            class="btn btn-danger">ระงับพนักงานทั้งหมด</button></a>
+                          <a
+                          href="<?php echo site_url('user_manage/disable_all/1') ?>"><button type="button"
+                            class="btn btn-success">ยกเลิกการระงับ</button></a>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMd"><i
           class="fa fa-plus"></i> เพิ่มผู้ใช้งาน</button>
     </div>
@@ -38,7 +56,7 @@
         <div>
           <!-- Detail -->
           <div class="row">
-            <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-sm-12 col-xs-12">
 
               <div class="box box-danger">
                 <div class="box-header with-border">
@@ -52,11 +70,19 @@
                     <tr>
                       <th class="text-center">Username</th>
                       <th class="text-center">Password</th>
+                      <th>ระดับ</th>
+                      <th>สถานะ</th>
                       <th></th>
                     </tr>
                     <?php foreach($list_user as $user){ ?>
-                    <?php echo form_open('user_manage/user_update/'.$user['id'])?>
-                    <tr>
+                    <?php echo form_open('user_manage/user_update/'.$user['id']); ?>
+                    <tr
+                    <?php 
+                      if($user['id']==1 && $user_data['id']!=1){
+                        echo "class='hide-icon'";
+                      }
+                    ?>
+                    >
                       <td class="text-center">
                         <div class="col-xs-9">
                           <input class="form-control input-lg" name="username" type="text"
@@ -84,11 +110,40 @@
                       <td class="text-left">
                         <?php 
                             if($user['user_role']==1){
-                              echo "Admin";
+                              echo "<span class='text-primary'>Admin</span>";
                             }else{
-                              echo "Employee";
+                              echo "<span>Employee</span>";
                             }
                         ?>
+                      </td>
+                      <td class="text-left">
+                        <?php 
+                            if($user['status']==1){
+                              echo "<span class='text-success'>ปกติ</span>";
+                            }else{
+                              echo "<span class='text-danger'>ระงับ</span>";
+                            }
+                        ?>
+                      </td>
+                      <td class="text-left">
+                        <?php if($user['id']!=1){
+
+                                if($user['status']==1){ ?>
+                                  <a
+                              href="<?php echo site_url('user_manage/disable/'.$user['id']) ?>"><button type="button"
+                                class="btn btn-warning">ระงับผู้ใช้งาน</button></a>
+
+                            <?php 
+                                }else{ ?>
+                                  <a
+                              href="<?php echo site_url('user_manage/disable/'.$user['id']) ?>"><button type="button"
+                                class="btn btn-success">เปิดผู้ใช้งาน</button></a>
+                            <?php 
+                                }
+                              } 
+                            ?>
+
+                        
                       </td>
                       <td class="text-center">
                         <?php if($user['id']!=1){ ?>

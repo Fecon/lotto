@@ -64,5 +64,53 @@ class User_manage extends MX_Controller {
 		redirect('user_manage/index');
 	}
 
+	public function disable()
+	{
+		$id = $this->uri->segment(3);
+		$user = $this->User_model->get_user($id);
+
+		$status = $user[0]['status'];
+		if($status==0){
+			$status = 1;
+		}else{
+			$status = 0;
+		}
+
+		$list_data = array(
+			'id' 	=> $id,
+			'status' => $status
+		);
+
+		$result = $this->User_model->user_update($list_data);
+
+		if($result==1){
+			$this->session->set_flashdata('update_user', 'done');
+		}else{
+			$this->session->set_flashdata('update_user', 'fail');
+		}
+
+		redirect('user_manage/index');
+	}
+
+	public function disable_all()
+	{
+
+		$status = $this->uri->segment(3);
+
+		$list_data = array(
+			'status' => $status
+		);
+
+		$result = $this->User_model->change_status_all($list_data);
+
+		if($result==1){
+			$this->session->set_flashdata('update_user', 'done');
+		}else{
+			$this->session->set_flashdata('update_user', 'fail');
+		}
+
+		redirect('user_manage/index');
+	}
+
 
 }

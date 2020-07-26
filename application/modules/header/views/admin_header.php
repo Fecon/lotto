@@ -118,7 +118,7 @@ input[type=text] {
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
-      <div class="modal-body" align="center">
+      <div class="modal-body text-center">
         <h4>ยืนยันการออกจากระบบ ใช่หรือไม่?</h4>
         <br>
         <a href="<?php echo site_url('login/logout') ?>">

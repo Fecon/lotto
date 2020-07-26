@@ -1,37 +1,3 @@
-<style>
-  .preview {
-    font-size: 1.5em;
-  }
-
-  .right-border {
-    border-right: 1px solid;
-  }
-
-  #pad-number {
-    /*width:100%;*/
-    font-size: 50px;
-    background-color: #2d2d2d;
-  }
-
-  #pad-bottom {
-    width: 100%;
-  }
-
-  #pad-confirm {
-    width: 100%;
-    height: 55px;
-    display: block;
-  }
-
-  input[type=text] {
-    border: 1px solid #d8d5d5 !important;
-  }
-
-  .nav-tabs li a {
-    font-size: 1.5em;
-  }
-</style>
-
 <div class="content-wrapper">
   <?php echo form_open('buy/buy_insert_custom/'.$lotto[0]['id'])?>
   <!-- Content Header (Page header) -->
@@ -50,17 +16,17 @@
     <?php } ?>
 
     <div class="row">
-      <div class="col-md-3 col-sm-4">
+      <div class="col-md-3 col-sm-6 col-xs-6">
         <div class="form-group">
-          <label>งวด</label>
-          <input disabled type="date" name="lotto_id" class="form-control input-lg" id="datepicker"
+          <label class="sr-only" >งวด</label>
+          <input disabled type="date" name="lotto_id" class="form-control input-sm" id="datepicker"
             value="<?php echo $lotto[0]['name']; ?>">
         </div>
       </div>
-      <div class="col-md-3 col-sm-4">
+      <div class="col-md-3 col-sm-6 col-xs-6">
         <div class="form-group">
-          <label>ตัวแทน</label>
-          <select class="form-control input-lg" name="agent_id" id="agent">
+          <label class="sr-only" >ตัวแทน</label>
+          <select class="form-control input-sm" name="agent_id" id="agent">
             <?php foreach($list_agent as $agent){ ?>
             <option value="<?php echo $agent['id'] ?>"><?php echo $agent['name'] ?></option>
             <?php } ?>
@@ -71,64 +37,64 @@
   </section>
 
   <!-- Main content -->
-  <section class="content">
+  <section class="content" style="position:relative; top:-15px;">
     <div class="row">
       <div class="col-md-6 col-sm-12 right-border">
         <h4 class="text-center">2 ตัว บน ล่าง</h4>
         <div class="row">
-          <?php for ($i=0; $i < 7 ; $i++) { ?>
-          <div class="col-xs-3 form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+          <?php for ($i=0; $i < 4 ; $i++) { ?>
+          <div class="col-xs-4 padding form-group form-2digi">
+            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2' placeholder='เลข'>
           </div>
-          <div class="col-xs-3 form-group form-2digi">
+          <div class="col-xs-4 padding form-group form-2digi">
               <input type="tel" name="2digi_top[]" class="digi-2top form-control input-lg" placeholder="บน">
           </div>
-          <div class="col-xs-1">
-            <strong>X</strong>
-          </div>
-          <div class="col-xs-3 form-group form-2digi">
+          <div class="col-xs-4 padding form-group form-2digi">
               <input type="tel" name="2digi_bottom[]" class="digi-2bottom form-control input-lg" placeholder="ล่าง">
           </div>
           <?php } ?>
           <div id="add2top"></div>
         </div>
-        
-        <div class="form-group">
-          <button id="Add2" type="button" class="btn btn-default btn-lg"><i class="fa fa-plus" aria-hidden="true"></i>
+        <div class="row">
+          <div class="col-xs-8 padding text-center">
+            <button type="button" id="save" class="btn btn-success btn-lg btn-block save" data-toggle="modal"
+              data-target="#myModal"><i class="fa fa-save"></i> บันทึก</button>
+          </div>
+          <div class="col-xs-4 padding text-center">
+          <button id="Add2" type="button" class="btn btn-default add-row"><i class="fa fa-plus" aria-hidden="true"></i>
             เพิ่มแถว</button>
+          </div>
         </div>
+
       </div>
             
       <div class="col-md-6 col-sm-12">
         <h4 class="text-center">3 ตัว ตรง โต๊ด</h4>
         <div class="row">
-        <?php for ($i=0; $i < 7 ; $i++) { ?>
-          <div class="col-xs-3 form-group form-2digi">
-            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>
+        <?php for ($i=0; $i < 4 ; $i++) { ?>
+          <div class="col-xs-4 padding  form-group form-2digi">
+            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3' placeholder='เลข'>
           </div>
-          <div class="col-xs-3 form-group form-2digi">
+          <div class="col-xs-4 padding  form-group form-2digi">
             <input type="tel" name="3digi_top[]" class="form-control input-lg digi-3top" placeholder="ตรง">
           </div>
-          <div class="col-xs-1">
-            <strong>X</strong>
-          </div>
-          <div class="col-xs-3 form-group form-2digi">
+          <div class="col-xs-4 padding  form-group form-2digi">
           <input type="tel" name="3digi_tod[]" class="form-control input-lg digi-3tod" placeholder="โต๊ด">
           </div>
           <?php } ?>
+          <div id="add3top"></div>
         </div>
-        <div class="row" id="add3top"></div>
-        <div class="form-group">
-          <button id="Add3" type="button" class="btn btn-default btn-lg"><i class="fa fa-plus" aria-hidden="true"></i>
+
+        <div class="row">
+          <div class="col-xs-8 padding text-center">
+            <button type="button" id="save" class="btn btn-success btn-lg btn-block save" data-toggle="modal"
+              data-target="#myModal"><i class="fa fa-save"></i> บันทึก</button>
+          </div>
+          <div class="col-xs-4 padding text-center">
+          <button id="Add3" type="button" class="btn btn-default add-row"><i class="fa fa-plus" aria-hidden="true"></i>
             เพิ่มแถว</button>
+          </div>
         </div>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-xs-12 text-center">
-        <button type="button" id="save" class="btn btn-success btn-lg btn-block" data-toggle="modal"
-          data-target="#myModal"><i class="fa fa-save"></i> บันทึก</button>
       </div>
     </div>
   </section>
@@ -157,10 +123,10 @@
         </div>
         <div class="modal-footer">
           <div class="row">
-            <div class="col-md-2 col-md-offset-5">
+            <div class="col-md-2 col-md-offset-5 col-xs-6">
               <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">ยกเลิก</button>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5 col-xs-6">
               <button type="submit" id="confirm" class="btn btn-success btn-lg btn-block" disabled><i
                   class="fa fa-check"></i> ยืนยัน</button>
             </div>
@@ -175,7 +141,7 @@
 </div>
 
 <script>
-  $("#save").click(function () {
+  $(".save").click(function () {
     var agent         = document.getElementById('agent');
     var digi2         = document.getElementsByClassName('digi-2');
     var digi2_top     = document.getElementsByClassName('digi-2top');
@@ -218,14 +184,13 @@
   $(document).ready(function () {
 
     $("#Add2").on("click", function () {
-      $("#add2top").append("<div class='col-xs-3 form-group form-2digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+      $("#add2top").append("<div class='col-xs-4 padding form-group form-2digi'>" +
+        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2' placeholder='เลข'>" +
         "</div>" +
-        "<div class='col-xs-3 form-group form-2digi'>" +
+        "<div class='col-xs-4 padding form-group form-2digi'>" +
         "<input type='tel' name='2digi_top[]' class='digi-2top form-control input-lg' placeholder='บน'>" +
         "</div>" +
-        "<div class='col-xs-1'><strong>X</strong></div>" +
-        "<div class='col-xs-3 form-group form-2digi'>" +
+        "<div class='col-xs-4 padding form-group form-2digi'>" +
         "<input type='tel' name='2digi_bottom[]' class='digi-2bottom form-control input-lg' placeholder='ล่าง'>" +
         "</div>");
     });

@@ -5,12 +5,7 @@ class Login_model extends CI_Model {
 
 	public function get_profile($input)
 	{
-		$this->db->select('
-			user.id,
-			user.username,
-			user.user_role
-			')
-				->where('username',$input['username']) ;
+		$this->db->where('username',$input['username']) ;
 		$query = $this->db->get('user');
 		return $query->result_array(); 
 	}
@@ -32,7 +27,8 @@ class Login_model extends CI_Model {
 			user.password,
 			')
 				->where('username',$input['username'])
-				->where('password',$input['password']);
+				->where('password',$input['password'])
+				->where('status',1);
 		$query = $this->db->get('user');
 		return $query->result_array(); 
 	}

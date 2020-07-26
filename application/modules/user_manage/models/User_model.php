@@ -5,9 +5,9 @@ class User_model extends CI_Model {
 
 	public function list_user()
 	{
-
-		$query = $this->db->get('user');
-
+		$query = $this->db
+			->order_by('user_role','asc')
+			->get('user');
 		return $query->result_array();
 	}
 	public function user_insert($list_data)
@@ -47,51 +47,17 @@ class User_model extends CI_Model {
 		}
 	}
 
-	public function user_forget($user_email)
+	public function get_user($id)
 	{
-		$this->db->where('email',$user_email);
+		$this->db->where('id',$id);
 		$query = $this->db->get('user');
 		return $query->result_array();
 	}
-	public function re_password($mail)
+
+	public function change_status_all($data)
 	{
-		$this->db->where('user_email',$mail);
-		$query = $this->db->get('user');
-		return $query->result_array();
+		$this->db->where('user_role',2)
+				->update('user',$data);
 	}
-	public function user_change($inpost)
-	{
-		$this->db->where('user_id',$inpost['id']);
-		$this->db->update('user',$inpost);
-	}
-	public function get_profile($id)
-	{
-		$this->db->where('user_id',$id);
-		$query = $this->db->get('user');
-		return $query->result_array();
-	}
-	public function checkRepeat($type,$inData)
-	{
-		$this->db->where($type,$inData);
-		$query = $this->db->get("user");
-		return $query->num_rows();
-	}
-	public function get_research_geo()
-	{
-		$query1 = $this->db->get('department_geography');
-		$query = $query1->result_array();
-		foreach ($query as $key => $value) {
-			$this->db->select('dep_id,dep_no,dep_name,dep_shotname_th,dep_shotname_en')
-				->where('department.dep_zone',$value['GEO_ID'])
-				->where('department_status',1);
-			$query2 = $this->db->get('department');
-			$query[$key]['department_list'] = $query2->result_array();
-		}
-		return $query ;
-	}
-	public function get_department()
-	{
-		$query = $this->db->get('department');
-		return $query->result_array();
-	}
+
 }

@@ -2,6 +2,17 @@
   input[type=number] {
     text-align: center !important;
   }
+
+  input[type=text] {
+    text-align: left !important;
+  }
+
+  td 
+  {
+      text-align: center; 
+      vertical-align: middle;
+  }
+
 </style>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -52,14 +63,18 @@
                 <div class="box-body no-padding">
                   <table class="table table-striped">
                     <tr>
+                      <th class="text-center">#</th>
                       <th width="35%" class="text-center">ชื่อ</th>
                       <th width="20%" class="text-center">%</th>
                       <th width="35%" class="text-center">ผู้ดูแล</th>
                       <th class="text-center"></th>
                     </tr>
-                    <?php foreach($list_agent as $agent){ ?>
+                    <?php 
+                      foreach($list_agent as $key => $agent){ 
+                    ?>
                     <?php echo form_open('agent_manage/agent_update/'.$agent['id'])?>
                     <tr>
+                      <td class="text-center"><span style="position: relative;top:15px;"><?php echo $key+1; ?></span></td>
                       <td class="text-center">
                         <div class="col-xs-9">
                           <input class="form-control input-lg" name="name" type="text"

@@ -62,6 +62,61 @@ input[type=text] {
 .text-black {
   color:#000 !important;
 }
+
+.preview {
+  font-size: 1.5em;
+}
+
+.right-border {
+  border-right: 1px solid;
+}
+
+#pad-number {
+  /*width:100%;*/
+  font-size: 50px;
+  background-color: #2d2d2d;
+}
+
+#pad-bottom {
+  width: 100%;
+}
+
+#pad-confirm {
+  width: 100%;
+  height: 55px;
+  display: block;
+}
+
+input[type=tel] {
+  text-align: center !important;
+}
+
+input[type=date] {
+  padding:1px !important;
+  text-align: center !important;
+}
+
+.nav-tabs li a {
+  font-size: 1.5em;
+}
+
+.form-group {
+  margin-bottom: 1px !important;
+}
+
+.padding {
+  padding-right: 1px !important;
+  padding-left: 1px !important;
+}
+
+.input-lg{
+  padding:1px !important;
+}
+
+.add-row{
+  position:relative;
+  top:7px;
+}
 </style>
 
 </head>
@@ -110,7 +165,7 @@ input[type=text] {
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
-      <div class="modal-body" align="center">
+      <div class="modal-body text-center">
         <h4>ยืนยันการออกจากระบบ ใช่หรือไม่?</h4>
         <br>
         <a href="<?php echo site_url('login/logout') ?>">

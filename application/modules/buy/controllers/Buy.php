@@ -40,7 +40,7 @@ class Buy extends MX_Controller {
 			$data['content'] = 'user_buy_custom';
 		}
 		
-		$this->load->view('header/admin_header',$data);
+		$this->load->view('header/user_header',$data);
 	}
 
 	public function buy_insert()
@@ -146,6 +146,6 @@ class Buy extends MX_Controller {
 			$this->session->set_flashdata('insert_buy_numbers', 'fail');
 		}
 		
-		redirect('buy/index');
+		redirect('buy/custom');
 	}
 }
