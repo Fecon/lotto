@@ -233,6 +233,8 @@ class Dashboard_model extends CI_Model {
 					->select_sum($subtype)
 					->where('lotto_id',$lotto_id)
 					->where('number',$value['number'])
+					->where('agent_id',$agent_id)
+					->where('type',$type)
 					->get('buy')
 					->result_array();
 

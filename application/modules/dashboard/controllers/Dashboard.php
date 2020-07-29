@@ -92,11 +92,16 @@ class Dashboard extends MX_Controller {
 			$data['number_2top'] 		 = $this->Dashboard_model->get_agent_buy_number($lotto_id,2,'top',$config[5]['value'],$agent_id);
 			$data['number_2bottom'] 	 = $this->Dashboard_model->get_agent_buy_number($lotto_id,2,'bottom',$config[5]['value'],$agent_id);
 			$data['number_3top'] 		 = $this->Dashboard_model->get_agent_buy_number($lotto_id,3,'top',$config[8]['value'],$agent_id);
-			$data['number_3tod'] 		 = $this->Dashboard_model->get_agent_buy_number($lotto_id,3,'bottom',$config[11]['value'],$agent_id);
+
+			$number_3tod				 = $this->Dashboard_model->get_agent_buy_number($lotto_id,3,'bottom',$config[11]['value'],$agent_id);
+			$data['number_3tod'] 	 	 = $this->get_3tod_report($lottoInfo,$number_3tod);	 
 
 			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_agent_type_received($lotto_id,$agent_id,2);
 			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_agent_type_received($lotto_id,$agent_id,3);
 
+			// echo "<pre>";
+			// print_r($data['number_3tod']);
+			// exit();
 
 		}else{
 			// $this->check_lotto_all($lotto_id, $lottoInfo);
@@ -111,7 +116,9 @@ class Dashboard extends MX_Controller {
 			$data['number_2top'] 		 = $this->Dashboard_model->get_total_buy_number($lotto_id,2,'top',$config[5]['value']);
 			$data['number_2bottom'] 	 = $this->Dashboard_model->get_total_buy_number($lotto_id,2,'bottom',$config[5]['value']);
 			$data['number_3top'] 		 = $this->Dashboard_model->get_total_buy_number($lotto_id,3,'top',$config[8]['value']);
-			$data['number_3tod'] 		 = $this->Dashboard_model->get_total_buy_number($lotto_id,3,'bottom',$config[11]['value']);
+
+			$number_3tod				 = $this->Dashboard_model->get_total_buy_number($lotto_id,3,'bottom',$config[11]['value']);
+			$data['number_3tod'] 	 	 = $this->get_3tod_report($lottoInfo,$number_3tod);	
 
 			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_received($lotto_id,2);
 			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_received($lotto_id,3);
@@ -388,9 +395,31 @@ class Dashboard extends MX_Controller {
 		return $percent_total;
 	}
 
-	private function get_2top_buy()
+	private function get_3tod_report($lottoInfo,$buy_number)
 	{
+		$jackpot_3tod = array(
+			'number' => $lottoInfo['3top'] ,
+			'sent' 	 => 0
+		);
 
+		// print_r($buy_number);
+		foreach ($buy_number as $key => $value) {
+
+			for ($i=1; $i <= 6 ; $i++) { 
+
+				if($value['number']===$lottoInfo['3_'.$i]){
+					$jackpot_3tod['sent'] += $value['sent'];
+					unset($buy_number[$key]);
+				}
+
+			}
+		}
+		if($jackpot_3tod['sent'] != 0){
+			array_push($buy_number,$jackpot_3tod);	
+			sort($buy_number);
+		}
+		
+		return $buy_number;
 	}
 
 }

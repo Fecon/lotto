@@ -75,10 +75,11 @@
                     <?php 
                       foreach($list_agent as $key => $agent){ 
                     ?>
-                    <?php echo form_open('agent_manage/agent_update/'.$agent['id'])?>
                     <tr>
+                      <?php echo form_open('agent_manage/agent_update/'.$agent['id'])?>
                       <td class="text-center"><span style="position: relative;top:15px;"><?php echo $key+1; ?></span></td>
                       <td class="text-center">
+                        
                         <div class="col-xs-9">
                           <span class="hide-icon"><?php echo $agent['name'] ?></span>
                           <input class="form-control input-lg" name="name" type="text"
@@ -128,8 +129,9 @@
                       <td class="text-center"><a onclick="return confirm('ยืนยันการลบ?')"
                           href="<?php echo site_url('agent_manage/agent_delete/'.$agent['id']) ?>"><i
                             class="fa fa-times text-red" aria-hidden="true"></i></a></td>
+                      <?php echo form_close(); ?>
                     </tr>
-                    <?php echo form_close(); ?>
+                    
                     <?php } ?>
                     </tbody>
                   </table>

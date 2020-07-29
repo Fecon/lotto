@@ -16,53 +16,33 @@
       <strong>Error!</strong> กรุณาลองใหม่อีกครั้ง. </div>
     <br>
     <?php } ?>
-    
-    
-    <div class="row">
-      <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="form-group">
-          <label class="sr-only" >งวด</label>
-          <input disabled type="date" name="lotto_id" class="form-control input-sm" id="datepicker"
-            value="<?php echo $lotto[0]['name']; ?>">
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="form-group">
-          <label class="sr-only" >ตัวแทน</label>
-          <select class="form-control input-sm" name="agent_id" id="agent">
-            <?php foreach($list_agent as $agent){ ?>
-            <option value="<?php echo $agent['id'] ?>"><?php echo $agent['name'] ?></option>
-            <?php } ?>
-          </select>
-        </div>
-      </div>
-    </div>
+  
   </section>
 
   <!-- Main content -->
-  <section class="content" style="position:relative; top:-15px;">
+  <section class="content" style="position:relative; top:-30px;">
     <div class="row">
       <div class="col-md-6 col-sm-12 right-border">
         <h4 class="text-center">2 ตัว บน ล่าง</h4>
         <div class="row">
-          <?php for ($i=0; $i < 5 ; $i++) { ?>
+          <?php for ($i=0; $i < 4 ; $i++) { ?>
           <div class="col-xs-2 padding form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
           </div>
           <div class="col-xs-2 padding form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
           </div>
           <div class="col-xs-2 padding form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
           </div>
           <div class="col-xs-2 padding form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
           </div>
           <div class="col-xs-2 padding form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
           </div>
           <div class="col-xs-2 padding form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
+            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
           </div>
           <?php } ?>
           <div id="add2top"></div>
@@ -71,7 +51,7 @@
         <div class="row">
           <div class="col-xs-4 padding">
             <div class="form-group">
-              <input type="tel" id="2digi_top" name="2digi_top" class="form-control input-lg" placeholder="บน">
+              <input type="tel" id="2digi_top" name="2digi_top" class="form-control input-lg" autocomplete='off' placeholder="บน">
             </div>
           </div>
           <div class="col-xs-1 text-center">
@@ -79,7 +59,7 @@
           </div>
           <div class="col-xs-4 padding">
             <div class="form-group">
-              <input type="tel" id="2digi_bottom" name="2digi_bottom" class="form-control input-lg" placeholder="ล่าง">
+              <input type="tel" id="2digi_bottom" name="2digi_bottom" class="form-control input-lg" autocomplete='off' placeholder="ล่าง">
             </div>
           </div>
           <div class="col-xs-2 padding">
@@ -95,29 +75,29 @@
       <div class="col-md-6 col-sm-12">
         <h4 class="text-center">3 ตัว ตรง โต๊ด</h4>
         <div class="row">
-          <?php for ($i=0; $i < 5 ; $i++) { ?>
+          <?php for ($i=0; $i < 4 ; $i++) { ?>
           <div class="col-xs-2 padding form-group form-3digi">
-            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name="3digi[]"
+            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name="3digi[]"
               class="form-control input-lg form-3digi digi-3">
           </div>
           <div class="col-xs-2 padding form-group form-3digi">
-            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name="3digi[]"
+            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name="3digi[]"
               class="form-control input-lg form-3digi digi-3">
           </div>
           <div class="col-xs-2 padding form-group form-3digi">
-            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name="3digi[]"
+            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name="3digi[]"
               class="form-control input-lg form-3digi digi-3">
           </div>
           <div class="col-xs-2 padding form-group form-3digi">
-            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name="3digi[]"
+            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name="3digi[]"
               class="form-control input-lg form-3digi digi-3">
           </div>
           <div class="col-xs-2 padding form-group form-3digi">
-            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name="3digi[]"
+            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name="3digi[]"
               class="form-control input-lg form-3digi digi-3">
           </div>
           <div class="col-xs-2 padding form-group form-3digi">
-            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name="3digi[]"
+            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name="3digi[]"
               class="form-control input-lg form-3digi digi-3">
           </div>
           <?php } ?>
@@ -127,7 +107,7 @@
         <div class="row">
           <div class="col-xs-4 padding">
             <div class="form-group">
-              <input type="tel" id="3digi_top" name="3digi_top" class="form-control input-lg" placeholder="ตรง">
+              <input type="tel" id="3digi_top" name="3digi_top" class="form-control input-lg" autocomplete='off' placeholder="ตรง">
             </div>
           </div>
           <div class="col-xs-1 text-center">
@@ -135,7 +115,7 @@
           </div>
           <div class="col-xs-4 padding">
             <div class="form-group">
-              <input type="tel" id="3digi_tod" name="3digi_tod" class="form-control input-lg" placeholder="โต๊ด">
+              <input type="tel" id="3digi_tod" name="3digi_tod" class="form-control input-lg" autocomplete='off' placeholder="โต๊ด">
             </div>
           </div>
           <div class="col-xs-2 padding">
@@ -161,11 +141,31 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-6 col-xs-6">
+              <div class="form-group">
+                <label class="sr-only" >งวด</label>
+                <input disabled type="date" name="lotto_id" class="form-control input-sm" id="datepicker"
+                  value="<?php echo $lotto[0]['name']; ?>">
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+              <div class="form-group">
+                <label class="sr-only">ตัวแทน</label>
+                <select class="form-control input-sm" name="agent_id" id="agent" required >
+                  <option value="">เลือกตัวแทน</option>
+                  <?php foreach($list_agent as $agent){ ?>
+                  <option value="<?php echo $agent['id'] ?>"><?php echo $agent['name'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-xs-6">
               <h3>เลข 2 ตัว</h3>
               <div id="preview_2digi" class="preview"></div>
             </div>
-            <div class="col-md-3 col-md-offset-3">
+            <div class="col-md-3 col-md-offset-3 col-xs-6">
               <h3>เลข 3 ตัว</h3>
               <div id="preview_3digi" class="preview"></div>
             </div>
@@ -194,11 +194,11 @@
 <script>
   $(".save").click(function () {
 
-    var agent = document.getElementById('agent');
-    var digi2 = document.getElementsByClassName('digi-2');
-    var digi2_top = document.getElementById('2digi_top').value;
+    var agent        = document.getElementById('agent');
+    var digi2        = document.getElementsByClassName('digi-2');
+    var digi2_top    = document.getElementById('2digi_top').value;
     var digi2_bottom = document.getElementById('2digi_bottom').value;
-    var set_digi2 = "";
+    var set_digi2    = "";
 
     for (var i = 0; i < digi2.length; i++) {
       if (digi2[i].value != "") {
@@ -250,43 +250,43 @@
 
     $("#Add2").on("click", function () {
       $("#add2top").append("<div class='col-xs-2 padding form-group form-2digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
         "</div>" +
         "<div class='col-xs-2 padding form-group form-2digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
         "</div>" +
         "<div class='col-xs-2 padding form-group form-2digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
         "</div>" +
         "<div class='col-xs-2 padding form-group form-2digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
         "</div>" +
         "<div class='col-xs-2 padding form-group form-2digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
         "</div>" +
         "<div class='col-xs-2 padding form-group form-2digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
+        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>" +
         "</div>");
     });
 
     $("#Add3").on("click", function () {
       $("#add3top").append("<div class='col-xs-2 padding form-group form-3digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
         "</div>" +
         "<div class='col-xs-2 padding form-group form-3digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
         "</div>" +
         "<div class='col-xs-2 padding form-group form-3digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
         "</div>" +
         "<div class='col-xs-2 padding form-group form-3digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
         "</div>" +
         "<div class='col-xs-2 padding form-group form-3digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
         "</div>" +
         "<div class='col-xs-2 padding form-group form-3digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
         "</div>");
     });
 

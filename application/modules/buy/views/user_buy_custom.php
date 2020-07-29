@@ -14,26 +14,6 @@
       <strong>Error!</strong> กรุณาลองใหม่อีกครั้ง. </div>
     <br>
     <?php } ?>
-
-    <div class="row">
-      <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="form-group">
-          <label class="sr-only" >งวด</label>
-          <input disabled type="date" name="lotto_id" class="form-control input-sm" id="datepicker"
-            value="<?php echo $lotto[0]['name']; ?>">
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="form-group">
-          <label class="sr-only" >ตัวแทน</label>
-          <select class="form-control input-sm" name="agent_id" id="agent">
-            <?php foreach($list_agent as $agent){ ?>
-            <option value="<?php echo $agent['id'] ?>"><?php echo $agent['name'] ?></option>
-            <?php } ?>
-          </select>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- Main content -->
@@ -44,13 +24,13 @@
         <div class="row">
           <?php for ($i=0; $i < 4 ; $i++) { ?>
           <div class="col-xs-4 padding form-group form-2digi">
-            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2' placeholder='เลข'>
+            <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2' placeholder='เลข'>
           </div>
           <div class="col-xs-4 padding form-group form-2digi">
-              <input type="tel" name="2digi_top[]" class="digi-2top form-control input-lg" placeholder="บน">
+              <input type="tel" name="2digi_top[]" class="digi-2top form-control input-lg" autocomplete='off' placeholder="บน">
           </div>
           <div class="col-xs-4 padding form-group form-2digi">
-              <input type="tel" name="2digi_bottom[]" class="digi-2bottom form-control input-lg" placeholder="ล่าง">
+              <input type="tel" name="2digi_bottom[]" class="digi-2bottom form-control input-lg" autocomplete='off' placeholder="ล่าง">
           </div>
           <?php } ?>
           <div id="add2top"></div>
@@ -73,13 +53,13 @@
         <div class="row">
         <?php for ($i=0; $i < 4 ; $i++) { ?>
           <div class="col-xs-4 padding  form-group form-2digi">
-            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3' placeholder='เลข'>
+            <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name='3digi[]' class='form-control input-lg form-3digi digi-3' placeholder='เลข'>
           </div>
           <div class="col-xs-4 padding  form-group form-2digi">
-            <input type="tel" name="3digi_top[]" class="form-control input-lg digi-3top" placeholder="ตรง">
+            <input type="tel" name="3digi_top[]" class="form-control input-lg digi-3top" autocomplete='off' placeholder="ตรง">
           </div>
           <div class="col-xs-4 padding  form-group form-2digi">
-          <input type="tel" name="3digi_tod[]" class="form-control input-lg digi-3tod" placeholder="โต๊ด">
+          <input type="tel" name="3digi_tod[]" class="form-control input-lg digi-3tod" autocomplete='off' placeholder="โต๊ด">
           </div>
           <?php } ?>
           <div id="add3top"></div>
@@ -109,6 +89,25 @@
           <h4 class="modal-title" id="myModalLabel">ตัวแทน : <span class="text-green" id="agent_preview"></span></h4>
         </div>
         <div class="modal-body">
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-6">
+              <div class="form-group">
+                <label class="sr-only" >งวด</label>
+                <input disabled type="date" name="lotto_id" class="form-control input-sm" id="datepicker"
+                  value="<?php echo $lotto[0]['name']; ?>">
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-6">
+              <div class="form-group">
+                <label class="sr-only" >ตัวแทน</label>
+                <select class="form-control input-sm" name="agent_id" id="agent">
+                  <?php foreach($list_agent as $agent){ ?>
+                  <option value="<?php echo $agent['id'] ?>"><?php echo $agent['name'] ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-6">
               <h3>เลข 2 ตัว</h3>
@@ -185,26 +184,26 @@
 
     $("#Add2").on("click", function () {
       $("#add2top").append("<div class='col-xs-4 padding form-group form-2digi'>" +
-        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg form-2digi digi-2' placeholder='เลข'>" +
+        "<input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2' placeholder='เลข'>" +
         "</div>" +
         "<div class='col-xs-4 padding form-group form-2digi'>" +
-        "<input type='tel' name='2digi_top[]' class='digi-2top form-control input-lg' placeholder='บน'>" +
+        "<input type='tel' name='2digi_top[]' class='digi-2top form-control input-lg' autocomplete='off' placeholder='บน'>" +
         "</div>" +
         "<div class='col-xs-4 padding form-group form-2digi'>" +
-        "<input type='tel' name='2digi_bottom[]' class='digi-2bottom form-control input-lg' placeholder='ล่าง'>" +
+        "<input type='tel' name='2digi_bottom[]' class='digi-2bottom form-control input-lg' autocomplete='off' placeholder='ล่าง'>" +
         "</div>");
     });
 
     $("#Add3").on("click", function () {
       $("#add3top").append("<div class='col-xs-3 form-group form-3digi'>" +
-        "<input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+        "<input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
         "</div>" +
         "<div class='col-xs-3 form-group form-3digi'>" +
-        "<input type='tel' id='3digi_top' name='3digi_top[]' class='form-control input-lg' placeholder='ตรง'>" +
+        "<input type='tel' id='3digi_top' name='3digi_top[]' class='form-control input-lg' autocomplete='off' placeholder='ตรง'>" +
         "</div>" +
         "<div class='col-xs-1'><strong>X</strong></div>" +
         "<div class='col-xs-3 form-group form-3digi'>" +
-        "<input type='tel' id='3digi_tod' name='3digi_tod[]' class='form-control input-lg' placeholder='โต้ด'>" +
+        "<input type='tel' id='3digi_tod' name='3digi_tod[]' class='form-control input-lg' autocomplete='off' placeholder='โต้ด'>" +
         "</div>");
     });
 
