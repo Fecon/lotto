@@ -163,7 +163,20 @@
           <div class="row">
             <div class="col-md-3 col-xs-6">
               <h3>เลข 2 ตัว</h3>
-              <div id="preview_2digi" class="preview"></div>
+              <div class="row">
+                <div class="col-xs-6">
+                  <div id="preview_2digi" class="preview"></div>
+                </div>
+                <div class="col-xs-6">
+                  <div id="preview2_2digi" class="preview"></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div id="preview2_2digi_bottom" class="preview"></div>
+                </div>
+              </div>
+              
             </div>
             <div class="col-md-3 col-md-offset-3 col-xs-6">
               <h3>เลข 3 ตัว</h3>
@@ -198,17 +211,48 @@
     var digi2        = document.getElementsByClassName('digi-2');
     var digi2_top    = document.getElementById('2digi_top').value;
     var digi2_bottom = document.getElementById('2digi_bottom').value;
-    var set_digi2    = "";
+    var set_digi2    = [];
 
     for (var i = 0; i < digi2.length; i++) {
       if (digi2[i].value != "") {
-        set_digi2 += digi2[i].value + "<br>";
+        set_digi2.push(digi2[i].value);
       }
     }
 
+
     if (set_digi2.length != "") {
-      set_digi2 += "<hr>" + digi2_top + " X " + digi2_bottom;
-      document.getElementById('preview_2digi').innerHTML = set_digi2;
+      if(set_digi2.length > 10){
+        var set2_digi2 = [];
+
+        for (var index_2digi = 0; index_2digi < set_digi2.length; index_2digi++) {
+          if(set_digi2.length > 10 && set_digi2.length < 20){
+            if(index_2digi > 9){
+              console.log(index_2digi);
+              set2_digi2.push(set_digi2[index_2digi]);
+              set_digi2.splice(index_2digi, 1);
+            }
+          }
+        }
+
+        var preview_2digi_right = "";
+        for (let index_right = 0; index_right < set2_digi2.length; index_right++) {
+          preview_2digi_right += set2_digi2[index_right] + "<br>";
+        }
+        
+        document.getElementById('preview2_2digi').innerHTML = preview_2digi_right;
+      }
+
+      var preview_2digi_left = "";
+      for (let index_left = 0; index_left < set_digi2.length; index_left++) {
+        preview_2digi_left += set_digi2[index_left] + "<br>";
+      }
+      
+      var preview2_2digi_bottom = "<hr>" + digi2_top + " X " + digi2_bottom;
+      document.getElementById('preview_2digi').innerHTML = preview_2digi_left;
+      document.getElementById('preview2_2digi_bottom').innerHTML = preview2_2digi_bottom;
+
+
+
 
       if(digi2_top != "" || digi2_bottom != ""){
         document.getElementById("confirm").disabled = false;
