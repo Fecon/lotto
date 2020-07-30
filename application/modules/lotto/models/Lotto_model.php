@@ -52,8 +52,15 @@ class Lotto_model extends CI_Model {
 
 	public function lotto_delete($id)
 	{
+		$this->db->trans_start();
+
+		$this->db->where('lotto_id',$id);
+		$this->db->delete('buy');
+
 		$this->db->where('id',$id);
 		$this->db->delete('lotto');
+
+		$this->db->trans_complete();
 	}
 	public function lotto_update($list_data)
 	{

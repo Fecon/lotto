@@ -43,6 +43,54 @@ class Buy extends MX_Controller {
 		$this->load->view('header/user_header',$data);
 	}
 
+	public function history()
+	{
+		$user_data 	= $this->session->userdata('user_data');
+		$user_id	= $user_data['id'];
+
+		if($user_data['user_role']==1){
+
+			$data['list_agent'] = $this->Buy_model->get_agents();
+
+
+
+			
+			
+		}else{
+
+			$data['list_agent'] = $this->Buy_model->list_agent($user_id);
+
+			
+		}
+
+		if(empty($this->input->post())){
+			$lottoInfo 	= $this->Buy_model->get_latest_lotto();
+			$lotto_id	= $lottoInfo['id'];
+			$agent_id 	= 0 ;
+
+		}else{
+			$lotto_id 	= $this->input->post('lotto_id');
+			$agent_id 	= $this->input->post('agent_id');
+
+		}
+
+		$data['agentInfo']	= $this->Buy_model->get_agent($agent_id);
+		$data['list_lotto'] = $this->Buy_model->list_lotto();
+
+		$data['lotto'] 		= $this->Buy_model->get_lotto();
+
+		$data['buy_2digi']  = $this->Buy_model->get_agent_buy($agent_id,$lotto_id,2);
+		$data['buy_3digi']  = $this->Buy_model->get_agent_buy($agent_id,$lotto_id,3);
+
+		if(empty($data['lotto'])){
+			$data['content'] = 'no_lotto';
+		}else{
+			$data['content'] = 'user_history';
+		}
+		
+		$this->load->view('header/user_header',$data);
+	}
+
 	public function buy_insert()
 	{
 

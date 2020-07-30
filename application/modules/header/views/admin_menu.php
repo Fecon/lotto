@@ -28,11 +28,15 @@
               </a>
             </li>
             <li>
+              <a href="<?php echo site_url('buy/history') ?>">
+                <i class="fa fa-history" aria-hidden="true"></i> <span>History</span>
+              </a>
+            </li>
+            <li>
               <a href="<?php echo site_url('config_controller') ?>">
                 <i class="fa fa-cogs"></i> <span>ตั้งค่า</span>
               </a>
             </li>
-
             <li>
               <a href="<?php echo site_url('login/logout') ?>">
                 <i class="fa fa-sign-out"></i> <span>ออกจากระบบ</span>

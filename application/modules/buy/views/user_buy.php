@@ -240,7 +240,7 @@
 
           console.log(i + ' '+ cp_set_digi2[i]);
 
-          if(i > 9 && ){
+          if(i > 9 ){
               
             set2_digi2.push(cp_set_digi2[i]);
             set_digi2.splice(i, (cp_set_digi2.length-9));
