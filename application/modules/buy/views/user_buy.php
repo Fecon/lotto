@@ -161,13 +161,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-3 col-xs-6">
+            <div class="col-md-6 col-xs-6">
               <h3>เลข 2 ตัว</h3>
               <div class="row">
-                <div class="col-xs-6">
+                <div class="col-md-3 col-xs-6">
                   <div id="preview_2digi" class="preview"></div>
                 </div>
-                <div class="col-xs-6">
+                <div class="col-md-3col-xs-6">
                   <div id="preview2_2digi" class="preview"></div>
                 </div>
               </div>
@@ -178,9 +178,22 @@
               </div>
               
             </div>
-            <div class="col-md-3 col-md-offset-3 col-xs-6">
+            <div class="col-md-6 col-xs-6">
               <h3>เลข 3 ตัว</h3>
-              <div id="preview_3digi" class="preview"></div>
+              <div class="row">
+                <div class="col-xs-6">
+                  <div id="preview_3digi" class="preview"></div>
+                </div>
+                <div class="col-xs-6">
+                  <div id="preview2_3digi" class="preview"></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div id="preview2_3digi_bottom" class="preview"></div>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -222,38 +235,27 @@
 
     if (set_digi2.length != "") {
       var cp_set_digi2 =  [...set_digi2];
+
       if(cp_set_digi2.length > 10){
         var set2_digi2 = [];
-        console.log(set_digi2.length);
+        var count_2digi = cp_set_digi2.length;
 
-        if(cp_set_digi2.length < 20){
+        for (var i = 0; i < count_2digi; i++) {
+          if(count_2digi > 10 && count_2digi < 20){
+            if(i > 9 ){
+              set2_digi2.push(cp_set_digi2[i]);
+              set_digi2.splice(i, (count_2digi-9));
+            }
 
-        }else{
-          var count_set2 = cp_set_digi2.length/2
-          for (var n = 0; n < cp_set_digi2.length; n++) {
-            cp_set_digi2[n]
+          }else if(count_2digi >= 20){
+            if(i >= count_2digi/2) {
+              set2_digi2.push(cp_set_digi2[i]);
+              set_digi2.splice(i, (count_2digi - Math.floor(count_2digi/2)));
+            }
           }
-        }
-        
 
-        for (var i = 0; i < cp_set_digi2.length; i++) {
-
-          console.log(i + ' '+ cp_set_digi2[i]);
-
-          if(i > 9 ){
-              
-            set2_digi2.push(cp_set_digi2[i]);
-            set_digi2.splice(i, (cp_set_digi2.length-9));
-
-          }else if(cp_set_digi2.length >= 20){
-
-
-
-
-          }
         }
 
-        console.log(set_digi2);
 
         var preview_2digi_right = "";
         for (let index_right = 0; index_right < set2_digi2.length; index_right++) {
@@ -272,9 +274,6 @@
       document.getElementById('preview_2digi').innerHTML = preview_2digi_left;
       document.getElementById('preview2_2digi_bottom').innerHTML = preview2_2digi_bottom;
 
-
-
-
       if(digi2_top != "" || digi2_bottom != ""){
         document.getElementById("confirm").disabled = false;
       }else{
@@ -287,17 +286,55 @@
     var digi3 = document.getElementsByClassName('digi-3');
     var digi3_top = document.getElementById('3digi_top').value;
     var digi3_tod = document.getElementById('3digi_tod').value;
-    var set_digi3 = "";
+    var set_digi3 = [];
 
     for (var j = 0; j < digi3.length; j++) {
       if (digi3[j].value != "") {
-        set_digi3 += digi3[j].value + "<br>";
+        set_digi3.push(digi3[j].value);
       }
     }
 
     if (set_digi3.length != "") {
-      set_digi3 += "<hr>" + digi3_top + " X " + digi3_tod;
-      document.getElementById('preview_3digi').innerHTML = set_digi3;
+      var cp_set_digi3 =  [...set_digi3];
+
+      if(cp_set_digi3.length > 10){
+        var set2_digi3 = [];
+        var count_3digi = cp_set_digi3.length;
+
+        for (var k = 0; k < count_3digi; k++) {
+          if(count_3digi > 10 && count_3digi < 20){
+            if(k > 9 ){
+              set2_digi3.push(cp_set_digi3[k]);
+              set_digi3.splice(k, (count_3digi-9));
+            }
+
+          }else if(count_3digi >= 20){
+            if(k >= count_3digi/2) {
+              set2_digi3.push(cp_set_digi3[k]);
+              set_digi3.splice(k, (count_3digi - Math.floor(count_3digi/2)));
+            }
+          }
+
+        }
+
+        var preview_3digi_right = "";
+        for (let index_3right = 0; index_3right < set2_digi3.length; index_3right++) {
+          preview_3digi_right += set2_digi3[index_3right] + "<br>";
+        }
+
+        document.getElementById('preview2_3digi').innerHTML = preview_3digi_right;
+        
+      }
+
+      var preview_3digi_left = "";
+      for (let index_3left = 0; index_3left < set_digi3.length; index_3left++) {
+        preview_3digi_left += set_digi3[index_3left] + "<br>";
+      }
+
+      var preview2_3digi_bottom = "<hr>" + digi3_top + " X " + digi3_tod;
+      document.getElementById('preview_3digi').innerHTML = preview_3digi_left;
+      document.getElementById('preview2_3digi_bottom').innerHTML = preview2_3digi_bottom;
+
 
       if(digi3_top != "" || digi3_tod != ""){
         document.getElementById("confirm").disabled = false;
