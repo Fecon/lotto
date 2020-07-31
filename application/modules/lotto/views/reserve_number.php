@@ -37,7 +37,7 @@
 				<div class="row">
 					<div class="col-xs-4">
 						<div class="form-group">
-							<input type="text" maxlength="2" onkeypress="return isNumber(event)" name="2digi[]"
+							<input type="text"  maxlength='2' minlength='2' onkeypress="return isNumber(event)" name="2digi[]"
 								class="form-control input-lg" placeholder="" value="<?php echo $number2['number'] ?>">
 						</div>
 					</div>
@@ -54,7 +54,7 @@
 				<div class="row">
 					<div class="col-xs-4">
 						<div class="form-group">
-							<input type="text" maxlength="2" onkeypress="return isNumber(event)" name="2digi[]"
+							<input type="text"  maxlength='2' minlength='2' onkeypress="return isNumber(event)" name="2digi[]"
 								class="form-control input-lg" placeholder="" value="">
 						</div>
 					</div>
@@ -96,7 +96,7 @@
 				<div class="row">
 					<div class="col-xs-4">
 						<div class="form-group">
-							<input type="text" maxlength="3" onkeypress="return isNumber(event)" name="3digi[]"
+							<input type="text"  maxlength='3' minlength='3' onkeypress="return isNumber(event)" name="3digi[]"
 								class="form-control input-lg" placeholder="" value="<?php echo $number3['number'] ?>">
 						</div>
 					</div>
@@ -119,7 +119,7 @@
 				<div class="row">
 					<div class="col-xs-4">
 						<div class="form-group">
-							<input type="text" maxlength="3" onkeypress="return isNumber(event)" name="3digi[]"
+							<input type="text"  maxlength='3' minlength='3' onkeypress="return isNumber(event)" name="3digi[]"
 								class="form-control input-lg" placeholder="">
 						</div>
 					</div>
@@ -153,7 +153,7 @@
 			$("#add2top").append("<div class='row'>" +
 				"<div class='col-xs-4'>" +
 				"<div class='form-group'>" +
-				"<input type='text' maxlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg'>" +
+				"<input type='text'  maxlength='2' minlength='2' onkeypress='return isNumber(event)' name='2digi[]' class='form-control input-lg'>" +
 				"</div>" +
 				"</div>" +
 				"<div class='col-xs-6'>" +
@@ -167,7 +167,7 @@
 			$("#add3top").append("<div class='row'>" +
 				"<div class='col-xs-4'>" +
 				"<div class='form-group'>" +
-				"<input type='text' maxlength='3' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg' placeholder=''>" +
+				"<input type='text'  maxlength='3' minlength='3' onkeypress='return isNumber(event)' name='3digi[]' class='form-control input-lg' placeholder=''>" +
 				"</div>" +
 				"</div>" +
 				"<div class='col-xs-4'>" +

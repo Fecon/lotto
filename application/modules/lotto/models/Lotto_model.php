@@ -82,14 +82,14 @@ class Lotto_model extends CI_Model {
 	public function get_reserve_number2($lotto_id)
 	{
 		$this->db->where('lotto_id',$lotto_id)
-							->where('pay2',0);
+							->where('LENGTH(number)','2');
 		$query = $this->db->get('reserve_number');
 		return $query->result_array();
 	}
 	public function get_reserve_number3($lotto_id)
 	{
 		$this->db->where('lotto_id',$lotto_id)
-							->where_not_in('pay2', "");
+							->where('LENGTH(number)','3');
 		$query = $this->db->get('reserve_number');
 		return $query->result_array();
 	}

@@ -89,6 +89,21 @@ class Dashboard_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function get_tod_pay_rate($lotto_id,$number)
+	{
+		$query = $this->db
+				->where('lotto_id',$lotto_id)
+				->where('number',$number)
+				->or_where('3_1',$number)
+				->or_where('3_2',$number)
+				->or_where('3_3',$number)
+				->or_where('3_4',$number)
+				->or_where('3_5',$number)
+				->or_where('3_6',$number)
+				->get('reserve_number');
+		return $query->result_array();
+	}
+
 	public function get_config()
 	{
 		$query = $this->db->get('config');

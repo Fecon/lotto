@@ -73,7 +73,7 @@ class Dashboard extends MX_Controller {
 		}else{
 			$lotto_id 		= $this->input->post('lotto_id');
 			$agent_id 	 	= $this->input->post('agent_id');
-			$lottoInfo		= $this->Dashboard_model->get_lotto($lotto_id);
+			// $lottoInfo		= $this->Dashboard_model->get_lotto($lotto_id);
 		}
 
 		if($agent_id!=0){
@@ -94,7 +94,7 @@ class Dashboard extends MX_Controller {
 			$data['number_3top'] 		 = $this->Dashboard_model->get_agent_buy_number($lotto_id,3,'top',$config[8]['value'],$agent_id);
 
 			$number_3tod				 = $this->Dashboard_model->get_agent_buy_number($lotto_id,3,'bottom',$config[11]['value'],$agent_id);
-			$data['number_3tod'] 	 	 = $this->get_3tod_report($lottoInfo,$number_3tod);	 
+			$data['number_3tod'] 	 	 = $this->get_3tod_report($number_3tod);	 
 
 			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_agent_type_received($lotto_id,$agent_id,2);
 			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_agent_type_received($lotto_id,$agent_id,3);
@@ -118,14 +118,14 @@ class Dashboard extends MX_Controller {
 			$data['number_3top'] 		 = $this->Dashboard_model->get_total_buy_number($lotto_id,3,'top',$config[8]['value']);
 
 			$number_3tod				 = $this->Dashboard_model->get_total_buy_number($lotto_id,3,'bottom',$config[11]['value']);
-			$data['number_3tod'] 	 	 = $this->get_3tod_report($lottoInfo,$number_3tod);	
+			$data['number_3tod'] 	 	 = $this->get_3tod_report($number_3tod);	
 
 			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_received($lotto_id,2);
 			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_received($lotto_id,3);
 		}
 
 		// echo "<pre>";
-		// print_r($data['number_2top'] );
+		// print_r($data['number_3tod'] );
 		// exit();
 		$data['content'] = 'report';
 
@@ -395,31 +395,114 @@ class Dashboard extends MX_Controller {
 		return $percent_total;
 	}
 
-	private function get_3tod_report($lottoInfo,$buy_number)
+	private function get_3tod_report($buy_number)
 	{
-		$jackpot_3tod = array(
-			'number' => $lottoInfo['3top'] ,
-			'sent' 	 => 0
-		);
+		// $jackpot_3tod = array(
+		// 	'number' => $lottoInfo['3top'] ,
+		// 	'sent' 	 => 0
+		// );
 
-		// print_r($buy_number);
+		// foreach ($buy_number as $key => $value) {
+
+		// 	for ($i=1; $i <= 6 ; $i++) { 
+
+		// 		if($value['number']===$lottoInfo['3_'.$i]){
+		// 			$jackpot_3tod['sent'] += $value['sent'];
+		// 			unset($buy_number[$key]);
+		// 		}
+
+		// 	}
+			
+		// }
+
+		// if($jackpot_3tod['sent'] != 0){
+		// 	array_push($buy_number,$jackpot_3tod);	
+		// 	sort($buy_number);
+		// }
+
+		$count_number = count($buy_number);
+
 		foreach ($buy_number as $key => $value) {
 
-			for ($i=1; $i <= 6 ; $i++) { 
+			$tod = array();
+			$tod = $this->gen_tod($value['number']);
 
-				if($value['number']===$lottoInfo['3_'.$i]){
-					$jackpot_3tod['sent'] += $value['sent'];
-					unset($buy_number[$key]);
+			for ($i=0; $i < count($tod); $i++) { 
+				for ($j=0; $j < $count_number ; $j++) { 
+					if($i!=0 && isset($buy_number[$key]) && isset($buy_number[$j])){
+						if($buy_number[$j]['number']===$tod[$i]){
+							$buy_number[$key]['sent'] += $buy_number[$j]['sent'];
+							unset($buy_number[$j]);
+
+						}	
+					}
 				}
+			}
 
+		}
+
+		sort($buy_number);
+		return $buy_number;
+	}
+
+	private function gen_tod($str)
+	{
+
+		if (!empty($str)) {
+			$n = strlen($str);
+			$three_number = $this->permute($str, 0, $n - 1);
+
+			for ($i=0; $i < 3 ; $i++) {
+				for ($j=0; $j < 2 ; $j++) {
+					$set_three_all_number[] = $three_number[$i][$j];
+				}
+			}
+			$set_three = array_unique($set_three_all_number);
+
+			for ($i=0; $i < 6 ; $i++) {
+				if(isset($set_three[$i])){
+					$three_tod_result[$i] = $set_three[$i];
+				}else{
+					$three_tod_result[$i] = '';
+				}
+			}
+
+		}else{
+			for ($i=0; $i < 6 ; $i++) {
+				$three_tod_result[$i] = '';
 			}
 		}
-		if($jackpot_3tod['sent'] != 0){
-			array_push($buy_number,$jackpot_3tod);	
-			sort($buy_number);
-		}
-		
-		return $buy_number;
+
+		return $three_tod_result;
+	}
+
+	private function permute($str, $l, $r)
+	{
+
+	    if ($l == $r) {
+	    	return $str;
+	    }
+	    else
+	    {
+	        for ($i = $l; $i <= $r; $i++)
+	        {
+	            $str = $this->swap($str, $l, $i);
+	            $set_arr[] = $this->permute($str, $l + 1, $r);
+	            $str = $this->swap($str, $l, $i);
+	        }
+	        return $set_arr;
+	    }
+
+	}
+
+	private function swap($a, $i, $j)
+	{
+	    $temp;
+	    $charArray = str_split($a);
+	    $temp = $charArray[$i] ;
+	    $charArray[$i] = $charArray[$j];
+	    $charArray[$j] = $temp;
+	    return implode($charArray);
 	}
 
 }

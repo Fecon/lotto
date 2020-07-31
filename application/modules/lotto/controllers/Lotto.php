@@ -54,15 +54,22 @@ class Lotto extends MX_Controller {
 		$lotto_id = $this->uri->segment(3);
 		$number_2 = $this->input->post('2digi');
 		$pay_2digi = $this->input->post('2pay');
+		$reserve_numbers = array();
 
 		for ($i=0; $i < count($number_2) ; $i++) {
 			if(!empty($number_2[$i])){
 				$reserve_numbers[] =
 					array(
-						'lotto_id' => $lotto_id,
-						'number' 	 => $number_2[$i],
-						'pay'  		 => $pay_2digi[$i],
-						'pay2'  	 => 0
+						'lotto_id' 	=> $lotto_id,
+						'number' 	=> $number_2[$i],
+						'pay'  		=> $pay_2digi[$i],
+						'pay2'  	=> 0 ,
+						'3_1' 	  	=> null,
+						'3_2' 	  	=> null,
+						'3_3' 	  	=> null,
+						'3_4' 	  	=> null,
+						'3_5' 	  	=> null,
+						'3_6' 	  	=> null
 					);
 			}
 		}
@@ -72,17 +79,59 @@ class Lotto extends MX_Controller {
 		$pay2_3digi = $this->input->post('3pay2');
 
 		for ($i=0; $i < count($number_3) ; $i++) {
+
 			if(!empty($number_3[$i])){
+
+				$str 		= $number_3[$i];
+				$pay_3top	= $pay_3digi[$i];
+				$pay_3tod 	= $pay2_3digi[$i];
+				$three_tod_result = array();
+				
+				if (!empty($str)) {
+					$n = strlen($str);
+					$three_number = $this->permute($str, 0, $n - 1);
+
+					$set_three_all_number = array();
+					for ($a=0; $a < 3 ; $a++) {
+						for ($j=0; $j < 2 ; $j++) {
+							$set_three_all_number[] = $three_number[$a][$j];
+						}
+					}
+
+					$set_three = array_unique($set_three_all_number);
+
+					for ($a=0; $a < 6 ; $a++) {
+						if(isset($set_three[$a])){
+							$three_tod_result[$a] = $set_three[$a];
+						}else{
+							$three_tod_result[$a] = '';
+						}
+					}
+
+				}else{
+					for ($a=0; $a < 6 ; $a++) {
+						$three_tod_result[$a] = '';
+					}
+				}
+
 				$reserve_numbers[] =
 					array(
 						'lotto_id' => $lotto_id,
-						'number' 	 => $number_3[$i],
-						'pay'  		 => $pay_3digi[$i],
-						'pay2'  	 => $pay2_3digi[$i]
+						'number'  => $str,
+						'pay'  	  => $pay_3top,
+						'pay2'    => $pay_3tod,
+						'3_1' 	  => $three_tod_result[0],
+						'3_2' 	  => $three_tod_result[1],
+						'3_3' 	  => $three_tod_result[2],
+						'3_4' 	  => $three_tod_result[3],
+						'3_5' 	  => $three_tod_result[4],
+						'3_6' 	  => $three_tod_result[5]
 					);
+	
 			}
+			
 		}
-		
+
 		if(empty($reserve_numbers)){
 			$this->Lotto_model->rn_delete($lotto_id);
 		}else{
@@ -280,7 +329,7 @@ class Lotto extends MX_Controller {
 
 		// 3tod //
 		for ($i=1; $i <= 6 ; $i++) { 
-			$rn_3tod = $this->Dashboard_model->get_pay_rate($lottoInfo['id'],$lottoInfo['3_'.$i]);
+			$rn_3tod = $this->Dashboard_model->get_tod_pay_rate($lottoInfo['id'],$lottoInfo['3_'.$i]);
 			if(empty($rn_3tod)){
 				$pay_rate['3_'.$i] = $config[2]['value'];
 			}else{
