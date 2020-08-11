@@ -152,7 +152,9 @@
               <div class="form-group">
                 <label class="sr-only">ตัวแทน</label>
                 <select class="form-control input-sm" name="agent_id" id="agent" required >
-                  <option value="">เลือกตัวแทน</option>
+                  <?php if(count($list_agent)>1){
+                    echo '<option value="">เลือกตัวแทน</option>';
+                  } ?>
                   <?php foreach($list_agent as $agent){ ?>
                   <option value="<?php echo $agent['id'] ?>"><?php echo $agent['name'] ?></option>
                   <?php } ?>

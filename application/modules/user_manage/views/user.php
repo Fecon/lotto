@@ -68,6 +68,7 @@ input[type=text] {
                 <div class="box-body no-padding">
                   <table class="table table-striped">
                     <tr>
+                      <th class="text-center">ชื่อ</th>
                       <th class="text-center">Username</th>
                       <th class="text-center">Password</th>
                       <th>ระดับ</th>
@@ -83,6 +84,18 @@ input[type=text] {
                       }
                     ?>
                     >
+                      <td class="text-center">
+                        <div class="col-xs-9">
+                          <input class="form-control input-lg" name="name" type="text"
+                            value="<?php echo $user['name'] ?>"
+                            onclick="show_icon('<?php echo 'name_'.$user['id'] ?>')"
+                            onfocusout="hide_icon('<?php echo 'name_'.$user['id'] ?>')">
+                        </div>
+                        <div class="col-xs-3">
+                          <button id="<?php echo 'name_'.$user['id'] ?>" class="btn btn-success btn-lg hide-icon"
+                            type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                        </div>
+                      </td>
                       <td class="text-center">
                         <div class="col-xs-9">
                           <input class="form-control input-lg" name="username" type="text"
@@ -182,6 +195,16 @@ input[type=text] {
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="blog blog-info">
               <div class="blog-body">
+                <div class="form-group">
+                  <div class="row">
+                    <div class=" col-lg-2 col-md-2 col-sm-2 col-xs-2" align="right">
+                      <label class="control-label">ชื่อ: </label>
+                    </div>
+                    <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                      <input type="text" class="form-control input-lg" name="name" value="" required="required" />
+                    </div>
+                  </div>
+                </div>
                 <div class="form-group">
                   <div class="row">
                     <div class=" col-lg-2 col-md-2 col-sm-2 col-xs-2" align="right">

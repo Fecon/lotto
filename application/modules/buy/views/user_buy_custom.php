@@ -101,6 +101,9 @@
               <div class="form-group">
                 <label class="sr-only" >ตัวแทน</label>
                 <select class="form-control input-sm" name="agent_id" id="agent">
+                  <?php if(count($list_agent)>1){
+                    echo '<option value="">เลือกตัวแทน</option>';
+                  } ?>
                   <?php foreach($list_agent as $agent){ ?>
                   <option value="<?php echo $agent['id'] ?>"><?php echo $agent['name'] ?></option>
                   <?php } ?>
@@ -194,15 +197,14 @@
         "</div>");
     });
 
-    $("#Add3").on("click", function () {
-      $("#add3top").append("<div class='col-xs-3 form-group form-3digi'>" +
-        "<input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name='3digi[]' class='form-control input-lg form-3digi digi-3'>" +
+    $("#Add2").on("click", function () {
+      $("#add3top").append("<div class='col-xs-4 padding form-group form-3digi'>" +
+      "<input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name='3digi[]' class='form-control input-lg form-2digi digi-3' placeholder='เลข'>" +
         "</div>" +
-        "<div class='col-xs-3 form-group form-3digi'>" +
+        "<div class='col-xs-4 padding form-group form-3digi'>" +
         "<input type='tel' id='3digi_top' name='3digi_top[]' class='form-control input-lg' autocomplete='off' placeholder='ตรง'>" +
         "</div>" +
-        "<div class='col-xs-1'><strong>X</strong></div>" +
-        "<div class='col-xs-3 form-group form-3digi'>" +
+        "<div class='col-xs-4 padding form-group form-3digi'>" +
         "<input type='tel' id='3digi_tod' name='3digi_tod[]' class='form-control input-lg' autocomplete='off' placeholder='โต้ด'>" +
         "</div>");
     });

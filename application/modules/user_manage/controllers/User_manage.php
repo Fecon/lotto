@@ -26,6 +26,7 @@ class User_manage extends MX_Controller {
 	public function user_insert()
 	{
 		$list_data = array(
+			'name' 	   => $this->input->post('name'),
 			'username' => $this->input->post('username'),
 			'password' => $this->input->post('password')
 		);
@@ -44,6 +45,7 @@ class User_manage extends MX_Controller {
 		$id = $this->uri->segment(3);
 		$list_data = array(
 			'id' => $id,
+			'name' 	   => $this->input->post('name'),
 			'username' => $this->input->post('username'),
 			'password' => $this->input->post('password')
 		);

@@ -11,6 +11,64 @@ class Buy extends MX_Controller {
 
 	public function index()
 	{
+		if ($this->agent->is_mobile()){
+			redirect('buy/input_mobile');
+
+		}else{
+			redirect('buy/input_pc');
+		}
+
+	}
+
+	public function input_pc()
+	{
+		$user_data 	= $this->session->userdata('user_data');
+		$user_id	= $user_data['id'];
+
+		$data['list_agent'] = $this->Buy_model->list_agent($user_id);
+		$data['lotto'] = $this->Buy_model->get_lotto();
+
+		// History // 
+		if($user_data['user_role']==1){
+			$data['list_agent'] = $this->Buy_model->get_agents();
+		}else{
+			$data['list_agent'] = $this->Buy_model->list_agent($user_id);
+		}
+
+		if(empty($this->input->post())){
+			$lottoInfo 	= $this->Buy_model->get_latest_lotto();
+			$lotto_id	= $lottoInfo['id'];
+			if(!empty($data['list_agent'])){
+				$agent_id = $data['list_agent'][0]['id'] ;
+			}else{
+				$agent_id = 0;
+			}
+
+		}else{
+			$lotto_id 	= $this->input->post('lotto_id');
+			$agent_id 	= $this->input->post('agent_id');
+
+		}
+
+		$data['agentInfo']	= $this->Buy_model->get_agent($agent_id);
+		$data['list_lotto'] = $this->Buy_model->list_lotto();
+
+		$data['buy_2digi']  = $this->Buy_model->get_agent_buy($agent_id,$lotto_id,2);
+		$data['buy_3digi']  = $this->Buy_model->get_agent_buy($agent_id,$lotto_id,3);
+
+
+
+		if(empty($data['lotto'])){
+			$data['content'] = 'no_lotto';
+		}else{
+			$data['content'] = 'user_buy_pc';
+		}
+		
+		$this->load->view('header/user_header',$data);
+	}
+
+	public function input_mobile()
+	{
 		$user_data 	= $this->session->userdata('user_data');
 		$user_id	= $user_data['id'];
 
@@ -47,26 +105,22 @@ class Buy extends MX_Controller {
 	{
 		$user_data 	= $this->session->userdata('user_data');
 		$user_id	= $user_data['id'];
+		$page 		= $this->uri->segment(4);
 
 		if($user_data['user_role']==1){
-
 			$data['list_agent'] = $this->Buy_model->get_agents();
-
-
-
-			
-			
 		}else{
-
 			$data['list_agent'] = $this->Buy_model->list_agent($user_id);
-
-			
 		}
 
 		if(empty($this->input->post())){
 			$lottoInfo 	= $this->Buy_model->get_latest_lotto();
 			$lotto_id	= $lottoInfo['id'];
-			$agent_id 	= 0 ;
+			if(!empty($data['list_agent'])){
+				$agent_id = $data['list_agent'][0]['id'] ;
+			}else{
+				$agent_id = 0;
+			}
 
 		}else{
 			$lotto_id 	= $this->input->post('lotto_id');
@@ -81,6 +135,9 @@ class Buy extends MX_Controller {
 
 		$data['buy_2digi']  = $this->Buy_model->get_agent_buy($agent_id,$lotto_id,2);
 		$data['buy_3digi']  = $this->Buy_model->get_agent_buy($agent_id,$lotto_id,3);
+
+		// print_r($data['buy_2digi']);
+		// exit();
 
 		if(empty($data['lotto'])){
 			$data['content'] = 'no_lotto';
@@ -100,6 +157,7 @@ class Buy extends MX_Controller {
 		$number_2 		= $this->input->post('2digi');
 		$top_2digi 	  	= $this->input->post('2digi_top');
 		$bottom_2digi 	= $this->input->post('2digi_bottom');
+		$md5			= substr(md5(time()) , -6);
 
 		for ($i=0; $i < count($number_2) ; $i++) {
 			if(!empty($number_2[$i])){
@@ -108,6 +166,7 @@ class Buy extends MX_Controller {
 						'lotto_id' 	=> $lotto_id,
 						'agent_id'	=> $agent_id,
 						'number'	=> $number_2[$i],
+						'set_number'=> $md5,
 						'type'		=> 2,
 						'top'  		=> $top_2digi,
 						'bottom'	=> $bottom_2digi
@@ -126,6 +185,7 @@ class Buy extends MX_Controller {
 						'lotto_id' 	=> $lotto_id,
 						'agent_id'	=> $agent_id,
 						'number'   	=> $number_3[$i],
+						'set_number'=> $md5,
 						'type'		=> 3,
 						'top'  	   	=> $top_3digi,
 						'bottom'  	=> $tod_3digi
@@ -153,6 +213,7 @@ class Buy extends MX_Controller {
 		$number_2 		= $this->input->post('2digi');
 		$top_2digi 	  	= $this->input->post('2digi_top');
 		$bottom_2digi 	= $this->input->post('2digi_bottom');
+		$md5			= substr(md5(time()) , -6);
 
 		for ($i=0; $i < count($number_2) ; $i++) {
 			if(!empty($number_2[$i])){
@@ -161,6 +222,7 @@ class Buy extends MX_Controller {
 						'lotto_id' 	=> $lotto_id,
 						'agent_id'	=> $agent_id,
 						'number'	=> $number_2[$i],
+						'set_number'=> $md5,
 						'type'		=> 2,
 						'top'  		=> $top_2digi[$i],
 						'bottom'	=> $bottom_2digi[$i]
@@ -179,6 +241,7 @@ class Buy extends MX_Controller {
 						'lotto_id' 	=> $lotto_id,
 						'agent_id'	=> $agent_id,
 						'number'   	=> $number_3[$i],
+						'set_number'=> $md5,
 						'type'		=> 3,
 						'top'  	   	=> $top_3digi[$i],
 						'bottom'  	=> $tod_3digi[$i]
@@ -196,4 +259,40 @@ class Buy extends MX_Controller {
 		
 		redirect('buy/custom');
 	}
+
+	public function buy_update()
+	{
+		$id = $this->uri->segment(3);
+		$page 	= $this->uri->segment(4);
+		$list_data = array(
+			'id' 		=> $id,
+			'number' 	=> $this->input->post('number'),
+			'top' 		=> $this->input->post('top'),
+			'bottom' 	=> $this->input->post('bottom')
+		);
+		$result = $this->Buy_model->buy_update($list_data);
+
+		if($result==1){
+			$this->session->set_flashdata('update_buy', 'done');
+		}else{
+			$this->session->set_flashdata('update_buy', 'fail');
+		}
+
+		redirect('buy/'.$page);
+	}
+
+	public function buy_delete()
+	{
+		$id 	= $this->uri->segment(3);
+		$page 	= $this->uri->segment(4);
+		$return = $this->Buy_model->buy_delete($id);
+
+		if($return==1){
+			$this->session->set_flashdata('update_buy', 'done');
+		}else{
+			$this->session->set_flashdata('update_buy', 'fail');
+		}
+		redirect('buy/'.$page);
+	}
+
 }
