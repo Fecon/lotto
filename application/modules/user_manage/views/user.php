@@ -201,7 +201,7 @@ input[type=text] {
                       <label class="control-label">ชื่อ: </label>
                     </div>
                     <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                      <input type="text" class="form-control input-lg" name="name" value="" required="required" />
+                      <input type="text" class="form-control input-lg" name="name" value="" required="required" style="border:1px solid #d9d9d9 !important;" />
                     </div>
                   </div>
                 </div>
@@ -211,7 +211,7 @@ input[type=text] {
                       <label class="control-label">Username: </label>
                     </div>
                     <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                      <input type="text" class="form-control input-lg" name="username" value="" required="required" />
+                      <input type="text" class="form-control input-lg" name="username" value="" required="required" style="border:1px solid #d9d9d9 !important;" />
                     </div>
                   </div>
                 </div>

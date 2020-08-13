@@ -114,10 +114,12 @@
                             <?php foreach($list_user as $user){ ?>
                             <option <?php if ($user['id']==$agent['user_id']) {
                                     echo " selected ";
-                                  } ?> value="<?php echo $user['id'] ?>">
-                              <?php echo $user['username'] ?>
-
-                            </option>
+                                  } ?> value="<?php echo $user['id'] ?>"><?php if(empty($user['name'])){ 
+                                  echo $user['username'];
+                                }else{
+                                  echo $user['name'];
+                                } 
+                          ?></option>
                             <?php } ?>
                           </select>
                         </div>
@@ -167,7 +169,7 @@
                       <label class="control-label">ชื่อ: </label>
                     </div>
                     <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                      <input type="text" class="form-control input-lg" name="name" value="" required="required" />
+                      <input type="text" class="form-control input-lg" name="name" value="" required="required" style="border:1px solid #d9d9d9 !important;" />
                     </div>
                   </div>
                 </div>
@@ -177,7 +179,7 @@
                       <label class="control-label">เปอร์เซ็น: </label>
                     </div>
                     <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                      <input type="text" class="form-control input-lg" name="percent" value="" required="required" />
+                      <input type="text" class="form-control input-lg" name="percent" value="" required="required" style="border:1px solid #d9d9d9 !important;" />
                     </div>
                   </div>
                 </div>
@@ -189,7 +191,12 @@
                     <div class=" col-lg-9 col-md-9 col-sm-9 col-xs-9">
                       <select class="form-control input-lg" name="user_id">
                         <?php foreach($list_user as $user){ ?>
-                        <option value="<?php echo $user['id'] ?>"><?php echo $user['username'] ?></option>
+                        <option value="<?php echo $user['id'] ?>"><?php if(empty($user['name'])){ 
+                                  echo $user['username'];
+                                }else{
+                                  echo $user['name'];
+                                } 
+                          ?></option>
                         <?php } ?>
                       </select>
                     </div>

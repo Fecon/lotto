@@ -12,7 +12,7 @@ class Buy extends MX_Controller {
 	public function index()
 	{
 		if ($this->agent->is_mobile()){
-			redirect('buy/input_mobile');
+			redirect('buy/input_pc');
 
 		}else{
 			redirect('buy/input_pc');
@@ -38,10 +38,10 @@ class Buy extends MX_Controller {
 		if(empty($this->input->post())){
 			$lottoInfo 	= $this->Buy_model->get_latest_lotto();
 			$lotto_id	= $lottoInfo['id'];
-			if(!empty($data['list_agent'])){
+			$agent_id = $this->session->userdata('last_agent_id');
+
+			if(empty($agent_id)){
 				$agent_id = $data['list_agent'][0]['id'] ;
-			}else{
-				$agent_id = 0;
 			}
 
 		}else{
@@ -55,8 +55,6 @@ class Buy extends MX_Controller {
 
 		$data['buy_2digi']  = $this->Buy_model->get_agent_buy($agent_id,$lotto_id,2);
 		$data['buy_3digi']  = $this->Buy_model->get_agent_buy($agent_id,$lotto_id,3);
-
-
 
 		if(empty($data['lotto'])){
 			$data['content'] = 'no_lotto';
@@ -152,6 +150,7 @@ class Buy extends MX_Controller {
 	{
 
 		$lotto_id 		= $this->uri->segment(3);
+		$page 			= $this->uri->segment(4);
 		$agent_id 	 	= $this->input->post('agent_id');
 		$buy_numbers 	= [];
 		$number_2 		= $this->input->post('2digi');
@@ -196,18 +195,20 @@ class Buy extends MX_Controller {
 		$result = $this->Buy_model->buy_insert($buy_numbers);
 
 		if($result==1){
+			$this->session->set_userdata('last_agent_id', $agent_id);
 			$this->session->set_flashdata('insert_buy_numbers', 'done');
 		}else{
 			$this->session->set_flashdata('insert_buy_numbers', 'fail');
 		}
 		
-		redirect('buy/index');
+		redirect('buy/'.$page);
 	}
 
 	public function buy_insert_custom()
 	{
 
 		$lotto_id 		= $this->uri->segment(3);
+		$page 			= $this->uri->segment(4);
 		$agent_id 	 	= $this->input->post('agent_id');
 		$buy_numbers 	= [];
 		$number_2 		= $this->input->post('2digi');
@@ -252,12 +253,13 @@ class Buy extends MX_Controller {
 		$result = $this->Buy_model->buy_insert($buy_numbers);
 
 		if($result==1){
+			$this->session->set_userdata('last_agent_id', $agent_id);
 			$this->session->set_flashdata('insert_buy_numbers', 'done');
 		}else{
 			$this->session->set_flashdata('insert_buy_numbers', 'fail');
 		}
 		
-		redirect('buy/custom');
+		redirect('buy/'.$page);
 	}
 
 	public function buy_update()
