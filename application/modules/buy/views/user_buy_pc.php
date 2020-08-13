@@ -19,8 +19,143 @@
   <!-- Main content -->
   <section class="content" style="position:relative; top:-30px;">
   <div class="row">
+      
+    <!-- History -->
+    <div class="col-md-6">
+    <br>
+    <?php
+      $attributes = array('class' => ''); 
+      echo form_open('buy/input_pc', $attributes);
+    ?>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-2 col-sm-6 col-xs-6">
+          <div class="form-group">
+            <label class="sr-only" >งวด</label>
+            <select name="lotto_id" class="form-control" style="width: 100%;">
+              <?php foreach ($list_lotto as $key => $lotto_opt) { 
+                  $date = new DateTime($lotto_opt['name']);
+                    $date_display = $date->format('d/m/Y');
+              ?>
+              <option value="<?php echo $lotto_opt['id']; ?>"><?php echo $date_display; ?></option>
+              <?php } ?>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-6">
+          <div class="form-group">
+            <label class="sr-only">ตัวแทน</label>
+            <select class="form-control" name="agent_id" id="agent" required onchange="this.form.submit()">
+              <?php if(count($list_agent)>1){
+                      echo '<option value="">เลือกตัวแทน</option>';
+              } ?>
+              <?php foreach($list_agent as $agent){ ?>
+              <option value="<?php echo $agent['id'] ?>"
+              <?php
+                  if(isset($agentInfo[0])){
+                    if($agent['id']==$agentInfo[0]['id']){
+                        echo ' selected ';
+                    }
+                  }
+              ?>
+              ><?php echo $agent['name'] ?></option>
+              <?php } ?>
+            </select>
+          </div>
+        </div>
+      </div>
+      <?php echo form_close(); ?>
+      <div class="row">
+        <div class="col-md-6 col-sm-12 right-border">
+          <h4 class="text-center">2 ตัว บน ล่าง</h4>
+          <div class="row">
+            <table class="table table-striped">
+              <tr>
+                <th class="text-center">2 ตัว</th>
+                <th class="text-center">บน</th>
+                <th class="text-center">ล่าง</th>
+                <th width="100" class="text-center"></th>
+              </tr>
+              <?php 
+              foreach ($buy_2digi as $key => $value) { ?>
+              <?php echo form_open('buy/buy_update/'.$value['id'].'/input_pc'); ?>
+              <tr>
+                <td class="text-center padding">
+                <input type='number' maxlength='2' minlength='2' value="<?php echo $value['number'] ?>" onkeypress='return isNumber(event)' autocomplete='off' name='number' class='form-control input-history'>
+                </td>
+                <td class="text-center padding">
+                <input type='number' min="0" value="<?php echo $value['top'] ?>" autocomplete='off' name='top' class='form-control input-history'>
+                </td>
+                <td class="text-center padding">
+                <input type='number' min="0" value="<?php echo $value['bottom'] ?>" autocomplete='off' name='bottom' class='form-control input-history'>
+                </td>
+                <td class="text-center padding">
+                <button class="btn btn-success" type="submit"><i class="fa fa-check" ></i></button>
+                &nbsp;&nbsp;&nbsp;
+                <a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('buy/buy_delete/'.$value['id'].'/input_pc') ?>">
+                <i class="fa fa-times text-red" aria-hidden="true"></i></a>
+                </td>
+              </tr>
+              <?php echo form_close(); ?>
+              <?php
+                if(isset($buy_2digi[$key+1]['set_number'])){
+                  if($value['set_number']!=$buy_2digi[$key+1]['set_number']){
+                    echo '<tr><td colspan="4"><br></tr>';
+                  }
+                } 
+              }
+              ?>
+            </table>
+          </div>
+        </div>
+              
+        <div class="col-md-6 col-sm-12">
+          <h4 class="text-center">3 ตัว ตรง โต๊ด</h4>
+          <div class="row">
+            <table class="table table-striped">
+              <tr>
+                <th class="text-center">3 ตัว</th>
+                <th class="text-center">ตรง</th>
+                <th class="text-center">โต๊ด</th>
+                <th width="100" class="text-center"></th>
+              </tr>
+              <?php foreach ($buy_3digi as $key => $value) { ?>
+                <?php echo form_open('buy/buy_update/'.$value['id'].'/input_pc'); ?>
+              <tr>
+                <td class="text-center padding">
+                <input type='number' maxlength='3' minlength='3' value="<?php echo $value['number'] ?>" onkeypress='return isNumber(event)' autocomplete='off' name='number' class='form-control input-history'>
+                </td>
+                <td class="text-center padding">
+                <input type='number' min="0" value="<?php echo $value['top'] ?>" autocomplete='off' name='top' class='form-control input-history'>
+                </td>
+                <td class="text-center padding">
+                <input type='number' min="0" value="<?php echo $value['bottom'] ?>" autocomplete='off' name='bottom' class='form-control input-history'>
+                </td>
+                <td class="text-center padding">
+                <button class="btn btn-success" type="submit"><i class="fa fa-check" ></i></button>
+                &nbsp;&nbsp;&nbsp;
+                <a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('buy/buy_delete/'.$value['id'].'/input_pc') ?>">
+                <i class="fa fa-times text-red" aria-hidden="true"></i></a>
+                </td>
+              </tr>
+              <?php echo form_close(); ?>
+              <?php
+                if(isset($buy_3digi[$key+1]['set_number'])){
+                  if($value['set_number']!=$buy_3digi[$key+1]['set_number']){
+                    echo '<tr><td colspan="4"><br></tr>';
+                  }
+                } 
+              }
+              ?>
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <!-- Input -->
-    <div class="col-md-6 col-sm-12 right-border">
+    <div class="col-md-6 col-sm-12">
 
       <!-- Normal key -->
       <?php
@@ -31,7 +166,7 @@
         <div class="col-md-6 col-sm-12 right-border">
           <h4 class="text-center">2 ตัว บน ล่าง</h4>
           <div class="row">
-            <?php for ($i=0; $i < 5 ; $i++) { ?>
+            <?php for ($i=0; $i < 4 ; $i++) { ?>
             <div class="col-xs-2 padding form-group form-2digi">
               <input type='tel' maxlength='2' minlength='2' onkeypress='return isNumber(event)' autocomplete='off' name='2digi[]' class='form-control input-lg form-2digi digi-2'>
             </div>
@@ -82,7 +217,7 @@
         <div class="col-md-6 col-sm-12">
           <h4 class="text-center">3 ตัว ตรง โต๊ด</h4>
           <div class="row">
-            <?php for ($i=0; $i < 5 ; $i++) { ?>
+            <?php for ($i=0; $i < 4 ; $i++) { ?>
             <div class="col-xs-2 padding form-group form-3digi">
               <input type='tel' maxlength='3' minlength='3' onkeypress='return isNumber(event)' autocomplete='off' name="3digi[]"
                 class="form-control input-lg form-3digi digi-3">
@@ -224,7 +359,7 @@
 
       <?php echo form_close(); ?>
       <!-- END Normal key -->
-      <hr>
+
       <!-- Custom key -->
       <?php echo form_open('buy/buy_insert_custom/'.$lotto[0]['id'].'/input_pc')?>
       <div class="row">
@@ -349,139 +484,7 @@
 
     <?php echo form_close(); ?>
 
-    <!-- History -->
-    <div class="col-md-6">
-    <br>
-    <?php
-      $attributes = array('class' => ''); 
-      echo form_open('buy/input_pc', $attributes);
-    ?>
-      <div class="row">
-        <div class="col-md-4 col-md-offset-2 col-sm-6 col-xs-6">
-          <div class="form-group">
-            <label class="sr-only" >งวด</label>
-            <select name="lotto_id" class="form-control" style="width: 100%;">
-              <?php foreach ($list_lotto as $key => $lotto) { 
-                  $date = new DateTime($lotto['name']);
-                    $date_display = $date->format('d/m/Y');
-              ?>
-              <option value="<?php echo $lotto['id']; ?>"><?php echo $date_display; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-6">
-          <div class="form-group">
-            <label class="sr-only">ตัวแทน</label>
-            <select class="form-control" name="agent_id" id="agent" required onchange="this.form.submit()">
-              <?php if(count($list_agent)>1){
-                      echo '<option value="">เลือกตัวแทน</option>';
-              } ?>
-              <?php foreach($list_agent as $agent){ ?>
-              <option value="<?php echo $agent['id'] ?>"
-              <?php
-                  if(isset($agentInfo[0])){
-                    if($agent['id']==$agentInfo[0]['id']){
-                        echo ' selected ';
-                    }
-                  }
-              ?>
-              ><?php echo $agent['name'] ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        </div>
-      </div>
-      <?php echo form_close(); ?>
-      <div class="row">
-        <div class="col-md-6 col-sm-12 right-border">
-          <h4 class="text-center">2 ตัว บน ล่าง</h4>
-          <div class="row">
-            <table class="table table-striped">
-              <tr>
-                <th class="text-center">2 ตัว</th>
-                <th class="text-center">บน</th>
-                <th class="text-center">ล่าง</th>
-                <th width="100" class="text-center"></th>
-              </tr>
-              <?php 
-              foreach ($buy_2digi as $key => $value) { ?>
-              <?php echo form_open('buy/buy_update/'.$value['id'].'/input_pc'); ?>
-              <tr>
-                <td class="text-center">
-                <input type='number' maxlength='2' minlength='2' value="<?php echo $value['number'] ?>" onkeypress='return isNumber(event)' autocomplete='off' name='number' class='form-control'>
-                </td>
-                <td class="text-center">
-                <input type='number' min="0" value="<?php echo $value['top'] ?>" autocomplete='off' name='top' class='form-control'>
-                </td>
-                <td class="text-center">
-                <input type='number' min="0" value="<?php echo $value['bottom'] ?>" autocomplete='off' name='bottom' class='form-control'>
-                </td>
-                <td class="text-center">
-                <button class="btn btn-success" type="submit"><i class="fa fa-check" ></i></button>
-                &nbsp;&nbsp;&nbsp;
-                <a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('buy/buy_delete/'.$value['id'].'/input_pc') ?>">
-                <i class="fa fa-times text-red" aria-hidden="true"></i></a>
-                </td>
-              </tr>
-              <?php echo form_close(); ?>
-              <?php
-                if(isset($buy_2digi[$key+1]['set_number'])){
-                  if($value['set_number']!=$buy_2digi[$key+1]['set_number']){
-                    echo '<tr><td colspan="4"><br></tr>';
-                  }
-                } 
-              }
-              ?>
-            </table>
-          </div>
-        </div>
-              
-        <div class="col-md-6 col-sm-12">
-          <h4 class="text-center">3 ตัว ตรง โต๊ด</h4>
-          <div class="row">
-            <table class="table table-striped">
-              <tr>
-                <th class="text-center">3 ตัว</th>
-                <th class="text-center">ตรง</th>
-                <th class="text-center">โต๊ด</th>
-                <th width="100" class="text-center"></th>
-              </tr>
-              <?php foreach ($buy_3digi as $key => $value) { ?>
-                <?php echo form_open('buy/buy_update/'.$value['id'].'/input_pc'); ?>
-              <tr>
-                <td class="text-center">
-                <input type='number' maxlength='3' minlength='3' value="<?php echo $value['number'] ?>" onkeypress='return isNumber(event)' autocomplete='off' name='number' class='form-control'>
-                </td>
-                <td class="text-center">
-                <input type='number' min="0" value="<?php echo $value['top'] ?>" autocomplete='off' name='top' class='form-control'>
-                </td>
-                <td class="text-center">
-                <input type='number' min="0" value="<?php echo $value['bottom'] ?>" autocomplete='off' name='bottom' class='form-control'>
-                </td>
-                <td class="text-center">
-                <button class="btn btn-success" type="submit"><i class="fa fa-check" ></i></button>
-                &nbsp;&nbsp;&nbsp;
-                <a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('buy/buy_delete/'.$value['id'].'/input_pc') ?>">
-                <i class="fa fa-times text-red" aria-hidden="true"></i></a>
-                </td>
-              </tr>
-              <?php echo form_close(); ?>
-              <?php
-                if(isset($buy_3digi[$key+1]['set_number'])){
-                  if($value['set_number']!=$buy_3digi[$key+1]['set_number']){
-                    echo '<tr><td colspan="4"><br></tr>';
-                  }
-                } 
-              }
-              ?>
-            </table>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
+    
   </div>
     
   </section>
@@ -788,11 +791,7 @@
     }
   });
 
-</script>
 
-
-
-<script>
   $(".save-custom").click(function () {
     var agent_custom         = document.getElementById('agent_custom');
     var digi2_custom         = document.getElementsByClassName('digi-2-custom');

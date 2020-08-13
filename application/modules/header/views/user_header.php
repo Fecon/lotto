@@ -113,9 +113,17 @@ input[type=date] {
   padding:1px !important;
 }
 
+.input-history{
+  padding:1px !important;
+}
+
 .add-row{
   position:relative;
   top:7px;
+}
+
+.table>tbody>tr>td{
+  padding: 1px !important;
 }
 </style>
 
