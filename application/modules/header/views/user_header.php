@@ -68,7 +68,7 @@ input[type=text] {
 }
 
 .right-border {
-  border-right: 1px solid;
+  border-right: 1px solid #d9d9d9;
 }
 
 #pad-number {
@@ -124,6 +124,15 @@ input[type=date] {
 
 .table>tbody>tr>td{
   padding: 1px !important;
+}
+
+.row-sapce-top{
+  padding:55px;
+}
+
+.row {
+  margin-right: -10px;
+  margin-left: -10px;
 }
 </style>
 

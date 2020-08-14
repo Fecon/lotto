@@ -157,6 +157,14 @@ class Buy extends MX_Controller {
 		$top_2digi 	  	= $this->input->post('2digi_top');
 		$bottom_2digi 	= $this->input->post('2digi_bottom');
 		$md5			= substr(md5(time()) , -6);
+		
+		if(empty($top_2digi)){
+			$top_2digi = 0;
+		}
+
+		if(empty($bottom_2digi)){
+			$bottom_2digi = 0;
+		}
 
 		for ($i=0; $i < count($number_2) ; $i++) {
 			if(!empty($number_2[$i])){
@@ -176,6 +184,14 @@ class Buy extends MX_Controller {
 		$number_3  = $this->input->post('3digi');
 		$top_3digi = $this->input->post('3digi_top');
 		$tod_3digi = $this->input->post('3digi_tod');
+
+		if(empty($top_3digi)){
+			$top_3digi = 0;
+		}
+
+		if(empty($tod_3digi)){
+			$tod_3digi = 0;
+		}
 
 		for ($i=0; $i < count($number_3) ; $i++) {
 			if(!empty($number_3[$i])){
@@ -218,6 +234,15 @@ class Buy extends MX_Controller {
 
 		for ($i=0; $i < count($number_2) ; $i++) {
 			if(!empty($number_2[$i])){
+
+				if(empty($top_2digi[$i])){
+					$top_2digi[$i] = 0;
+				}
+		
+				if(empty($bottom_2digi[$i])){
+					$bottom_2digi[$i] = 0;
+				}
+
 				$buy_numbers[] =
 					array(
 						'lotto_id' 	=> $lotto_id,
@@ -237,6 +262,15 @@ class Buy extends MX_Controller {
 
 		for ($i=0; $i < count($number_3) ; $i++) {
 			if(!empty($number_3[$i])){
+
+				if(empty($top_3digi[$i])){
+					$top_3digi[$i] = 0;
+				}
+		
+				if(empty($tod_3digi[$i])){
+					$tod_3digi[$i] = 0;
+				}
+
 				$buy_numbers[] =
 					array(
 						'lotto_id' 	=> $lotto_id,

@@ -65,7 +65,7 @@
               <th class="text-center">2 ตัว</th>
               <th class="text-center">บน</th>
               <th class="text-center">ล่าง</th>
-              <th class="text-center"></th>
+              <th width="100" class="text-center"></th>
             </tr>
             <?php 
             foreach ($buy_2digi as $key => $value) { ?>
@@ -108,7 +108,7 @@
               <th class="text-center">3 ตัว</th>
               <th class="text-center">ตรง</th>
               <th class="text-center">โต๊ด</th>
-              <th class="text-center"></th>
+              <th width="100" class="text-center"></th>
             </tr>
             <?php foreach ($buy_3digi as $key => $value) { ?>
               <?php echo form_open('buy/buy_update/'.$value['id'].'/history'); ?>
