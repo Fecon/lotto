@@ -69,13 +69,30 @@
           <h4 class="text-center">2 ตัว บน ล่าง</h4>
           <div class="row">
             <table class="table table-striped">
-              <tr>
-                <th class="text-center">2 ตัว</th>
-                <th class="text-center">บน</th>
-                <th class="text-center">ล่าง</th>
-                <th width="100" class="text-center"></th>
-              </tr>
+              <thead>
+                <tr>
+                  <th class="text-center">2 ตัว</th>
+                  <th class="text-center">บน</th>
+                  <th class="text-center">ล่าง</th>
+                  <!-- <th width="100" class="text-center"></th> -->
+                </tr>
+              </thead>
+              <tbody>
+              <?php  foreach ($buy_2digi as $key => $value) { ?>
+                <tr>
+                  <td class="text-center padding"><?php echo $value['number'] ?></td>
+                  <td class="text-center padding"><?php echo $value['top'] ?></td>
+                  <td class="text-center padding"><?php echo $value['bottom'] ?></td>
+                </tr>
+              <?php if(isset($buy_2digi[$key+1]['set_number'])){
+                  if($value['set_number']!=$buy_2digi[$key+1]['set_number']){
+                    echo '<tr><td colspan="3"><br></tr>';
+                  }
+                } 
+              } ?>
+              </tbody>
               <?php 
+              /*
               foreach ($buy_2digi as $key => $value) { ?>
               <?php echo form_open('buy/buy_update/'.$value['id'].'/input_pc'); ?>
               <tr>
@@ -102,7 +119,7 @@
                     echo '<tr><td colspan="4"><br></tr>';
                   }
                 } 
-              }
+              } */
               ?>
             </table>
           </div>
@@ -112,13 +129,31 @@
           <h4 class="text-center">3 ตัว ตรง โต๊ด</h4>
           <div class="row">
             <table class="table table-striped">
-              <tr>
-                <th class="text-center">3 ตัว</th>
-                <th class="text-center">ตรง</th>
-                <th class="text-center">โต๊ด</th>
-                <th width="100" class="text-center"></th>
-              </tr>
-              <?php foreach ($buy_3digi as $key => $value) { ?>
+              <thead>
+                <tr>
+                  <th class="text-center">3 ตัว</th>
+                  <th class="text-center">ตรง</th>
+                  <th class="text-center">โต๊ด</th>
+                  <!-- <th width="100" class="text-center"></th> -->
+                </tr>
+              </thead>
+              <tbody>
+              <?php  foreach ($buy_3digi as $key => $value) { ?>
+                <tr>
+                  <td class="text-center padding"><?php echo $value['number'] ?></td>
+                  <td class="text-center padding"><?php echo $value['top'] ?></td>
+                  <td class="text-center padding"><?php echo $value['bottom'] ?></td>
+                </tr>
+              <?php if(isset($buy_3digi[$key+1]['set_number'])){
+                  if($value['set_number']!=$buy_3digi[$key+1]['set_number']){
+                    echo '<tr><td colspan="3"><br></tr>';
+                  }
+                } 
+              } ?>
+              </tbody>
+
+              <?php /*
+              foreach ($buy_3digi as $key => $value) { ?>
                 <?php echo form_open('buy/buy_update/'.$value['id'].'/input_pc'); ?>
               <tr>
                 <td class="text-center padding">
@@ -144,7 +179,7 @@
                     echo '<tr><td colspan="4"><br></tr>';
                   }
                 } 
-              }
+              }*/
               ?>
             </table>
 
