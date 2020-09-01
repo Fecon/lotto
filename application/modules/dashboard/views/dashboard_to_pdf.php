@@ -1,15 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title><?php echo $file_name; ?></title>
+   <meta charset="UTF-8" />
+   <style>
+   body{
+      font-family: "THSarabun";
+      font-size: 20px;
+   }
+   table, table td {
+     border: solid black;
+   }
+   table {
+     border-width: 1px 1px 0 0;
+   }
+   table td {
+     border-width: 0 0 1px 1px;
+     height: 32px;
+   }
+   </style>
+</head>
+
+<body>
 <?php
    $user_data = $this->session->userdata('user_data');
    if(!isset($user_data)){
    	redirect('login');
    }
 ?>
-<style>
-td {
-  border: 1px solid black;
-  margin:0px;
-}
-</style>
+
 <div class="content-wrapper">
    <!-- Content Header (Page header) -->
    <section class="content-header">
@@ -38,7 +57,7 @@ td {
                            }
 
                         ?>
-                        <table width="80%">
+                        <table width="100%" style="border:none;">
                            <tr>
                               <th>
                               ชื่อตัวแทน : 
@@ -110,11 +129,13 @@ td {
                               <th colspan="2"><br><br></th>
                            </tr>
 						   </table>
-						   <table width="80%">
+
+
+						   <table width="100%">
                            <tr>
-                              <td align="center">เลข</td>
-                              <td align="center">ซื้อมา</td>
-                              <td align="center">เป็นเงิน</td>
+                              <td align="center"><strong>เลข</strong> </td>
+                              <td align="center"><strong>ซื้อมา</strong> </td>
+                              <td align="center"><strong>เป็นเงิน</strong> </td>
                            </tr>
                            <tr>
                               <td align="center">
@@ -166,7 +187,7 @@ td {
                            </tr>
                            <tr>
                               <td colspan="2" align="right">
-                                 <label>ยอดรวมถูก เป็นเงิน</label >
+                                 <label>ยอดรวมถูก เป็นเงิน</label>
                               </td>
                               <td align="center">
                                  <span>
@@ -207,3 +228,5 @@ td {
    </section>
    <!-- /.content -->
 </div>
+</body>
+</html>

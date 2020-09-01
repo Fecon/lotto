@@ -56,6 +56,13 @@
                      <button type="submit" class="btn btn-success">ยืนยัน</button>
                   </div>
                </div>
+               <div class="col-md-4">
+                  <div class="form-group text-right">
+                     <label>&nbsp;</label>
+                     <br>
+                     <a href="<?php echo site_url('dashboard/export_pdf'); ?>"><button type="button" class="btn btn-default"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Export PDF</button></a>
+                  </div>
+               </div>
             </div>
             <?php echo form_close(); ?>
             <br>
