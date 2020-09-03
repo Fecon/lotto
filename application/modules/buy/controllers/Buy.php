@@ -113,7 +113,12 @@ class Buy extends MX_Controller {
 
 		if(empty($this->input->post())){
 			$lottoInfo 	= $this->Buy_model->get_latest_lotto();
-			$lotto_id	= $lottoInfo['id'];
+			if(!empty($lottoInfo)){
+				$lotto_id	= $lottoInfo['id'];
+			}else{
+				$lotto_id	= 0;
+			}
+			
 			$agent_id = $this->session->userdata('last_agent_id');
 
 			if(empty($agent_id) && !empty($data['list_agent'])){
@@ -137,11 +142,7 @@ class Buy extends MX_Controller {
 		// print_r($data['buy_2digi']);
 		// exit();
 
-		if(empty($data['lotto'])){
-			$data['content'] = 'no_lotto';
-		}else{
-			$data['content'] = 'user_history';
-		}
+		$data['content'] = 'user_history';
 		
 		$this->load->view('header/user_header',$data);
 	}
