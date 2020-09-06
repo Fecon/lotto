@@ -131,6 +131,7 @@ class Buy extends MX_Controller {
 
 		}
 
+		$data['lotto_id']	= $lotto_id;
 		$data['agentInfo']	= $this->Buy_model->get_agent($agent_id);
 		$data['list_lotto'] = $this->Buy_model->list_lotto();
 

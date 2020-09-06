@@ -57,7 +57,13 @@
                               $date = new DateTime($lotto['name']);
                                 $date_display = $date->format('d/m/Y');
                           ?>
-                <option value="<?php echo $lotto['id']; ?>"><?php echo $date_display; ?></option>
+                <option value="<?php echo $lotto['id']; ?>"
+                  <?php
+                     if($lotto['id']==$lotto_id){
+                       echo ' selected ';
+                     }
+                  ?>
+                  ><?php echo $date_display; ?></option>
                 <?php } ?>
               </select>
             </div>

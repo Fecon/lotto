@@ -26,9 +26,15 @@
           <select name="lotto_id" class="form-control input-sm" style="width: 100%;">
             <?php foreach ($list_lotto as $key => $lotto) { 
                 $date = new DateTime($lotto['name']);
-                  $date_display = $date->format('d/m/Y');
+                $date_display = $date->format('d/m/Y');
             ?>
-            <option value="<?php echo $lotto['id']; ?>"><?php echo $date_display; ?></option>
+            <option value="<?php echo $lotto['id']; ?>"
+              <?php
+                  if($lotto['id']==$lotto_id){
+                    echo ' selected ';
+                  }
+              ?>
+            ><?php echo $date_display; ?></option>
             <?php } ?>
           </select>
         </div>
