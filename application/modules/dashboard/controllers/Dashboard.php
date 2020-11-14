@@ -42,10 +42,11 @@ class Dashboard extends MX_Controller {
 			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_received($lotto_id,3);
 		}
 		
-		$data['sum'] = $sum ;
+		$data['lotto_id']	= $lotto_id;
+		$data['sum'] 		= $sum ;
 		$data['lottoInfo']	= $this->Dashboard_model->get_lotto($lotto_id);
 
-		$data['content'] = 'dashboard';
+		$data['content'] 	= 'dashboard';
 
 		$this->load->view('header/admin_header',$data);
 	}
@@ -180,7 +181,8 @@ class Dashboard extends MX_Controller {
 			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_received($lotto_id,3);
 		}
 
-		$data['content'] = 'report';
+		$data['lotto_id']	= $lotto_id;
+		$data['content'] 	= 'report';
 
 		$this->load->view('header/admin_header',$data);
 	}

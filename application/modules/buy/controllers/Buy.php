@@ -40,7 +40,7 @@ class Buy extends MX_Controller {
 			$lotto_id	= $lottoInfo['id'];
 			$agent_id = $this->session->userdata('last_agent_id');
 
-			if(empty($agent_id)){
+			if(empty($agent_id) && !empty($data['list_agent'])){
 				$agent_id = $data['list_agent'][0]['id'] ;
 			}
 
@@ -113,11 +113,16 @@ class Buy extends MX_Controller {
 
 		if(empty($this->input->post())){
 			$lottoInfo 	= $this->Buy_model->get_latest_lotto();
-			$lotto_id	= $lottoInfo['id'];
-			if(!empty($data['list_agent'])){
-				$agent_id = $data['list_agent'][0]['id'] ;
+			if(!empty($lottoInfo)){
+				$lotto_id	= $lottoInfo['id'];
 			}else{
-				$agent_id = 0;
+				$lotto_id	= 0;
+			}
+			
+			$agent_id = $this->session->userdata('last_agent_id');
+
+			if(empty($agent_id) && !empty($data['list_agent'])){
+				$agent_id = $data['list_agent'][0]['id'] ;
 			}
 
 		}else{
@@ -126,6 +131,7 @@ class Buy extends MX_Controller {
 
 		}
 
+		$data['lotto_id']	= $lotto_id;
 		$data['agentInfo']	= $this->Buy_model->get_agent($agent_id);
 		$data['list_lotto'] = $this->Buy_model->list_lotto();
 
@@ -137,11 +143,7 @@ class Buy extends MX_Controller {
 		// print_r($data['buy_2digi']);
 		// exit();
 
-		if(empty($data['lotto'])){
-			$data['content'] = 'no_lotto';
-		}else{
-			$data['content'] = 'user_history';
-		}
+		$data['content'] = 'user_history';
 		
 		$this->load->view('header/user_header',$data);
 	}
@@ -298,9 +300,10 @@ class Buy extends MX_Controller {
 
 	public function buy_update()
 	{
-		$id = $this->uri->segment(3);
-		$page 	= $this->uri->segment(4);
-		$list_data = array(
+		$id 		= $this->uri->segment(3);
+		$page 		= $this->uri->segment(4);
+		$agent_id 	= $this->input->post('agent_id');
+		$list_data 	= array(
 			'id' 		=> $id,
 			'number' 	=> $this->input->post('number'),
 			'top' 		=> $this->input->post('top'),
@@ -309,6 +312,7 @@ class Buy extends MX_Controller {
 		$result = $this->Buy_model->buy_update($list_data);
 
 		if($result==1){
+			$this->session->set_userdata('last_agent_id', $agent_id);
 			$this->session->set_flashdata('update_buy', 'done');
 		}else{
 			$this->session->set_flashdata('update_buy', 'fail');

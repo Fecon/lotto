@@ -127,13 +127,14 @@ input[type=date] {
 }
 
 .row-sapce-top{
-  padding:55px;
+  padding-top:55px;
 }
 
 .row {
   margin-right: -10px;
   margin-left: -10px;
 }
+
 </style>
 
 </head>

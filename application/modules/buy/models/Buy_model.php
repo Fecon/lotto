@@ -96,7 +96,12 @@ class Buy_model extends CI_Model {
 		->limit(1)
 		->get('lotto')
 		->result_array();
-		return $query[0];
+		if(empty($query)){
+			return $query;
+		}else{
+			return $query[0];
+		}
+		
 	}
 
 	public function buy_update($list_data)
