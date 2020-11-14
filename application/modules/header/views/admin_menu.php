@@ -8,6 +8,12 @@
               </a>
             </li>
             <li>
+              <a href="<?php echo site_url('dashboard/summary') ?>">
+                <i class="fa fa-list-alt"></i>
+                <span>สรุปยอดรวม</span>
+              </a>
+            </li>
+            <li>
               <a href="<?php echo site_url('dashboard/report') ?>">
                 <i class="fa fa-bar-chart"></i> <span>ยอดรวม</span>
               </a>

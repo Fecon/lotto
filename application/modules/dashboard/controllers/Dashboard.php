@@ -31,13 +31,11 @@ class Dashboard extends MX_Controller {
 		
 		if($agent_id!=0){
 			$data['agentInfo']	= $this->Dashboard_model->get_agent($agent_id);
-			// $this->check_lotto($lotto_id, $agent_id, $lottoInfo);
 
 			$sum = $this->get_statement($lotto_id,$lottoInfo,$agent_id);
 			$data['agent_sent'] = $this->Dashboard_model->get_sum_agent_received($lotto_id,$agent_id);
 
 		}else{
-			// $this->check_lotto_all($lotto_id, $lottoInfo);
 			$sum 						 = $this->get_non_agent_statement($lotto_id,$lottoInfo);
 			$data['percent_total'] 		 = $this->get_percent($lotto_id,$data['list_agent']);
 			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_received($lotto_id,2);
@@ -94,13 +92,11 @@ class Dashboard extends MX_Controller {
 		if($agent_id!=0){
 			$data['agentInfo']	= $this->Dashboard_model->get_agent($agent_id);
 			$file_name			= $data['agentInfo']['name'].'_'.$lottoInfo['name'];
-			// $this->check_lotto($lotto_id, $agent_id, $lottoInfo);
 
 			$sum = $this->get_statement($lotto_id,$lottoInfo,$agent_id);
 			$data['agent_sent'] = $this->Dashboard_model->get_sum_agent_received($lotto_id,$agent_id);
 
 		}else{
-			// $this->check_lotto_all($lotto_id, $lottoInfo);
 			$sum 						 = $this->get_non_agent_statement($lotto_id,$lottoInfo);
 			$data['percent_total'] 		 = $this->get_percent($lotto_id,$data['list_agent']);
 			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_received($lotto_id,2);
@@ -111,8 +107,6 @@ class Dashboard extends MX_Controller {
 		$data['sum'] 		= $sum ;
 		$data['lottoInfo']  = $this->Dashboard_model->get_lotto($lotto_id);
 		$data['file_name']  = $file_name;
-
-		// $this->load->view('dashboard_to_pdf',$data);
 
 		$mpdf = new \Mpdf\Mpdf();
 		$html = $this->load->view('dashboard_to_pdf',$data,true);
@@ -142,13 +136,11 @@ class Dashboard extends MX_Controller {
 		}else{
 			$lotto_id 		= $this->input->post('lotto_id');
 			$agent_id 	 	= $this->input->post('agent_id');
-			// $lottoInfo		= $this->Dashboard_model->get_lotto($lotto_id);
 		}
 
 		if($agent_id!=0){
 			$data['agentInfo']	= $this->Dashboard_model->get_agent($agent_id);
 			$agentInfo	= $this->Dashboard_model->get_agents($agent_id);
-			// $this->check_lotto($lotto_id, $agent_id, $lottoInfo);
 
 			$data['agent_sent'] = $this->Dashboard_model->get_sum_agent_received($lotto_id,$agent_id);
 
@@ -168,12 +160,7 @@ class Dashboard extends MX_Controller {
 			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_agent_type_received($lotto_id,$agent_id,2);
 			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_agent_type_received($lotto_id,$agent_id,3);
 
-			// echo "<pre>";
-			// print_r($data['number_3tod']);
-			// exit();
-
 		}else{
-			// $this->check_lotto_all($lotto_id, $lottoInfo);
 			
 			$data['percent_total'] 		 = $this->get_percent($lotto_id,$data['list_agent']);
 
@@ -193,12 +180,57 @@ class Dashboard extends MX_Controller {
 			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_received($lotto_id,3);
 		}
 
-		// echo "<pre>";
-		// print_r($data['number_3tod'] );
-		// exit();
 		$data['content'] = 'report';
 
 		$this->load->view('header/admin_header',$data);
+	}
+
+	public function summary()
+	{
+		
+		$data['list_lotto'] = $this->Dashboard_model->list_lotto();
+
+		if(empty($this->input->post())){
+			$lottoInfo 	= $this->Dashboard_model->get_latest_lotto();
+			if(empty($lottoInfo)){
+				redirect('dashboard/index_non');
+			}
+			$lotto_id	= $lottoInfo['id'];
+		}else{
+			$lotto_id 	= $this->input->post('lotto_id');
+			$lottoInfo	= $this->Dashboard_model->get_lotto($lotto_id);
+		}
+
+		$data['summary'] = $this->Dashboard_model->get_sum_agents_received($lotto_id);
+		$data['content'] = 'summary';
+
+		$this->load->view('header/admin_header',$data);
+	}
+	
+	public function summary_pdf()
+	{
+		
+		$data['list_lotto'] = $this->Dashboard_model->list_lotto();
+
+		if(empty($this->input->post())){
+			$lottoInfo 	= $this->Dashboard_model->get_latest_lotto();
+			if(empty($lottoInfo)){
+				redirect('dashboard/index_non');
+			}
+			$lotto_id	= $lottoInfo['id'];
+		}else{
+			$lotto_id 	= $this->input->post('lotto_id');
+			$lottoInfo	= $this->Dashboard_model->get_lotto($lotto_id);
+		}
+
+		$data['summary'] = $this->Dashboard_model->get_sum_agents_received($lotto_id);
+		$file_name  = 'สรุปผลรวม_'.$lottoInfo['name'];
+
+		$mpdf = new \Mpdf\Mpdf();
+		$html = $this->load->view('summary_pdf',$data,true);
+		$mpdf->WriteHTML($html);
+		// $mpdf->Output();
+		$mpdf->Output($file_name.'.pdf','D');
 	}
 
 	private function check_lotto($lotto_id, $agent_id, $lottoInfo)
@@ -466,28 +498,6 @@ class Dashboard extends MX_Controller {
 
 	private function get_3tod_report($buy_number)
 	{
-		// $jackpot_3tod = array(
-		// 	'number' => $lottoInfo['3top'] ,
-		// 	'sent' 	 => 0
-		// );
-
-		// foreach ($buy_number as $key => $value) {
-
-		// 	for ($i=1; $i <= 6 ; $i++) { 
-
-		// 		if($value['number']===$lottoInfo['3_'.$i]){
-		// 			$jackpot_3tod['sent'] += $value['sent'];
-		// 			unset($buy_number[$key]);
-		// 		}
-
-		// 	}
-			
-		// }
-
-		// if($jackpot_3tod['sent'] != 0){
-		// 	array_push($buy_number,$jackpot_3tod);	
-		// 	sort($buy_number);
-		// }
 
 		$count_number = count($buy_number);
 

@@ -160,6 +160,24 @@ class Dashboard_model extends CI_Model {
 		return $query[0];
 	}
 
+	public function get_sum_agents_received($lotto_id)
+	{
+
+		$query = $this->db
+				->select('agent.*')
+				->select_sum('top')
+				->select_sum('bottom')
+				->select_sum('pay')
+				->select_sum('pay2')
+				->select_sum('total_pay')
+				->where('lotto_id',$lotto_id)
+				->join('buy' , 'buy.agent_id = agent.id' , 'inner' )
+				->group_by("agent.id")
+				->get('agent')
+				->result_array();
+		return $query;
+	}
+
 	public function get_sum_agent_type_received($lotto_id,$agent_id,$type)
 	{
 		$query = $this->db
