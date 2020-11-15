@@ -8,7 +8,7 @@
    <!-- Content Header (Page header) -->
    <section class="content-header">
       <h1>
-         สรุปยอดรวม
+         สรุปยอดรวม ประจำงวดที่ <input disabled type="date" name="lotto_id" class="noborder" id="datepicker" value="<?php echo $lotto['name']; ?>">
       </h1>
    </section>
    <!-- Main content -->
@@ -96,7 +96,7 @@
                                     <?php 
                                           $agent['total_net'] = ($agent['percent_price']+$agent['total_pay'])- $agent['sent'];
                                           $sum_net = $sum_net + $agent['total_net'];
-                                          if($agent['total_net']<0){
+                                          if($agent['total_net']<=0){
                                              echo '<span class="text-danger">';
                                           }else{
                                              echo '<span class="text-success">';
@@ -117,7 +117,7 @@
                                  <td class="text-right"><strong><?php echo number_format($sum_pay); ?></strong></td>
                                  <td class="text-right"><strong>
                                        <?php 
-                                          if($sum_net<0){
+                                          if($sum_net<=0){
                                              echo '<span class="text-danger">';
                                           }else{
                                              echo '<span class="text-success">';

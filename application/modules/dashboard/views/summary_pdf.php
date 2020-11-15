@@ -18,6 +18,10 @@
      border-width: 0 0 1px 1px;
      height: 32px;
    }
+   .noborder{
+   border: 0px !important;
+   background: none !important;
+   }
    </style>
 </head>
 
@@ -33,7 +37,7 @@
    <!-- Content Header (Page header) -->
    <section class="content-header">
       <h1>
-         สรุปยอดรวม
+         สรุปยอดรวม ประจำงวดที่ <input disabled type="date" name="lotto_id" class="noborder" id="datepicker" value="<?php echo $lotto['name']; ?>">
       </h1>
    </section>
    <!-- Main content -->

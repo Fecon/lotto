@@ -204,6 +204,7 @@ class Dashboard extends MX_Controller {
 		}
 
 		$data['summary'] = $this->Dashboard_model->get_sum_agents_received($lotto_id);
+		$data['lotto']	 = $lottoInfo;
 		$data['content'] = 'summary';
 
 		$this->load->view('header/admin_header',$data);
@@ -225,8 +226,10 @@ class Dashboard extends MX_Controller {
 			$lottoInfo	= $this->Dashboard_model->get_lotto($lotto_id);
 		}
 
-		$data['summary'] = $this->Dashboard_model->get_sum_agents_received($lotto_id);
-		$file_name  = 'สรุปผลรวม_'.$lottoInfo['name'];
+		$data['summary'] 	= $this->Dashboard_model->get_sum_agents_received($lotto_id);
+		$data['lotto']	 	= $lottoInfo;
+		$file_name  		= 'สรุปผลรวม_'.$lottoInfo['name'];
+		$data['file_name']  = $file_name;
 
 		$mpdf = new \Mpdf\Mpdf();
 		$html = $this->load->view('summary_pdf',$data,true);
