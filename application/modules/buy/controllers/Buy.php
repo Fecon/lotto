@@ -323,11 +323,13 @@ class Buy extends MX_Controller {
 
 	public function buy_delete()
 	{
-		$id 	= $this->uri->segment(3);
-		$page 	= $this->uri->segment(4);
-		$return = $this->Buy_model->buy_delete($id);
+		$id 		= $this->uri->segment(3);
+		$page 		= $this->uri->segment(4);
+		$agent_id 	= $this->uri->segment(5);
+		$return 	= $this->Buy_model->buy_delete($id);
 
 		if($return==1){
+			$this->session->set_userdata('last_agent_id', $agent_id);
 			$this->session->set_flashdata('update_buy', 'done');
 		}else{
 			$this->session->set_flashdata('update_buy', 'fail');
