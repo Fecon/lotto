@@ -90,7 +90,7 @@
               <input type='hidden' value="<?php echo $value['agent_id'] ?>" name='agent_id' class='form-control'>
               <button class="btn btn-success" type="submit"><i class="fa fa-check" ></i></button>
               &nbsp;&nbsp;&nbsp;
-              <a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('buy/buy_delete/'.$value['id'].'/history') ?>">
+              <a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('buy/buy_delete/'.$value['id'].'/history/'.$value['agent_id']) ?>">
               <i class="fa fa-times text-red" aria-hidden="true"></i></a>
               </td>
             </tr>
@@ -130,9 +130,10 @@
               <input type='number' min="0" value="<?php echo $value['bottom'] ?>" autocomplete='off' name='bottom' class='form-control'>
               </td>
               <td class="text-center">
+              <input type='hidden' value="<?php echo $value['agent_id'] ?>" name='agent_id' class='form-control'>
               <button class="btn btn-success" type="submit"><i class="fa fa-check" ></i></button>
               &nbsp;&nbsp;&nbsp;
-              <a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('buy/buy_delete/'.$value['id'].'/history') ?>">
+              <a onclick="return confirm('ยืนยันการลบ?')" href="<?php echo site_url('buy/buy_delete/'.$value['id'].'/history/'.$value['agent_id']) ?>">
               <i class="fa fa-times text-red" aria-hidden="true"></i></a>
               </td>
             </tr>
