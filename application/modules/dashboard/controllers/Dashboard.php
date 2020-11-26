@@ -187,6 +187,71 @@ class Dashboard extends MX_Controller {
 		$this->load->view('header/admin_header',$data);
 	}
 
+	public function report_api()
+	{
+
+		$config = $this->Dashboard_model->get_config();
+
+		if(empty($this->input->post())){
+			$lottoInfo 	= @$this->Dashboard_model->get_latest_lotto();
+			$lotto_id	= $lottoInfo['id'];
+			$agent_id	= 0;
+		}else{
+			$lotto_id 	= $this->input->post('lotto_id');
+			$agent_id 	= $this->input->post('agent_id');
+		}
+
+		if($agent_id!=0){
+			$data['agentInfo']	= $this->Dashboard_model->get_agent($agent_id);
+			$agentInfo			= $this->Dashboard_model->get_agents($agent_id);
+
+			$data['agent_sent'] = $this->Dashboard_model->get_sum_agent_received($lotto_id,$agent_id);
+
+			$data['percent_total'] 		 = $this->get_percent($lotto_id,$agentInfo);
+			$data['percent_2top'] 		 = $this->get_percent_type($lotto_id,$agentInfo,2,'top');
+			$data['percent_2bottom'] 	 = $this->get_percent_type($lotto_id,$agentInfo,2,'bottom');
+			$data['percent_3top'] 		 = $this->get_percent_type($lotto_id,$agentInfo,3,'top');
+			$data['percent_2tod'] 		 = $this->get_percent_type($lotto_id,$agentInfo,3,'bottom');
+
+			$data['number_2top'] 		 = $this->Dashboard_model->get_agent_buy_number($lotto_id,2,'top',$config[5]['value'],$agent_id);
+			$data['number_2bottom'] 	 = $this->Dashboard_model->get_agent_buy_number($lotto_id,2,'bottom',$config[5]['value'],$agent_id);
+			$data['number_3top'] 		 = $this->Dashboard_model->get_agent_buy_number($lotto_id,3,'top',$config[8]['value'],$agent_id);
+
+			$number_3tod				 = $this->Dashboard_model->get_agent_buy_number($lotto_id,3,'bottom',$config[11]['value'],$agent_id);
+			$data['number_3tod'] 	 	 = $this->get_3tod_report($number_3tod);	 
+
+			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_agent_type_received($lotto_id,$agent_id,2);
+			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_agent_type_received($lotto_id,$agent_id,3);
+
+		}else{
+			
+			$data['percent_total'] 		 = $this->get_percent($lotto_id,$data['list_agent']);
+
+			$data['percent_2top'] 		 = $this->get_percent_type($lotto_id,$data['list_agent'],2,'top');
+			$data['percent_2bottom'] 	 = $this->get_percent_type($lotto_id,$data['list_agent'],2,'bottom');
+			$data['percent_3top'] 		 = $this->get_percent_type($lotto_id,$data['list_agent'],3,'top');
+			$data['percent_2tod'] 		 = $this->get_percent_type($lotto_id,$data['list_agent'],3,'bottom');
+
+			$data['number_2top'] 		 = $this->Dashboard_model->get_total_buy_number($lotto_id,2,'top',$config[5]['value']);
+			$data['number_2bottom'] 	 = $this->Dashboard_model->get_total_buy_number($lotto_id,2,'bottom',$config[5]['value']);
+			$data['number_3top'] 		 = $this->Dashboard_model->get_total_buy_number($lotto_id,3,'top',$config[8]['value']);
+
+			$number_3tod				 = $this->Dashboard_model->get_total_buy_number($lotto_id,3,'bottom',$config[11]['value']);
+			$data['number_3tod'] 	 	 = $this->get_3tod_report($number_3tod);	
+
+			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_received($lotto_id,2);
+			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_received($lotto_id,3);
+		}
+
+		$data['lotto_id']	= $lotto_id;
+
+		// echo "<pre>";
+		// print_r($data);
+
+		echo json_encode($data);
+		// $this->load->view('header/admin_header',$data);
+	}
+
 	public function summary()
 	{
 		
