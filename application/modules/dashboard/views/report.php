@@ -281,8 +281,8 @@
 
           
 
-          document.getElementById('total_sent').innerHTML     = formatNumber(total_sent);
-          document.getElementById('total_net').innerHTML      = formatNumber(total_net);
+          document.getElementById('total_sent').innerHTML     = formatNumber(Math.round(total_sent));
+          document.getElementById('total_net').innerHTML      = formatNumber(Math.round(total_net));
 
           document.getElementById('2digi_top').innerHTML      = formatNumber(result.agent_sent['2digi']['top']);
           document.getElementById('2digi_bottom').innerHTML   = formatNumber(result.agent_sent['2digi']['bottom']);
