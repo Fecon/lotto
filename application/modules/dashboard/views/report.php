@@ -72,17 +72,6 @@
           <?php echo form_close(); ?>
         </div>
         <br>
-        <?php 
-            // Set Variable //
-              $sent_2digi         = $agent_sent['2digi']['top'] + $agent_sent['2digi']['bottom'];
-              $sent_2digi_display = number_format($sent_2digi);
-              $sent_3top          = $agent_sent['3digi']['top'];
-              $sent_3top_display  = number_format($sent_3top);
-              $sent_3tod          = $agent_sent['3digi']['bottom'];
-              $sent_3tod_display  = number_format($sent_3tod);
-              $total_sent         = $sent_2digi+$sent_3top+$sent_3tod;
-        ?>
-
         <div class="box box-info">
           <div class="box-body">
 
@@ -100,13 +89,11 @@
               </div>
               <div class="col-md-4">
                 <label>ยอดรวมทั้งหมดที่ส่งมา</label>
-                <span id="total_sent"><?php 
-                        echo number_format($total_sent);
-                      ?></span>
+                <span id="total_sent"></span>
               </div>
               <div class="col-md-3">
                 <label>ยอดรวมหัก % :</label>
-                <span id="total_net"><?php echo number_format($total_sent - $percent_total); ?></span>
+                <span id="total_net"></span>
               </div>
             </div>
             <br>
@@ -119,21 +106,13 @@
                   <tr>
                     <th class="text-center">ยอดรวม</th>
                     <th colspan="2" class="text-center">
-                      <span id="2digi_top">
-                        <?php 
-                          echo number_format($agent_sent['2digi']['top']);
-                        ?>
-                      </span> 
+                      <span id="2digi_top"></span> 
                     </th>
                   </tr>
                   <tr>
                     <th class="text-center">ยอดรวมหัก %</th>
                     <th colspan="2" class="text-center">
-                      <span id="2top_net">
-                        <?php 
-                          echo number_format($agent_sent['2digi']['top'] - $percent_2top);
-                        ?>
-                      </span> 
+                      <span id="2top_net"></span> 
                     </th>
                   </tr>
                 </table>
@@ -146,38 +125,6 @@
                     </tr>
                   </thead>
                   <tbody id="2digi_top_tr">
-                    <?php foreach ($number_2top as $key => $value) { 
-                            if($value['sent'] >= $config[3]['value']) {
-                              $bgClass = 'bg-red';
-                              $bgClass2 = 'bg-red';
-                            }elseif($value['sent'] > $config[4]['value']) {
-                              $bgClass = 'bg-yellow';
-                              $bgClass2 = '';
-                            }elseif($value['sent'] > $config[5]['value']) {
-                              $bgClass = 'bg-green';
-                              $bgClass2 = '';
-                            }else{
-                              $bgClass = '';
-                              $bgClass2 = '';
-                            }
-                    ?>
-                    <tr class="">
-                      <td class="text-center ">
-                        <span><?php echo $value['number'] ?></span>
-                      </td>
-                      <td class="text-center <?php echo $bgClass ; ?>">
-                        <span><?php echo number_format($value['sent']) ?></span>
-                      </td>
-                      <td class="text-center <?php echo $bgClass2 ; ?>">
-                        <span>
-                          <?php 
-                            if($value['sent'] >= $config[3]['value']){
-                              echo number_format($value['sent'] - $config[3]['value']) ; 
-                            }
-                          ?></span>
-                      </td>
-                    </tr>
-                    <?php } ?>
                   </tbody>
                 </table>
               </div>
@@ -190,26 +137,17 @@
                   <tr>
                     <th class="text-center">ยอดรวม</th>
                     <th colspan="2" class="text-center">
-                      <span id="2digi_bottom">
-                        <?php 
-                          echo number_format($agent_sent['2digi']['bottom']);
-                        ?>
-                      </span> 
+                      <span id="2digi_bottom"></span> 
                     </th>
                   </tr>
                   <tr>
                     <th class="text-center">ยอดรวมหัก %</th>
                     <th colspan="2" class="text-center">
-                      <span id="2bottom_net">
-                        <?php 
-                          echo number_format($agent_sent['2digi']['bottom'] - $percent_2bottom);
-                        ?>
-                      </span>
-                      
+                      <span id="2bottom_net"></span>                      
                     </th>
                   </tr>
                 </table>
-                <table class="table table-striped buyTable">
+                <table class="table table-striped buyTable" id="2digi_bottomTable">
                   <thead>
                     <tr>
                       <th class="text-center text-small">เลข</th>
@@ -217,39 +155,7 @@
                       <th class="text-center text-small">เกินมา</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <?php foreach ($number_2bottom as $key => $value) { 
-                            if($value['sent'] >= $config[3]['value']) {
-                              $bgClass = 'bg-red';
-                              $bgClass2 = 'bg-red';
-                            }elseif($value['sent'] > $config[4]['value']) {
-                              $bgClass = 'bg-yellow';
-                              $bgClass2 = '';
-                            }elseif($value['sent'] > $config[5]['value']) {
-                              $bgClass = 'bg-green';
-                              $bgClass2 = '';
-                            }else{
-                              $bgClass = '';
-                              $bgClass2 = '';
-                            }
-                    ?>
-                    <tr class="">
-                      <td class="text-center ">
-                        <span><?php echo $value['number'] ?></span>
-                      </td>
-                      <td class="text-center <?php echo $bgClass ; ?>">
-                        <span id=""><?php echo number_format($value['sent']) ?></span>
-                      </td>
-                      <td class="text-center <?php echo $bgClass2 ; ?>">
-                        <span>
-                          <?php 
-                            if($value['sent'] >= $config[3]['value']){
-                              echo number_format($value['sent'] - $config[3]['value']) ; 
-                            }
-                          ?></span>
-                      </td>
-                    </tr>
-                    <?php } ?>
+                  <tbody id="2digi_bottom_tr">
                   </tbody>
                 </table>
               </div>
@@ -262,25 +168,17 @@
                   <tr>
                     <th class="text-center">ยอดรวม</th>
                     <th colspan="2" class="text-center">
-                      <span id="3digi_top">
-                        <?php 
-                          echo number_format($agent_sent['3digi']['top']);
-                        ?>
-                      </span>
+                      <span id="3digi_top"></span>
                     </th>
                   </tr>
                   <tr>
                     <th class="text-center">ยอดรวมหัก %</th>
                     <th colspan="2" class="text-center">
-                      <span id="3top_net">
-                        <?php 
-                          echo number_format($agent_sent['3digi']['top'] - $percent_3top);
-                        ?>
-                      </span>
+                      <span id="3top_net"></span>
                     </th>
                   </tr>
                 </table>
-                <table class="table table-striped buyTable">
+                <table class="table table-striped buyTable" id="3digi_topTable">
                   <thead>
                     <tr>
                       <th class="text-center text-small">เลข</th>
@@ -288,40 +186,7 @@
                       <th class="text-center text-small">เกินมา</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <?php foreach ($number_3top as $key => $value) { 
-                            if($value['sent'] >= $config[6]['value']) {
-                              $bgClass = 'bg-red';
-                              $bgClass2 = 'bg-red';
-                            }elseif($value['sent'] > $config[7]['value']) {
-                              $bgClass = 'bg-yellow';
-                              $bgClass2 = '';
-                            }elseif($value['sent'] > $config[8]['value']) {
-                              $bgClass = 'bg-green';
-                              $bgClass2 = '';
-                            }else{
-                              $bgClass = '';
-                              $bgClass2 = '';
-                            }
-                    ?>
-                    <tr class="">
-                      <td class="text-center ">
-                        <span><?php echo $value['number'] ?></span>
-                      </td>
-                      <td class="text-center <?php echo $bgClass ; ?>">
-                        <span><?php echo number_format($value['sent']) ?></span>
-                      </td>
-                      <td class="text-center <?php echo $bgClass2 ; ?>">
-                        <span>
-                          <?php 
-                            if($value['sent'] >= $config[6]['value']){
-                              echo number_format($value['sent'] - $config[6]['value']) ; 
-                            }
-                          ?>
-                        </span>
-                      </td>
-                    </tr>
-                    <?php } ?>
+                  <tbody id="3digi_top_tr">
                   <tbody>
                 </table>
               </div>
@@ -334,25 +199,17 @@
                   <tr>
                     <th class="text-center">ยอดรวม</th>
                     <th colspan="2" class="text-center">
-                      <span id="3digi_tod">
-                        <?php 
-                          echo number_format($agent_sent['3digi']['bottom']);
-                        ?>
-                      </span>
+                      <span id="3digi_tod"></span>
                     </th>
                   </tr>
                   <tr>
                     <th class="text-center">ยอดรวมหัก %</th>
                     <th colspan="2" class="text-center">
-                      <span id="3tod_net">
-                        <?php 
-                          echo number_format($agent_sent['3digi']['bottom'] - $percent_3tod);
-                        ?>
-                      </span>
+                      <span id="3tod_net"></span>
                     </th>
                   </tr>
                 </table>
-                <table class="table table-striped buyTable">
+                <table class="table table-striped buyTable" id="3digi_todTable">
                   <thead>
                     <tr>
                       <th class="text-center text-small">เลข</th>
@@ -360,39 +217,7 @@
                       <th class="text-center text-small">เกินมา</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <?php foreach ($number_3tod as $key => $value) { 
-                            if($value['sent'] >= $config[9]['value']) {
-                              $bgClass = 'bg-red';
-                              $bgClass2 = 'bg-red';
-                            }elseif($value['sent'] > $config[10]['value']) {
-                              $bgClass = 'bg-yellow';
-                              $bgClass2 = '';
-                            }elseif($value['sent'] > $config[11]['value']) {
-                              $bgClass = 'bg-green';
-                              $bgClass2 = '';
-                            }else{
-                              $bgClass = '';
-                              $bgClass2 = '';
-                            }
-                    ?>
-                    <tr class="">
-                      <td class="text-center ">
-                        <span><?php echo $value['number'] ?></span>
-                      </td>
-                      <td class="text-center <?php echo $bgClass ; ?>">
-                        <span><?php echo number_format($value['sent']) ?></span>
-                      </td>
-                      <td class="text-center <?php echo $bgClass2 ; ?>">
-                        <span>
-                          <?php 
-                            if($value['sent'] >= $config[9]['value']){
-                              echo number_format($value['sent'] - $config[9]['value']) ; 
-                            }
-                          ?></span>
-                      </td>
-                    </tr>
-                    <?php } ?>
+                  <tbody id="3digi_tod_tr">
                   </tbody>
                 </table>
               </div>
@@ -417,10 +242,20 @@
     });
 
     function formatNumber(num) {
-      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+      if(num>0){
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+      }else{
+        return 0;
+      }
+      
     }
 
-    // load_data();
+    
+    function sortFunction(x, y) {
+      return y.sent - x.sent;
+    }
+
+    load_data();
     setInterval(function(){load_data(); }, 10000);
 
     function load_data(query)
@@ -458,8 +293,7 @@
           document.getElementById('2bottom_net').innerHTML    = formatNumber(sent_2bottom_net);
           document.getElementById('3top_net').innerHTML       = formatNumber(sent_3top_net);
           document.getElementById('3tod_net').innerHTML       = formatNumber(sent_3tod_net);
-          // $('#result').html(data);
-          // console.log(result.agent_sent['2digi']);
+
           var config_3 = <?php echo $config[3]['value'] ?> ;
           var config_4 = <?php echo $config[4]['value'] ?> ;
           var config_5 = <?php echo $config[5]['value'] ?> ;
@@ -470,15 +304,20 @@
           var config_10 = <?php echo $config[10]['value'] ?> ;
           var config_11 = <?php echo $config[11]['value'] ?> ;
 
-          console.log(result.number_2top);
+          // Start 2 Top //
+          var number_2top = result.number_2top;
+          var result_2top = [];
 
-
-
-          if(result.number_2top!= '') {
-
-              //$("#myTable tbody tr:not(:first-child)").remove();
+          for(let i in number_2top){
+            number_2top[i]['sent'] = parseInt(number_2top[i]['sent'])
+            result_2top.push(number_2top[i]);
+          }
+      
+          var arr_2top = result_2top.sort(sortFunction);
+        
+          if(arr_2top!= '') {
               $("#2digi_top_tr").empty();
-              $.each(result.number_2top, function(key, val) {
+              $.each(arr_2top, function(key, val) {
 
                   let bgClass = '' ;
                   let bgClass2 = '' ;
@@ -494,14 +333,156 @@
                     bgClass2 = '';
                   }
 
-                  var tr = "<tr>";
-                  tr = tr + "<td class='text-center'>" + val["number"] + "</td>";
-                  tr = tr + "<td class='text-center "+ bgClass +"'>" + formatNumber(val["sent"]) + "</td>";
-                  tr = tr + "<td class='text-center "+ bgClass2 +"'>" + formatNumber(parseInt(val["sent"]-config_3)) + "</td>";
-                  tr = tr + "</tr>";
-                  $('#2digi_topTable > tbody:last').append(tr);
+                  var sent_over = '';
+                  if(val['sent'] >= config_3){
+                    sent_over =  val["sent"] - config_3 ; 
+                  }
+
+                  var tr_2top = "<tr>";
+                  tr_2top = tr_2top + "<td class='text-center'>" + val["number"] + "</td>";
+                  tr_2top = tr_2top + "<td class='text-center "+ bgClass +"'>" + formatNumber(val["sent"]) + "</td>";
+                  tr_2top = tr_2top + "<td class='text-center "+ bgClass2 +"'>" + formatNumber(sent_over) + "</td>";
+                  tr_2top = tr_2top + "</tr>";
+                  $('#2digi_topTable').append(tr_2top);
               });
           }
+
+          // End 2 Top //
+
+          // Start 2 Bottom //
+          var number_2bottom = result.number_2bottom;
+          var result_2bottom = [];
+
+          for(let i in number_2bottom){
+            number_2bottom[i]['sent'] = parseInt(number_2bottom[i]['sent'])
+            result_2bottom.push(number_2bottom[i]);
+          }
+      
+          var arr_2bottom = result_2bottom.sort(sortFunction);
+        
+          if(arr_2bottom!= '') {
+              $("#2digi_bottom_tr").empty();
+              $.each(arr_2bottom, function(key, val) {
+
+                  let bgClass = '' ;
+                  let bgClass2 = '' ;
+
+                  if(val['sent'] >= config_3) {
+                    bgClass = 'bg-red';
+                    bgClass2 = 'bg-red';
+                  }else if(val['sent'] > config_4) {
+                    bgClass = 'bg-yellow';
+                    bgClass2 = '';
+                  }else if(val['sent'] > config_5) {
+                    bgClass = 'bg-green';
+                    bgClass2 = '';
+                  }
+
+                  var sent_over = '';
+                  if(val['sent'] >= config_3){
+                    sent_over =  val["sent"] - config_3 ; 
+                  }
+
+                  var tr_2bottom = "<tr>";
+                  tr_2bottom = tr_2bottom + "<td class='text-center'>" + val["number"] + "</td>";
+                  tr_2bottom = tr_2bottom + "<td class='text-center "+ bgClass +"'>" + formatNumber(val["sent"]) + "</td>";
+                  tr_2bottom = tr_2bottom + "<td class='text-center "+ bgClass2 +"'>" + formatNumber(sent_over) + "</td>";
+                  tr_2bottom = tr_2bottom + "</tr>";
+                  $('#2digi_bottomTable').append(tr_2bottom);
+              });
+          }
+
+          // End 2 Bottom //
+
+          // Start 3 Top //
+          var number_3top = result.number_3top;
+          var result_3top = [];
+
+          for(let i in number_3top){
+            number_3top[i]['sent'] = parseInt(number_3top[i]['sent'])
+            result_3top.push(number_3top[i]);
+          }
+      
+          var arr_3top = result_3top.sort(sortFunction);
+        
+          if(arr_3top!= '') {
+              $("#3digi_top_tr").empty();
+              $.each(arr_3top, function(key, val) {
+
+                  let bgClass = '' ;
+                  let bgClass2 = '' ;
+
+                  if(val['sent'] >= config_6) {
+                    bgClass = 'bg-red';
+                    bgClass2 = 'bg-red';
+                  }else if(val['sent'] > config_7) {
+                    bgClass = 'bg-yellow';
+                    bgClass2 = '';
+                  }else if(val['sent'] > config_8) {
+                    bgClass = 'bg-green';
+                    bgClass2 = '';
+                  }
+
+                  var sent_over = '';
+                  if(val['sent'] >= config_6){
+                    sent_over =  val["sent"] - config_6 ; 
+                  }
+
+                  var tr_3top = "<tr>";
+                  tr_3top = tr_3top + "<td class='text-center'>" + val["number"] + "</td>";
+                  tr_3top = tr_3top + "<td class='text-center "+ bgClass +"'>" + formatNumber(val["sent"]) + "</td>";
+                  tr_3top = tr_3top + "<td class='text-center "+ bgClass2 +"'>" + formatNumber(sent_over) + "</td>";
+                  tr_3top = tr_3top + "</tr>";
+                  $('#3digi_topTable').append(tr_3top);
+              });
+          }
+
+          // End 3 Top //
+
+          // Start 3 Tod //
+          var number_3tod = result.number_3tod;
+          var result_3tod = [];
+
+          for(let i in number_3tod){
+            number_3tod[i]['sent'] = parseInt(number_3tod[i]['sent'])
+            result_3tod.push(number_3tod[i]);
+          }
+      
+          var arr_3tod = result_3tod.sort(sortFunction);
+        
+          if(arr_3tod!= '') {
+              $("#3digi_tod_tr").empty();
+              $.each(arr_3tod, function(key, val) {
+
+                  let bgClass = '' ;
+                  let bgClass2 = '' ;
+
+                  if(val['sent'] >= config_9) {
+                    bgClass = 'bg-red';
+                    bgClass2 = 'bg-red';
+                  }else if(val['sent'] > config_10) {
+                    bgClass = 'bg-yellow';
+                    bgClass2 = '';
+                  }else if(val['sent'] > config_11) {
+                    bgClass = 'bg-green';
+                    bgClass2 = '';
+                  }
+
+                  var sent_over = '';
+                  if(val['sent'] >= config_6){
+                    sent_over =  val["sent"] - config_6 ; 
+                  }
+
+                  var tr_3tod = "<tr>";
+                  tr_3tod = tr_3tod + "<td class='text-center'>" + val["number"] + "</td>";
+                  tr_3tod = tr_3tod + "<td class='text-center "+ bgClass +"'>" + formatNumber(val["sent"]) + "</td>";
+                  tr_3tod = tr_3tod + "<td class='text-center "+ bgClass2 +"'>" + formatNumber(sent_over) + "</td>";
+                  tr_3tod = tr_3tod + "</tr>";
+                  $('#3digi_todTable').append(tr_3tod);
+              });
+          }
+
+          // End 3 Tod //
           
          }
       })
