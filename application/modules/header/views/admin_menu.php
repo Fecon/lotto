@@ -14,8 +14,13 @@
               </a>
             </li>
             <li>
+              <a href="<?php echo site_url('dashboard/report_fixable') ?>">
+                <i class="fa fa-table"></i> <span>ยอดรวม V.1</span>
+              </a>
+            </li>
+            <li>
               <a href="<?php echo site_url('dashboard/report') ?>">
-                <i class="fa fa-bar-chart"></i> <span>ยอดรวม</span>
+                <i class="fa fa-bar-chart"></i> <span>ยอดรวม V.2(Auto)</span>
               </a>
             </li>
             <li>

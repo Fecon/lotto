@@ -256,7 +256,15 @@
     }
 
     load_data();
-    setInterval(function(){load_data(); }, 10000);
+
+    var today = new Date();
+    today.setHours(0,0,0,0);
+    var lottoDate = new Date('<?php echo $lotto['name']; ?>');
+    lottoDate.setHours(0,0,0,0);
+
+    if(today<=lottoDate){
+      setInterval(function(){load_data(); }, 45000);
+    }
 
     function load_data(query)
      {
@@ -333,15 +341,15 @@
                     bgClass2 = '';
                   }
 
-                  var sent_over = '';
+                  let sent_over = '';
                   if(val['sent'] >= config_3){
-                    sent_over =  val["sent"] - config_3 ; 
+                    sent_over =  formatNumber(val["sent"] - config_3) ; 
                   }
 
                   var tr_2top = "<tr>";
                   tr_2top = tr_2top + "<td class='text-center'>" + val["number"] + "</td>";
                   tr_2top = tr_2top + "<td class='text-center "+ bgClass +"'>" + formatNumber(val["sent"]) + "</td>";
-                  tr_2top = tr_2top + "<td class='text-center "+ bgClass2 +"'>" + formatNumber(sent_over) + "</td>";
+                  tr_2top = tr_2top + "<td class='text-center "+ bgClass2 +"'>" + sent_over + "</td>";
                   tr_2top = tr_2top + "</tr>";
                   $('#2digi_topTable').append(tr_2top);
               });
@@ -378,15 +386,15 @@
                     bgClass2 = '';
                   }
 
-                  var sent_over = '';
+                  let sent2bottom_over = '';
                   if(val['sent'] >= config_3){
-                    sent_over =  val["sent"] - config_3 ; 
+                    sent2bottom_over =  formatNumber(val["sent"] - config_3) ; 
                   }
 
                   var tr_2bottom = "<tr>";
                   tr_2bottom = tr_2bottom + "<td class='text-center'>" + val["number"] + "</td>";
                   tr_2bottom = tr_2bottom + "<td class='text-center "+ bgClass +"'>" + formatNumber(val["sent"]) + "</td>";
-                  tr_2bottom = tr_2bottom + "<td class='text-center "+ bgClass2 +"'>" + formatNumber(sent_over) + "</td>";
+                  tr_2bottom = tr_2bottom + "<td class='text-center "+ bgClass2 +"'>" + sent2bottom_over + "</td>";
                   tr_2bottom = tr_2bottom + "</tr>";
                   $('#2digi_bottomTable').append(tr_2bottom);
               });
@@ -423,15 +431,15 @@
                     bgClass2 = '';
                   }
 
-                  var sent_over = '';
+                  let sent3top_over = '';
                   if(val['sent'] >= config_6){
-                    sent_over =  val["sent"] - config_6 ; 
+                    sent3top_over =  formatNumber(val["sent"] - config_6) ; 
                   }
 
                   var tr_3top = "<tr>";
                   tr_3top = tr_3top + "<td class='text-center'>" + val["number"] + "</td>";
                   tr_3top = tr_3top + "<td class='text-center "+ bgClass +"'>" + formatNumber(val["sent"]) + "</td>";
-                  tr_3top = tr_3top + "<td class='text-center "+ bgClass2 +"'>" + formatNumber(sent_over) + "</td>";
+                  tr_3top = tr_3top + "<td class='text-center "+ bgClass2 +"'>" + sent3top_over + "</td>";
                   tr_3top = tr_3top + "</tr>";
                   $('#3digi_topTable').append(tr_3top);
               });
@@ -468,15 +476,15 @@
                     bgClass2 = '';
                   }
 
-                  var sent_over = '';
-                  if(val['sent'] >= config_6){
-                    sent_over =  val["sent"] - config_6 ; 
+                  let sent3tod_over = '';
+                  if(val['sent'] >= config_9){
+                    sent3tod_over =  formatNumber(val["sent"] - config_9) ; 
                   }
 
                   var tr_3tod = "<tr>";
                   tr_3tod = tr_3tod + "<td class='text-center'>" + val["number"] + "</td>";
                   tr_3tod = tr_3tod + "<td class='text-center "+ bgClass +"'>" + formatNumber(val["sent"]) + "</td>";
-                  tr_3tod = tr_3tod + "<td class='text-center "+ bgClass2 +"'>" + formatNumber(sent_over) + "</td>";
+                  tr_3tod = tr_3tod + "<td class='text-center "+ bgClass2 +"'>" + sent3tod_over + "</td>";
                   tr_3tod = tr_3tod + "</tr>";
                   $('#3digi_todTable').append(tr_3tod);
               });

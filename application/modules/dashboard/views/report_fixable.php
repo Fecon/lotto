@@ -30,7 +30,7 @@
   <section class="content">
     <div class="row">
       <div class="col-md-12">
-        <?php echo form_open('dashboard/report/')?>
+        <?php echo form_open('dashboard/report_fixable/')?>
         <div class="row">
           <div class="col-md-3">
             <div class="form-group">
