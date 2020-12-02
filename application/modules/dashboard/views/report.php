@@ -263,7 +263,7 @@
     lottoDate.setHours(0,0,0,0);
 
     if(today<=lottoDate){
-      setInterval(function(){load_data(); }, 45000);
+      setInterval(function(){load_data(); }, 20000);
     }
 
     function load_data(query)
@@ -289,7 +289,7 @@
 
           
 
-          document.getElementById('total_sent').innerHTML     = formatNumber(Math.round(total_sent));
+          document.getElementById('total_sent').innerHTML     = formatNumber(total_sent);
           document.getElementById('total_net').innerHTML      = formatNumber(Math.round(total_net));
 
           document.getElementById('2digi_top').innerHTML      = formatNumber(result.agent_sent['2digi']['top']);

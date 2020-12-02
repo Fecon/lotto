@@ -335,7 +335,7 @@
                     <th class="text-center">ยอดรวมหัก %</th>
                     <th colspan="2" class="text-center">
                       <?php 
-                        echo number_format($agent_sent['3digi']['bottom'] - $percent_2tod);
+                        echo number_format($agent_sent['3digi']['bottom'] - $percent_3tod);
                       ?>
                     </th>
                   </tr>

@@ -151,7 +151,8 @@ class Dashboard extends MX_Controller {
 	{
 
 		$data['list_lotto'] = $this->Dashboard_model->list_lotto();
-		$data['list_agent'] = $this->Dashboard_model->list_agent();
+		$list_agent 		= $this->Dashboard_model->list_agent();
+		$data['list_agent'] = $list_agent;
 		$config 			= $this->Dashboard_model->get_config();
 		$data['config'] 	= $config;
 
@@ -170,11 +171,11 @@ class Dashboard extends MX_Controller {
 
 			$data['agent_sent'] = $this->Dashboard_model->get_sum_agent_received($lotto_id,$agent_id);
 
-			$data['percent_total'] 		 = $this->get_percent($lotto_id,$agentInfo);
-			$data['percent_2top'] 		 = $this->get_percent_type($lotto_id,$agentInfo,2,'top');
-			$data['percent_2bottom'] 	 = $this->get_percent_type($lotto_id,$agentInfo,2,'bottom');
-			$data['percent_3top'] 		 = $this->get_percent_type($lotto_id,$agentInfo,3,'top');
-			$data['percent_2tod'] 		 = $this->get_percent_type($lotto_id,$agentInfo,3,'bottom');
+			$data['percent_total'] 		 = round($this->get_percent($lotto_id,$agentInfo),0);
+			$data['percent_2top'] 		 = round($this->get_percent_type($lotto_id,$agentInfo,2,'top'),0);
+			$data['percent_2bottom'] 	 = round($this->get_percent_type($lotto_id,$agentInfo,2,'bottom'),0);
+			$data['percent_3top'] 		 = round($this->get_percent_type($lotto_id,$agentInfo,3,'top'),0);
+			$data['percent_3tod'] 		 = round($this->get_percent_type($lotto_id,$agentInfo,3,'bottom'),0);
 
 			$data['number_2top'] 		 = $this->Dashboard_model->get_agent_buy_number($lotto_id,2,'top',$config[5]['value'],$agent_id);
 			$data['number_2bottom'] 	 = $this->Dashboard_model->get_agent_buy_number($lotto_id,2,'bottom',$config[5]['value'],$agent_id);
@@ -190,10 +191,10 @@ class Dashboard extends MX_Controller {
 			
 			$data['percent_total'] 		 = $this->get_percent($lotto_id,$data['list_agent']);
 
-			$data['percent_2top'] 		 = $this->get_percent_type($lotto_id,$data['list_agent'],2,'top');
-			$data['percent_2bottom'] 	 = $this->get_percent_type($lotto_id,$data['list_agent'],2,'bottom');
-			$data['percent_3top'] 		 = $this->get_percent_type($lotto_id,$data['list_agent'],3,'top');
-			$data['percent_2tod'] 		 = $this->get_percent_type($lotto_id,$data['list_agent'],3,'bottom');
+			$data['percent_2top'] 		 = round($this->get_percent_type($lotto_id,$list_agent,2,'top'),0);
+			$data['percent_2bottom'] 	 = round($this->get_percent_type($lotto_id,$list_agent,2,'bottom'),0);
+			$data['percent_3top'] 		 = round($this->get_percent_type($lotto_id,$list_agent,3,'top'),0);
+			$data['percent_3tod'] 		 = round($this->get_percent_type($lotto_id,$list_agent,3,'bottom'),0);
 
 			$data['number_2top'] 		 = $this->Dashboard_model->get_total_buy_number($lotto_id,2,'top',$config[5]['value']);
 			$data['number_2bottom'] 	 = $this->Dashboard_model->get_total_buy_number($lotto_id,2,'bottom',$config[5]['value']);
@@ -205,6 +206,10 @@ class Dashboard extends MX_Controller {
 			$data['agent_sent']['2digi'] = $this->Dashboard_model->get_sum_received($lotto_id,2);
 			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_received($lotto_id,3);
 		}
+
+		// echo "<pre>";
+		// print_r($data);
+		// exit();
 
 		$data['lotto_id']	= $lotto_id;
 		$data['content'] 	= 'report_fixable';
@@ -232,11 +237,11 @@ class Dashboard extends MX_Controller {
 
 			$data['agent_sent'] = $this->Dashboard_model->get_sum_agent_received($lotto_id,$agent_id);
 
-			$data['percent_total'] 		 = $this->get_percent($lotto_id,$agentInfo);
-			$data['percent_2top'] 		 = $this->get_percent_type($lotto_id,$agentInfo,2,'top');
-			$data['percent_2bottom'] 	 = $this->get_percent_type($lotto_id,$agentInfo,2,'bottom');
-			$data['percent_3top'] 		 = $this->get_percent_type($lotto_id,$agentInfo,3,'top');
-			$data['percent_3tod'] 		 = $this->get_percent_type($lotto_id,$agentInfo,3,'bottom');
+			$data['percent_total'] 		 = round($this->get_percent($lotto_id,$agentInfo),0);
+			$data['percent_2top'] 		 = round($this->get_percent_type($lotto_id,$agentInfo,2,'top'),0);
+			$data['percent_2bottom'] 	 = round($this->get_percent_type($lotto_id,$agentInfo,2,'bottom'),0);
+			$data['percent_3top'] 		 = round($this->get_percent_type($lotto_id,$agentInfo,3,'top'),0);
+			$data['percent_3tod'] 		 = round($this->get_percent_type($lotto_id,$agentInfo,3,'bottom'),0);
 
 			$data['number_2top'] 		 = $this->Dashboard_model->get_agent_buy_number($lotto_id,2,'top',$config[5]['value'],$agent_id);
 			$data['number_2bottom'] 	 = $this->Dashboard_model->get_agent_buy_number($lotto_id,2,'bottom',$config[5]['value'],$agent_id);
@@ -252,10 +257,10 @@ class Dashboard extends MX_Controller {
 			
 			$data['percent_total'] 		 = $this->get_percent($lotto_id,$list_agent);
 
-			$data['percent_2top'] 		 = $this->get_percent_type($lotto_id,$list_agent,2,'top');
-			$data['percent_2bottom'] 	 = $this->get_percent_type($lotto_id,$list_agent,2,'bottom');
-			$data['percent_3top'] 		 = $this->get_percent_type($lotto_id,$list_agent,3,'top');
-			$data['percent_3tod'] 		 = $this->get_percent_type($lotto_id,$list_agent,3,'bottom');
+			$data['percent_2top'] 		 = round($this->get_percent_type($lotto_id,$list_agent,2,'top'),0);
+			$data['percent_2bottom'] 	 = round($this->get_percent_type($lotto_id,$list_agent,2,'bottom'),0);
+			$data['percent_3top'] 		 = round($this->get_percent_type($lotto_id,$list_agent,3,'top'),0);
+			$data['percent_3tod'] 		 = round($this->get_percent_type($lotto_id,$list_agent,3,'bottom'),0);
 
 			$data['number_2top'] 		 = $this->Dashboard_model->get_total_buy_number($lotto_id,2,'top',$config[5]['value']);
 			$data['number_2bottom'] 	 = $this->Dashboard_model->get_total_buy_number($lotto_id,2,'bottom',$config[5]['value']);
