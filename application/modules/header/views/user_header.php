@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Lotto" />
 <meta name="author" content="Fecon" />
-<link rel="shortcut icon" href="<?php echo base_url('assets/dist/img/research-development-icon.png') ?>">
+<link rel="shortcut icon" href="<?php echo base_url('assets/dist/img/lotto-ico.png') ?>">
 <title>Lotte Lucky</title>
 
 <!-- Bootstrap 3.3.5 -->

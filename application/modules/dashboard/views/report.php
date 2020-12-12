@@ -263,7 +263,7 @@
     lottoDate.setHours(0,0,0,0);
 
     if(today<=lottoDate){
-      setInterval(function(){load_data(); }, 20000);
+      setInterval(function(){load_data(); }, 15000);
     }
 
     function load_data(query)
