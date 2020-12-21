@@ -350,6 +350,7 @@ class Dashboard extends MX_Controller {
 		$file_name  		= 'รายงาน_'.$lottoInfo['name'];
 		$data['file_name']  = $file_name;
 
+		// $this->load->view('report_pdf',$data);
 
 		$mpdf = new \Mpdf\Mpdf();
 		$html = $this->load->view('report_pdf',$data,true);

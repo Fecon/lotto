@@ -5,10 +5,15 @@
    <meta charset="UTF-8" />
 
 <style>
-
+  #table td{
+    font-family: "THSarabun";
+    width:25% !important;
+    max-width:25% !important;
+   }
+  }
   body{
       font-family: "THSarabun";
-      font-size: 32pt !important;
+      font-size: 16pt !important;
    }
    table, table td {
      border: solid black;
@@ -16,9 +21,13 @@
    table {
      border-width: 1px 1px 0 0;
    }
+   table th {
+     border-width: 0 0 1px 1px;
+     font-size: 16pt !important;
+   }
    table td {
      border-width: 0 0 1px 1px;
-     font-size: 32pt !important;
+     font-size: 16pt !important;
    }
    table tr {
       page-break-before: avoid;
@@ -27,6 +36,9 @@
    border: 0px !important;
    background: none !important;
    }
+   tr:nth-child(even) {
+     background-color: #f2f2f2;
+    }
 
   .bg-red {
 /*    background-color: red !important;
@@ -51,8 +63,12 @@
 </head>
 
 <body>
-
-<div class="content-wrapper">
+<?php 
+  function ceil100($number)
+  {
+    return ceil( $number / 100 ) * 100;
+  }
+?>
   <!-- Main content -->
 
         <?php 
@@ -66,33 +82,39 @@
               $total_sent       = $sent_2digi+$sent_3top+$sent_3tod;
         ?>
 
+        <table id="table" width="100%" cellspacing="1" cellpadding="1" style="border:none !important;table-layout:fixed">
+        <tr>
+              <td valign="top" style="max-width:620px !important;border:none !important;">
 
-            <table width="100%" style="width: 2480px;border:0 0 0 0">
-            <tr>
-            <td width="620px" valign="top" style="border-width: 0 0 0 0;"> 
-
-                <table class="table table-striped" width="100%">
+                <table width="100%">
                   <tr>
-                    <th colspan="3" class="text-center">2 ตัวบน</th>
+                    <td colspan="3" align="center"><strong>2 ตัวบน</strong></td>
                   </tr>
                   <tr>
-                    <th class="text-center">ยอดรวม</th>
-                    <th colspan="2" class="text-center">
+                    <td style="width:50% !important;" align="center"><strong>ยอดรวม</strong></td>
+                    <td colspan="2" align="center"><span id="sum_2top"></span>
                       <?php 
-                        echo number_format($agent_sent['2digi']['top']);
+                        $sum_2top = 0;
+                        foreach ($number_2top as $key => $value) { 
+                          if($value['sent'] >= $config[3]['value']){
+                            $sum_2top += ceil100($value['sent'] - $config[3]['value'] ) ; 
+                          }
+                        }
+                        echo number_format($sum_2top);
                       ?>
-                    </th>
+                    </td>
                   </tr>
                 </table>
-                <table class="table table-striped buyTable" width="100%">
+                <table width="100%">
                   <thead>
                     <tr>
-                      <th class="text-center text-small">เลข</th>
-                      <th class="text-center text-small">เกินมา</th>
+                      <td style="width:50% !important;" align="center"><strong>เลข</strong></td>
+                      <td align="center"><strong>จำนวนเงิน</strong></td>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($number_2top as $key => $value) { 
+                    <?php 
+                          foreach ($number_2top as $key => $value) { 
                             $hideTd = 'td-hide';
                             if($value['sent'] >= $config[3]['value']) {
                               $bgClass  = 'bg-red';
@@ -117,7 +139,7 @@
                         <span>
                           <?php 
                             if($value['sent'] >= $config[3]['value']){
-                              echo number_format($value['sent'] - $config[3]['value']) ; 
+                              echo number_format(ceil100($value['sent'] - $config[3]['value'])) ; 
                             }
                           ?></span>
                       </td>
@@ -128,30 +150,38 @@
           
 
               </td>
-              <td width="620px" valign="top" style="border-width: 0 0 0 0;">
               
-                <table class="table table-striped" width="100%">
+              <td valign="top" style="max-width:620px !important;border:none !important;" >
+              
+                <table width="100%">
                   <tr>
-                    <th colspan="3" class="text-center">2 ตัวล่าง</th>
+                    <td colspan="3" align="center"><strong>2 ตัวล่าง</strong></td>
                   </tr>
                   <tr>
-                    <th class="text-center">ยอดรวม</th>
-                    <th colspan="2" class="text-center">
+                    <td style="width:50% !important;" align="center"><strong>ยอดรวม</strong></td>
+                    <td colspan="2" align="center">
                       <?php 
-                        echo number_format($agent_sent['2digi']['bottom']);
+                        $sum_2bottom = 0;
+                        foreach ($number_2bottom as $key => $value) { 
+                          if($value['sent'] >= $config[3]['value']){
+                            $sum_2bottom += ceil100($value['sent'] - $config[3]['value'] ) ; 
+                          }
+                        }
+                        echo number_format($sum_2bottom);
                       ?>
-                    </th>
+                    </td>
                   </tr>
                 </table>
-                <table class="table table-striped buyTable" width="100%">
+                <table width="100%">
                   <thead>
                     <tr>
-                      <th class="text-center text-small">เลข</th>
-                      <th class="text-center text-small">เกินมา</th>
+                      <td style="width:50% !important;" align="center"><strong>เลข</strong></td>
+                      <td align="center"><strong>จำนวนเงิน</strong></td>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($number_2bottom as $key => $value) { 
+                    <?php 
+                          foreach ($number_2bottom as $key => $value) { 
                             $hideTd = 'td-hide';
                             if($value['sent'] >= $config[3]['value']) {
                               $bgClass  = 'bg-red';
@@ -176,7 +206,7 @@
                         <span>
                           <?php 
                             if($value['sent'] >= $config[3]['value']){
-                              echo number_format($value['sent'] - $config[3]['value']) ; 
+                              echo number_format(ceil100($value['sent'] - $config[3]['value'])) ; 
                             }
                           ?></span>
                       </td>
@@ -187,31 +217,38 @@
          
 
               </td>
-              <td width="620px" valign="top" style="border-width: 0 0 0 0;">
-
               
-                <table class="table table-striped" width="100%">
+              <td valign="top" style="max-width:620px !important;border:none !important;" >
+              
+                <table width="100%">
                   <tr>
-                    <th colspan="3" class="text-center">3 ตัวตรง</th>
+                    <td colspan="3" align="center"><strong>3 ตัวตรง</strong></td>
                   </tr>
                   <tr>
-                    <th class="text-center">ยอดรวม</th>
-                    <th colspan="2" class="text-center">
+                    <td style="width:50% !important;" align="center"><strong>ยอดรวม</strong></td>
+                    <td colspan="2" align="center"><span id="sum_3top"></span>
                       <?php 
-                        echo number_format($agent_sent['3digi']['top']);
+                        $sum_3top = 0;
+                        foreach ($number_3top as $key => $value) { 
+                          if($value['sent'] >= $config[6]['value']){
+                            $sum_3top += ceil100($value['sent'] - $config[6]['value'] ) ; 
+                          }
+                        }
+                        echo number_format($sum_3top);
                       ?>
-                    </th>
+                    </td>
                   </tr>
                 </table>
-                <table class="table table-striped buyTable" width="100%">
+                <table width="100%">
                   <thead>
                     <tr>
-                      <th class="text-center text-small">เลข</th>
-                      <th class="text-center text-small">เกินมา</th>
+                      <td style="width:50% !important;" align="center"><strong>เลข</strong></td>
+                      <td align="center"><strong>จำนวนเงิน</strong></td>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($number_3top as $key => $value) { 
+                    <?php 
+                          foreach ($number_3top as $key => $value) { 
                             $hideTd = 'td-hide';
                             if($value['sent'] >= $config[6]['value']) {
                               $bgClass  = 'bg-red';
@@ -236,7 +273,7 @@
                         <span>
                           <?php 
                             if($value['sent'] >= $config[6]['value']){
-                              echo number_format($value['sent'] - $config[6]['value']) ; 
+                              echo number_format(ceil100($value['sent'] - $config[6]['value'])) ;  
                             }
                           ?>
                         </span>
@@ -248,30 +285,38 @@
 
 
               </td>
-              <td width="620px" valign="top" style="border-width: 0 0 0 0;">
+              
+              <td valign="top" style="max-width:620px !important;border:none !important;" >
 
-                <table class="table table-striped" width="52.5mm">
+                <table width="100%">
                   <tr>
-                    <th colspan="3" class="text-center">3 ตัวโต๊ด</th>
+                    <td colspan="3" align="center"><strong>3 ตัวโต๊ด</strong></td>
                   </tr>
                   <tr>
-                    <th class="text-center">ยอดรวม</th>
-                    <th colspan="2" class="text-center">
+                    <td style="width:50% !important;" align="center"><strong>ยอดรวม</strong></td>
+                    <td colspan="2" align="center">
                       <?php 
-                        echo number_format($agent_sent['3digi']['bottom']);
+                        $sum_3tod = 0;
+                        foreach ($number_3tod as $key => $value) { 
+                          if($value['sent'] >= $config[9]['value']){
+                            $sum_3tod += ceil100($value['sent'] - $config[9]['value'] ) ; 
+                          }
+                        }
+                        echo number_format($sum_3tod);
                       ?>
-                    </th>
+                    </td>
                   </tr>
                 </table>
-                <table class="table table-striped buyTable" width="52.5mm">
+                <table width="100%">
                   <thead>
                     <tr>
-                      <th class="text-center text-small">เลข</th>
-                      <th class="text-center text-small">เกินมา</th>
+                      <td style="width:50% !important;" align="center"><strong>เลข</strong></td>
+                      <td align="center"><strong>จำนวนเงิน</strong></td>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($number_3tod as $key => $value) { 
+                    <?php 
+                          foreach ($number_3tod as $key => $value) { 
                             if($value['sent'] >= $config[9]['value']) {
                               $bgClass  = 'bg-red';
                               $bgClass2 = 'bg-red';
@@ -285,7 +330,7 @@
                         <span>
                           <?php 
                             if($value['sent'] >= $config[9]['value']){
-                              echo number_format($value['sent'] - $config[9]['value']) ; 
+                              echo number_format(ceil100($value['sent'] - $config[9]['value'])) ; 
                             }
                           ?></span>
                       </td>
@@ -297,9 +342,6 @@
 
               </td>
               </tr>
-            </table>
-
-  <!-- /.content -->
-</div>
+              </table>
 </body>
 </html>
