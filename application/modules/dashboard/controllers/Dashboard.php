@@ -336,6 +336,10 @@ class Dashboard extends MX_Controller {
 			$data['agent_sent']['3digi'] = $this->Dashboard_model->get_sum_received($lotto_id,3);
 		}
 
+		array_multisort( array_column( $data['number_2top'], 'sent' ), SORT_DESC , SORT_NUMERIC, $data['number_2top'] );
+		array_multisort( array_column( $data['number_2bottom'], 'sent' ), SORT_DESC , SORT_NUMERIC, $data['number_2bottom'] );
+		array_multisort( array_column( $data['number_3top'], 'sent' ), SORT_DESC , SORT_NUMERIC, $data['number_3top'] );
+		array_multisort( array_column( $data['number_3tod'], 'sent' ), SORT_DESC , SORT_NUMERIC, $data['number_3tod'] );
 		// echo "<pre>";
 		// print_r($data);
 		// exit();
@@ -345,6 +349,7 @@ class Dashboard extends MX_Controller {
 
 		$file_name  		= 'รายงาน_'.$lottoInfo['name'];
 		$data['file_name']  = $file_name;
+
 
 		$mpdf = new \Mpdf\Mpdf();
 		$html = $this->load->view('report_pdf',$data,true);
