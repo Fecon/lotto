@@ -83,6 +83,14 @@
                       ?>
                     </th>
                   </tr>
+                  <tr>
+                    <th class="text-center">ยอดรวมหัก 25%</th>
+                    <th colspan="2" class="text-center">
+                      <?php 
+                        echo number_format($agent_sent['2digi']['top']*0.75);
+                      ?>
+                    </th>
+                  </tr>
                 </table>
                 <table class="table table-striped buyTable" width="100%">
                   <thead>
@@ -139,6 +147,14 @@
                     <th colspan="2" class="text-center">
                       <?php 
                         echo number_format($agent_sent['2digi']['bottom']);
+                      ?>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center">ยอดรวมหัก 25%</th>
+                    <th colspan="2" class="text-center">
+                      <?php 
+                        echo number_format($agent_sent['2digi']['bottom']*0.75);
                       ?>
                     </th>
                   </tr>
@@ -202,6 +218,14 @@
                       ?>
                     </th>
                   </tr>
+                  <tr>
+                    <th class="text-center">ยอดรวมหัก 25%</th>
+                    <th colspan="2" class="text-center">
+                      <?php 
+                        echo number_format($agent_sent['3digi']['top']*0.75);
+                      ?>
+                    </th>
+                  </tr>
                 </table>
                 <table class="table table-striped buyTable" width="100%">
                   <thead>
@@ -259,6 +283,14 @@
                     <th colspan="2" class="text-center">
                       <?php 
                         echo number_format($agent_sent['3digi']['bottom']);
+                      ?>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="text-center">ยอดรวมหัก 25%</th>
+                    <th colspan="2" class="text-center">
+                      <?php 
+                        echo number_format($agent_sent['3digi']['bottom']*0.75);
                       ?>
                     </th>
                   </tr>
