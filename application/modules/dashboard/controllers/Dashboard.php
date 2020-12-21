@@ -343,7 +343,7 @@ class Dashboard extends MX_Controller {
 		// echo "<pre>";
 		// print_r($data);
 		// exit();
-
+		$data['lottoInfo']  = $this->Dashboard_model->get_lotto($lotto_id);
 		$data['lotto_id']	= $lotto_id;
 		$data['content'] 	= 'report_fixable';
 

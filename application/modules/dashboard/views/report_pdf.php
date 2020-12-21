@@ -9,55 +9,36 @@
     font-family: "THSarabun";
     width:25% !important;
     max-width:25% !important;
-   }
   }
+
   body{
       font-family: "THSarabun";
-      font-size: 16pt !important;
+      font-size: 12pt !important;
    }
    table, table td {
      border: solid black;
    }
    table {
      border-width: 1px 1px 0 0;
+     border-color: #999999;
    }
    table th {
      border-width: 0 0 1px 1px;
      font-size: 16pt !important;
+     border-color: #999999;
    }
    table td {
      border-width: 0 0 1px 1px;
      font-size: 16pt !important;
+     border-color: #999999;
    }
    table tr {
       page-break-before: avoid;
-   }
-   .noborder{
-   border: 0px !important;
-   background: none !important;
    }
    tr:nth-child(even) {
      background-color: #f2f2f2;
     }
 
-  .bg-red {
-/*    background-color: red !important;
-    color: #FFF*/
-  }
-
-  .bg-yellow {
-    background-color: #ffc300 !important;
-    color: #000
-  }
-
-  .bg-green {
-    background-color: #019d49 !important;
-    color: #FFF
-  }
-
-  .td-hide {
-    display:none;
-  }
 </style>
 
 </head>
@@ -68,6 +49,23 @@
   {
     return ceil( $number / 100 ) * 100;
   }
+
+  $month_arr=array(
+      "1"=>"มกราคม",
+      "2"=>"กุมภาพันธ์",
+      "3"=>"มีนาคม",
+      "4"=>"เมษายน",
+      "5"=>"พฤษภาคม",
+      "6"=>"มิถุนายน", 
+      "7"=>"กรกฎาคม",
+      "8"=>"สิงหาคม",
+      "9"=>"กันยายน",
+      "10"=>"ตุลาคม",
+      "11"=>"พฤศจิกายน",
+      "12"=>"ธันวาคม"                 
+  );
+ 
+
 ?>
   <!-- Main content -->
 
@@ -81,18 +79,28 @@
               $sent_3tod_display = number_format($sent_3tod);
               $total_sent       = $sent_2digi+$sent_3top+$sent_3tod;
         ?>
-
+        <table width="100%" cellspacing="1" cellpadding="1" style="border:none !important;table-layout:fixed;">
+          <tr>
+            <td style="border:none !important;">
+              <strong style="font-size: 14pt;">งวดประจำวันที่ <?php  $date = new DateTime($lottoInfo['name']);
+                                
+                                echo $date->format('d')." ".$month_arr[$date->format('n')]." ".($date->format('Y')+543);
+                         ?>
+              </strong>
+            </td>
+          </tr>
+        </table>
         <table id="table" width="100%" cellspacing="1" cellpadding="1" style="border:none !important;table-layout:fixed">
         <tr>
               <td valign="top" style="max-width:620px !important;border:none !important;">
 
                 <table width="100%">
                   <tr>
-                    <td colspan="3" align="center"><strong>2 ตัวบน</strong></td>
+                    <td colspan="2" align="center"><strong>2 ตัวบน</strong></td>
                   </tr>
                   <tr>
-                    <td style="width:50% !important;" align="center"><strong>ยอดรวม</strong></td>
-                    <td colspan="2" align="center"><span id="sum_2top"></span>
+                    <td style="width:50% !important;" align="center">ยอดรวม</td>
+                    <td align="center"><span id="sum_2top"></span>
                       <?php 
                         $sum_2top = 0;
                         foreach ($number_2top as $key => $value) { 
@@ -105,12 +113,12 @@
                     </td>
                   </tr>
                   <tr>
-                    <th class="text-center">ยอดรวมหัก 25%</th>
-                    <th colspan="2" class="text-center">
+                    <td align="center">ยอดรวมหัก 25%</td>
+                    <td align="center">
                       <?php 
-                        echo number_format($agent_sent['2digi']['top']*0.75);
+                        echo number_format(ceil100($sum_2top*0.75));
                       ?>
-                    </th>
+                    </td>
                   </tr>
                 </table>
                 <table width="100%">
@@ -123,27 +131,12 @@
                   <tbody>
                     <?php 
                           foreach ($number_2top as $key => $value) { 
-                            $hideTd = 'td-hide';
-                            if($value['sent'] >= $config[3]['value']) {
-                              $bgClass  = 'bg-red';
-                              $bgClass2 = 'bg-red';
-                              $hideTd   = '';
-                            }elseif($value['sent'] > $config[4]['value']) {
-                              $bgClass  = 'bg-yellow';
-                              $bgClass2 = '';
-                            }elseif($value['sent'] > $config[5]['value']) {
-                              $bgClass  = 'bg-green';
-                              $bgClass2 = '';
-                            }else{
-                              $bgClass  = '';
-                              $bgClass2 = '';
-                            }
                     ?>
-                    <tr class="<?php echo $hideTd ?>">
-                      <td align="center" class="text-center ">
+                    <tr>
+                      <td align="center">
                         <span><?php echo $value['number'] ?></span>
                       </td>
-                      <td align="center" class="text-center <?php echo $bgClass2 ; ?>">
+                      <td align="center" >
                         <span>
                           <?php 
                             if($value['sent'] >= $config[3]['value']){
@@ -163,11 +156,11 @@
               
                 <table width="100%">
                   <tr>
-                    <td colspan="3" align="center"><strong>2 ตัวล่าง</strong></td>
+                    <td colspan="2" align="center"><strong>2 ตัวล่าง</strong></td>
                   </tr>
                   <tr>
-                    <td style="width:50% !important;" align="center"><strong>ยอดรวม</strong></td>
-                    <td colspan="2" align="center">
+                    <td style="width:50% !important;" align="center">ยอดรวม</td>
+                    <td align="center">
                       <?php 
                         $sum_2bottom = 0;
                         foreach ($number_2bottom as $key => $value) { 
@@ -180,12 +173,12 @@
                     </td>
                   </tr>
                   <tr>
-                    <th class="text-center">ยอดรวมหัก 25%</th>
-                    <th colspan="2" class="text-center">
+                    <td align="center">ยอดรวมหัก 25%</td>
+                    <td align="center">
                       <?php 
-                        echo number_format($agent_sent['2digi']['bottom']*0.75);
+                        echo number_format(ceil100($sum_2bottom*0.75));
                       ?>
-                    </th>
+                    </td>
                   </tr>
                 </table>
                 <table width="100%">
@@ -198,27 +191,12 @@
                   <tbody>
                     <?php 
                           foreach ($number_2bottom as $key => $value) { 
-                            $hideTd = 'td-hide';
-                            if($value['sent'] >= $config[3]['value']) {
-                              $bgClass  = 'bg-red';
-                              $bgClass2 = 'bg-red';
-                              $hideTd   = '';
-                            }elseif($value['sent'] > $config[4]['value']) {
-                              $bgClass  = 'bg-yellow';
-                              $bgClass2 = '';
-                            }elseif($value['sent'] > $config[5]['value']) {
-                              $bgClass  = 'bg-green';
-                              $bgClass2 = '';
-                            }else{
-                              $bgClass  = '';
-                              $bgClass2 = '';
-                            }
                     ?>
-                    <tr class="<?php echo $hideTd ?>">
+                    <tr>
                       <td align="center" class="text-center ">
                         <span><?php echo $value['number'] ?></span>
                       </td>
-                      <td align="center" class="text-center <?php echo $bgClass2 ; ?>">
+                      <td align="center" >
                         <span>
                           <?php 
                             if($value['sent'] >= $config[3]['value']){
@@ -238,11 +216,11 @@
               
                 <table width="100%">
                   <tr>
-                    <td colspan="3" align="center"><strong>3 ตัวตรง</strong></td>
+                    <td colspan="2" align="center"><strong>3 ตัวตรง</strong></td>
                   </tr>
                   <tr>
-                    <td style="width:50% !important;" align="center"><strong>ยอดรวม</strong></td>
-                    <td colspan="2" align="center"><span id="sum_3top"></span>
+                    <td style="width:50% !important;" align="center">ยอดรวม</td>
+                    <td align="center"><span id="sum_3top"></span>
                       <?php 
                         $sum_3top = 0;
                         foreach ($number_3top as $key => $value) { 
@@ -255,12 +233,12 @@
                     </td>
                   </tr>
                   <tr>
-                    <th class="text-center">ยอดรวมหัก 25%</th>
-                    <th colspan="2" class="text-center">
+                    <td align="center">ยอดรวมหัก 25%</td>
+                    <td  align="center">
                       <?php 
-                        echo number_format($agent_sent['3digi']['top']*0.75);
+                        echo number_format(ceil100($sum_3top*0.75));
                       ?>
-                    </th>
+                    </td>
                   </tr>
                 </table>
                 <table width="100%">
@@ -273,27 +251,12 @@
                   <tbody>
                     <?php 
                           foreach ($number_3top as $key => $value) { 
-                            $hideTd = 'td-hide';
-                            if($value['sent'] >= $config[6]['value']) {
-                              $bgClass  = 'bg-red';
-                              $bgClass2 = 'bg-red';
-                              $hideTd   = '';
-                            }elseif($value['sent'] > $config[7]['value']) {
-                              $bgClass  = 'bg-yellow';
-                              $bgClass2 = '';
-                            }elseif($value['sent'] > $config[8]['value']) {
-                              $bgClass  = 'bg-green';
-                              $bgClass2 = '';
-                            }else{
-                              $bgClass  = '';
-                              $bgClass2 = '';
-                            }
                     ?>
-                    <tr class="<?php echo $hideTd ?>">
-                      <td align="center" class="text-center ">
+                    <tr>
+                      <td align="center">
                         <span><?php echo $value['number'] ?></span>
                       </td>
-                      <td align="center" class="text-center <?php echo $bgClass2 ; ?>">
+                      <td align="center" >
                         <span>
                           <?php 
                             if($value['sent'] >= $config[6]['value']){
@@ -314,11 +277,11 @@
 
                 <table width="100%">
                   <tr>
-                    <td colspan="3" align="center"><strong>3 ตัวโต๊ด</strong></td>
+                    <td colspan="2" align="center"><strong>3 ตัวโต๊ด</strong></td>
                   </tr>
                   <tr>
-                    <td style="width:50% !important;" align="center"><strong>ยอดรวม</strong></td>
-                    <td colspan="2" align="center">
+                    <td style="width:50% !important;" align="center">ยอดรวม</td>
+                    <td align="center">
                       <?php 
                         $sum_3tod = 0;
                         foreach ($number_3tod as $key => $value) { 
@@ -331,12 +294,12 @@
                     </td>
                   </tr>
                   <tr>
-                    <th class="text-center">ยอดรวมหัก 25%</th>
-                    <th colspan="2" class="text-center">
+                    <td align="center">ยอดรวมหัก 25%</td>
+                    <td align="center">
                       <?php 
-                        echo number_format($agent_sent['3digi']['bottom']*0.75);
+                        echo number_format(ceil100($sum_3tod*0.75));
                       ?>
-                    </th>
+                    </td>
                   </tr>
                 </table>
                 <table width="100%">
@@ -350,15 +313,12 @@
                     <?php 
                           foreach ($number_3tod as $key => $value) { 
                             if($value['sent'] >= $config[9]['value']) {
-                              $bgClass  = 'bg-red';
-                              $bgClass2 = 'bg-red';
-                            
                     ?>
-                    <tr class="<?php echo $hideTd ?>">
+                    <tr>
                       <td align="center" class="text-center ">
                         <span><?php echo $value['number'] ?></span>
                       </td>
-                      <td align="center" class="text-center <?php echo $bgClass2 ; ?>">
+                      <td align="center" >
                         <span>
                           <?php 
                             if($value['sent'] >= $config[9]['value']){
