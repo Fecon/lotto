@@ -410,6 +410,30 @@ class Dashboard extends MX_Controller {
 		$mpdf->Output($file_name.'.pdf','D');
 	}
 
+	public function number_report()
+	{
+		
+		$data['list_lotto'] = $this->Dashboard_model->list_lotto();
+
+		if(empty($this->input->post())){
+			$lottoInfo 	= $this->Dashboard_model->get_latest_lotto();
+			if(empty($lottoInfo)){
+				redirect('dashboard/index_non');
+			}
+			$lotto_id	= $lottoInfo['id'];
+		}else{
+			$lotto_id 	= $this->input->post('lotto_id');
+			$lottoInfo	= $this->Dashboard_model->get_lotto($lotto_id);
+		}
+
+		$data['summary'] 	= $this->Dashboard_model->get_sum_agents_received($lotto_id);
+		$data['lotto']	 	= $lottoInfo;
+		
+		$data['content'] = 'number_report';
+
+		$this->load->view('header/admin_header',$data);
+	}
+
 	private function check_lotto($lotto_id, $agent_id, $lottoInfo)
 	{
 		$agent_buy 		= $this->Dashboard_model->get_agent_buy($agent_id,$lotto_id);

@@ -71,13 +71,37 @@
 
         <?php 
             // Set Variable //
-              $sent_2digi         = $agent_sent['2digi']['top'] + $agent_sent['2digi']['bottom'];
-              $sent_2digi_display = number_format($sent_2digi);
-              $sent_3top         = $agent_sent['3digi']['top'];
-              $sent_3top_display = number_format($sent_3top);
-              $sent_3tod         = $agent_sent['3digi']['bottom'];
-              $sent_3tod_display = number_format($sent_3tod);
-              $total_sent       = $sent_2digi+$sent_3top+$sent_3tod;
+            $sum_2top = 0;
+            foreach ($number_2top as $key => $value) { 
+              if($value['sent'] >= $config[3]['value']){
+                $sum_2top += ceil100($value['sent'] - $config[3]['value'] ) ; 
+              }
+            }
+            
+            $sum_2bottom = 0;
+            foreach ($number_2bottom as $key => $value) { 
+              if($value['sent'] >= $config[3]['value']){
+                $sum_2bottom += ceil100($value['sent'] - $config[3]['value'] ) ; 
+              }
+            }
+
+            $sum_3top = 0;
+            foreach ($number_3top as $key => $value) { 
+              if($value['sent'] >= $config[6]['value']){
+                $sum_3top += ceil100($value['sent'] - $config[6]['value'] ) ; 
+              }
+            }
+
+            $sum_3tod = 0;
+            foreach ($number_3tod as $key => $value) { 
+              if($value['sent'] >= $config[9]['value']){
+                $sum_3tod += ceil100($value['sent'] - $config[9]['value'] ) ; 
+              }
+            }
+
+            $total_sent = $sum_2top + $sum_2bottom + $sum_3top + $sum_3tod ;
+            $total_net  = $total_sent * 0.75;
+
         ?>
         <table width="100%" cellspacing="1" cellpadding="1" style="border:none !important;table-layout:fixed;">
           <tr>
@@ -88,13 +112,23 @@
                          ?>
               </strong>
             </td>
+
+            <td style="border:none !important;">
+              <strong style="font-size: 14pt;">ยอดรวมทั้งหมด = <?php echo number_format($total_sent);?>
+              </strong>
+            </td>
+
+            <td style="border:none !important;">
+              <strong style="font-size: 14pt;">ยอดรวมทั้งหมดหัก 25% = <?php echo number_format($total_net);?>
+              </strong>
+            </td>
           </tr>
         </table>
         <table id="table" width="100%" cellspacing="1" cellpadding="1" style="border:none !important;table-layout:fixed">
         <tr>
               <td valign="top" style="max-width:620px !important;border:none !important;">
 
-                <table width="100%">
+                <table width="90%">
                   <tr>
                     <td colspan="2" align="center"><strong>2 ตัวบน</strong></td>
                   </tr>
@@ -102,12 +136,6 @@
                     <td style="width:50% !important;" align="center">ยอดรวม</td>
                     <td align="center"><span id="sum_2top"></span>
                       <?php 
-                        $sum_2top = 0;
-                        foreach ($number_2top as $key => $value) { 
-                          if($value['sent'] >= $config[3]['value']){
-                            $sum_2top += ceil100($value['sent'] - $config[3]['value'] ) ; 
-                          }
-                        }
                         echo number_format($sum_2top);
                       ?>
                     </td>
@@ -116,12 +144,12 @@
                     <td align="center">ยอดรวมหัก 25%</td>
                     <td align="center">
                       <?php 
-                        echo number_format(ceil100($sum_2top*0.75));
+                        echo number_format($sum_2top*0.75);
                       ?>
                     </td>
                   </tr>
                 </table>
-                <table width="100%">
+                <table width="90%">
                   <thead>
                     <tr>
                       <td style="width:50% !important;" align="center"><strong>เลข</strong></td>
@@ -154,7 +182,7 @@
               
               <td valign="top" style="max-width:620px !important;border:none !important;" >
               
-                <table width="100%">
+                <table width="90%">
                   <tr>
                     <td colspan="2" align="center"><strong>2 ตัวล่าง</strong></td>
                   </tr>
@@ -162,12 +190,6 @@
                     <td style="width:50% !important;" align="center">ยอดรวม</td>
                     <td align="center">
                       <?php 
-                        $sum_2bottom = 0;
-                        foreach ($number_2bottom as $key => $value) { 
-                          if($value['sent'] >= $config[3]['value']){
-                            $sum_2bottom += ceil100($value['sent'] - $config[3]['value'] ) ; 
-                          }
-                        }
                         echo number_format($sum_2bottom);
                       ?>
                     </td>
@@ -176,12 +198,12 @@
                     <td align="center">ยอดรวมหัก 25%</td>
                     <td align="center">
                       <?php 
-                        echo number_format(ceil100($sum_2bottom*0.75));
+                        echo number_format($sum_2bottom*0.75);
                       ?>
                     </td>
                   </tr>
                 </table>
-                <table width="100%">
+                <table width="90%">
                   <thead>
                     <tr>
                       <td style="width:50% !important;" align="center"><strong>เลข</strong></td>
@@ -214,7 +236,7 @@
               
               <td valign="top" style="max-width:620px !important;border:none !important;" >
               
-                <table width="100%">
+                <table width="90%">
                   <tr>
                     <td colspan="2" align="center"><strong>3 ตัวตรง</strong></td>
                   </tr>
@@ -222,12 +244,6 @@
                     <td style="width:50% !important;" align="center">ยอดรวม</td>
                     <td align="center"><span id="sum_3top"></span>
                       <?php 
-                        $sum_3top = 0;
-                        foreach ($number_3top as $key => $value) { 
-                          if($value['sent'] >= $config[6]['value']){
-                            $sum_3top += ceil100($value['sent'] - $config[6]['value'] ) ; 
-                          }
-                        }
                         echo number_format($sum_3top);
                       ?>
                     </td>
@@ -236,12 +252,12 @@
                     <td align="center">ยอดรวมหัก 25%</td>
                     <td  align="center">
                       <?php 
-                        echo number_format(ceil100($sum_3top*0.75));
+                        echo number_format($sum_3top*0.75);
                       ?>
                     </td>
                   </tr>
                 </table>
-                <table width="100%">
+                <table width="90%">
                   <thead>
                     <tr>
                       <td style="width:50% !important;" align="center"><strong>เลข</strong></td>
@@ -275,7 +291,7 @@
               
               <td valign="top" style="max-width:620px !important;border:none !important;" >
 
-                <table width="100%">
+                <table width="90%">
                   <tr>
                     <td colspan="2" align="center"><strong>3 ตัวโต๊ด</strong></td>
                   </tr>
@@ -283,12 +299,6 @@
                     <td style="width:50% !important;" align="center">ยอดรวม</td>
                     <td align="center">
                       <?php 
-                        $sum_3tod = 0;
-                        foreach ($number_3tod as $key => $value) { 
-                          if($value['sent'] >= $config[9]['value']){
-                            $sum_3tod += ceil100($value['sent'] - $config[9]['value'] ) ; 
-                          }
-                        }
                         echo number_format($sum_3tod);
                       ?>
                     </td>
@@ -297,12 +307,12 @@
                     <td align="center">ยอดรวมหัก 25%</td>
                     <td align="center">
                       <?php 
-                        echo number_format(ceil100($sum_3tod*0.75));
+                        echo number_format($sum_3tod*0.75);
                       ?>
                     </td>
                   </tr>
                 </table>
-                <table width="100%">
+                <table width="90%">
                   <thead>
                     <tr>
                       <td style="width:50% !important;" align="center"><strong>เลข</strong></td>
