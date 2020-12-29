@@ -1,3 +1,9 @@
+<?php
+   $user_data = $this->session->userdata('user_data');
+   if(!isset($user_data)){
+    redirect('login');
+   }
+?>
 <!DOCTYPE html>
 <html>
 <head>
