@@ -15,14 +15,19 @@
             </li>
             <li>
               <a href="<?php echo site_url('dashboard/report_fixable') ?>">
-                <i class="fa fa-table"></i> <span>ยอดรวม V.1</span>
+                <i class="fa fa-table"></i> <span>ยอดรวม</span>
               </a>
             </li>
             <li>
+              <a href="<?php echo site_url('dashboard/number_report') ?>">
+                <i class="fa fa-sort-numeric-asc"></i> <span>เลขซื้อ</span>
+              </a>
+            </li>
+<!--             <li>
               <a href="<?php echo site_url('dashboard/report') ?>">
                 <i class="fa fa-bar-chart"></i> <span>ยอดรวม V.2(Auto)</span>
               </a>
-            </li>
+            </li> -->
             <li>
               <a href="<?php echo site_url('lotto') ?>">
                 <i class="fa fa-calendar"></i> <span>งวด</span>

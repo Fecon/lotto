@@ -426,8 +426,66 @@ class Dashboard extends MX_Controller {
 			$lottoInfo	= $this->Dashboard_model->get_lotto($lotto_id);
 		}
 
-		$data['summary'] 	= $this->Dashboard_model->get_sum_agents_received($lotto_id);
+		$set1 = array();
+		$set2 = array();
+		$set3 = array();
+		$set4 = array();
+		$set5 = array();
+
+		for ($i=0; $i < 25 ; $i++) { 
+			if ($i<10) {
+				$i = str_pad($i, 2, "0", STR_PAD_LEFT); 
+			}
+			$sum_i = $this->Dashboard_model->get_sum_buy($lotto_id , $i );
+			$sum_i['number'] = $i ;
+			array_push($set1 , $sum_i);
+		}
+
+		for ($i=25; $i < 50 ; $i++) { 
+			$sum_i = $this->Dashboard_model->get_sum_buy($lotto_id , $i );
+			$sum_i['number'] = $i ;
+			array_push($set2 , $sum_i);
+		}
+
+		for ($i=50; $i < 75 ; $i++) { 
+			$sum_i = $this->Dashboard_model->get_sum_buy($lotto_id , $i );
+			$sum_i['number'] = $i ;
+			array_push($set3 , $sum_i);
+		}
+
+		for ($i=75; $i < 100 ; $i++) { 
+			$sum_i = $this->Dashboard_model->get_sum_buy($lotto_id , $i );
+			$sum_i['number'] = $i ;
+			array_push($set4 , $sum_i);
+		}
+
+		// for ($i=0; $i < 1000 ; $i++) { 
+		// 	if ($i<100) {
+		// 		$i = str_pad($i, 3, "0", STR_PAD_LEFT); 
+		// 	}
+		// 	$sum_i = $this->Dashboard_model->get_sum_buy($lotto_id , $i );
+
+		// 	if ($sum_i['total_pay']!='') {
+		// 		$sum_i['number'] = $i ;
+		// 		array_push($set5 , $sum_i);
+		// 	}
+			
+		// }
+
+		// echo "<pre>";
+		// print_r($set1);
+		// print_r($set2);
+		// print_r($set3);
+		// print_r($set4);
+		// print_r($set5);
+		// exit();
+		$data['set1'] 	= $set1;
+		$data['set2'] 	= $set2;
+		$data['set3'] 	= $set3;
+		$data['set4'] 	= $set4;
+		// $data['set5'] 	= $set5;
 		$data['lotto']	 	= $lottoInfo;
+		$data['lotto_id']	= $lotto_id;
 		
 		$data['content'] = 'number_report';
 
