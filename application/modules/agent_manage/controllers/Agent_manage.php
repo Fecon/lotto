@@ -1,18 +1,19 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Agent_manage extends MX_Controller {
+class Agent_manage extends MX_Controller
+{
 	public function __construct()
-    {
-    	parent::__construct();
-    	$this->load->model('Agent_model');
-    }
+	{
+		parent::__construct();
+		$this->load->model('Agent_model');
+	}
 	public function index()
 	{
 		$data['content'] = 'agent';
 		$data['list_agent'] = $this->Agent_model->list_agent();
 		$data['list_user'] = $this->Agent_model->list_user();
 
-		$this->load->view('header/admin_header',$data);
+		$this->load->view('header/admin_header', $data);
 	}
 
 	public function agent_insert()
@@ -25,9 +26,9 @@ class Agent_manage extends MX_Controller {
 
 		$result = $this->Agent_model->agent_insert($list_data);
 
-		if($result==1){
+		if ($result == 1) {
 			$this->session->set_flashdata('insert_agent', 'done');
-		}else{
+		} else {
 			$this->session->set_flashdata('insert_agent', 'fail');
 		}
 		redirect('agent_manage');
@@ -43,9 +44,9 @@ class Agent_manage extends MX_Controller {
 		);
 		$result = $this->Agent_model->agent_update($list_data);
 
-		if($result==1){
+		if ($result == 1) {
 			$this->session->set_flashdata('update_agent', 'done');
-		}else{
+		} else {
 			$this->session->set_flashdata('update_agent', 'fail');
 		}
 
@@ -57,6 +58,4 @@ class Agent_manage extends MX_Controller {
 		$return = $this->Agent_model->agent_delete($id);
 		redirect('agent_manage/index');
 	}
-
-
 }

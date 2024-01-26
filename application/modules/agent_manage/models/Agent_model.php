@@ -1,14 +1,15 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Agent_model extends CI_Model {
+class Agent_model extends CI_Model
+{
 
 
 	public function list_agent()
 	{
 		$query = $this->db
 			->select('agent.*,user.username as user_name')
-			->order_by('name','asc')
-			->join('user','user.id = agent.user_id')
+			->order_by('name', 'asc')
+			->join('user', 'user.id = agent.user_id')
 			->get('agent');
 		return $query->result_array();
 	}
@@ -23,53 +24,52 @@ class Agent_model extends CI_Model {
 		$this->db->insert('agent', $list_data);
 		$this->db->trans_complete();
 		if ($this->db->affected_rows() == '1') {
-		    return TRUE;
+			return TRUE;
 		} else {
-		    if ($this->db->trans_status() === FALSE) {
-		        return false;
-		    }
-		    return true;
+			if ($this->db->trans_status() === FALSE) {
+				return false;
+			}
+			return true;
 		}
 	}
 	public function agent_delete($id)
 	{
-		$this->db->where('id',$id);
+		$this->db->where('id', $id);
 		$this->db->delete('agent');
 	}
 	public function agent_update($list_data)
 	{
 		$this->db->trans_start();
-		$this->db->where('id',$list_data['id']);
-		$this->db->update('agent',$list_data);
+		$this->db->where('id', $list_data['id']);
+		$this->db->update('agent', $list_data);
 		$this->db->trans_complete();
 		// was there any insert or error?
 		if ($this->db->affected_rows() == '1') {
-		    return TRUE;
+			return TRUE;
 		} else {
-		    // any trans error?
-		    if ($this->db->trans_status() === FALSE) {
-		        return false;
-		    }
-		    return true;
+			// any trans error?
+			if ($this->db->trans_status() === FALSE) {
+				return false;
+			}
+			return true;
 		}
 	}
 
 	public function agent_change($input)
 	{
-		$this->db->where('id',$input['id']);
-		$this->db->update('agent',$input);
+		$this->db->where('id', $input['id']);
+		$this->db->update('agent', $input);
 	}
 	public function get_profile($id)
 	{
-		$this->db->where('id',$id);
+		$this->db->where('id', $id);
 		$query = $this->db->get('agent');
 		return $query->result_array();
 	}
-	public function checkRepeat($type,$input)
+	public function checkRepeat($type, $input)
 	{
-		$this->db->where($type,$input);
+		$this->db->where($type, $input);
 		$query = $this->db->get("agent");
 		return $query->num_rows();
 	}
-
 }
